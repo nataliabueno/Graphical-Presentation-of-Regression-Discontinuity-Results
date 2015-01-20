@@ -1,0 +1,92 @@
+\documentclass[letterpaper,twoside,12pt]{article}
+
+\usepackage[USenglish]{babel} 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 
+\usepackage[top=1.5in, bottom=1.5in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{arydshln}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage{setspace}
+\usepackage[round]{natbib}
+\usepackage{soul}
+\setlength{\belowcaptionskip}{12pt}
+\usepackage{framed}
+\usepackage{rotating}
+\usepackage{hyperref}
+\usepackage[hang,flushmargin]{footmisc} 
+\usepackage{framed}
+\usepackage{arydshln}
+\usepackage{endnotes}
+\usepackage{arydshln}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[capposition=top]{floatrow}
+\usepackage{subcaption}
+ \raggedbottom
+\providecommand{\keywords}[1]{\textbf{Keywords:} #1}
+
+\usepackage[latin1]{inputenc}
+\doublespace
+
+\newcommand*{\SuperScriptSameStyle}[1]{%
+  \ensuremath{%
+    \mathchoice
+      {{}^{\displaystyle #1}}%
+      {{}^{\textstyle #1}}%
+      {{}^{\scriptstyle #1}}%
+      {{}^{\scriptscriptstyle #1}}%
+  }%
+}
+
+\newcommand*{\oneS}{\SuperScriptSameStyle{*}}
+\newcommand*{\twoS}{\SuperScriptSameStyle{**}}
+\newcommand*{\threeS}{\SuperScriptSameStyle{*{*}*}}
+
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\vs}{\vspace{5mm}}
+\newcommand{\vsmore}{\vspace{15mm}}
+\newcommand{\letters}{\begin{enumerate}[a.]}
+\renewcommand{\i}{\item}
+\renewcommand{\u}{\underline}
+\renewcommand{\footnotelayout}{\doublespacing}
+\renewcommand{\baselinestretch}{2}
+\renewcommand{\footnotesize}{\normalsize
+\setlength{\footnotesep}{\baselineskip}} 
+\newenvironment{nscenter}
+ {\parskip=0pt\par\nopagebreak\centering}
+ {\par\noindent\ignorespacesafterend}
+% \let\footnote=\endnote
+
+%--------------------------------------------------------
+\begin{document}
+\title{Graphical Presentation of Regression Discontinuity Results}
+\date{}
+\author{Nat\'{a}lia S. Bueno\footnote{Ph.D. Candidate, Department of Political Science, Yale University.} \hspace{1 mm} and Guadalupe Tu\~n\'on\footnote{Ph.D. Candidate, Department of Political Science, University of California, Berkeley.}}
+
+\maketitle
+
+\begin{center}
+\textbf{Word Count: 2,536}
+\end{center}
+
+\vspace{50mm}
+\noindent \textbf{Acknowledgments:} We are grateful for helpful advice received from Thad Dunning and Allan Dafoe.
+
+
+\clearpage
+\begin{abstract}
+\noindent During the last decade, an increasing number of political scientists have turned to regression-discontinuity (RD) designs to estimate causal effects. One of the key issues in RD designs involves selection of the window or bandwidth as results are often sensitive to their size. We propose a simple graphical way of reporting RD results that shows the sensitivity of estimates to a wide range of possible windows. The advantages of these plots over conventional ways of presenting RD results are threefold. First, they reduce the opportunities for the intentional or unintentional selection of windows that yield significant findings while also communicating the robustness of results to variations in window size. Second, they provide a simple visual comparison of how different estimators (difference-of-means, local linear, and polynomial regression models) perform as a function of different windows. Third, these plots can be used for placebo tests to examine the sensitivity of balance to different windows, reporting the magnitude of the difference between treatment and control and its confidence interval. We illustrate how a researcher can use these plots to present RD results in a transparent and systematic way with a regression discontinuity design examining incumbency advantage in the U.S.\ House of Representatives.
+\end{abstract}
+
+\vspace*{10pt}
+\noindent \keywords{Regression-Discontinuity Design, Graphical Presentation, Natural Experiment, Placebo Tests, Incumbency Advantage.}
+
+\end{document}

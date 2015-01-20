@@ -1,0 +1,4706 @@
+
+R version 2.13.0 (2011-04-13)
+Copyright (C) 2011 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin9.8.0/x86_64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+Loading required package: proto
+Loading required package: grid
+Loading required package: reshape
+Loading required package: plyr
+
+Attaching package: 'reshape'
+
+The following object(s) are masked from 'package:plyr':
+
+    rename, round_any
+
+[Previously saved workspace restored]
+
+> rm(list = ls())
+> #####################
+> #### Directories ####
+> #####################
+> ## User should adjust these accordingly
+> plot.dir <- "."
+> data.dir <- "."
+> 
+> ###################
+> #### Libraries ####
+> ###################
+> library(MASS)
+> library(foreign)
+> library(Matching)
+Loading required package: rgenoud
+##  rgenoud (Version 5.7-3, Build Date: 2011-05-04)
+##  See http://sekhon.berkeley.edu/rgenoud for additional documentation.
+## 
+##  Matching (Version 4.7-14, Build Date: 2011/05/20)
+##  See http://sekhon.berkeley.edu/matching for additional documentation.
+##  Please cite software as:
+##   Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching
+##   Software with Automated Balance Optimization: The Matching package for R.''
+##   Journal of Statistical Software, 42(7): 1-52. 
+##
+> library(xtable)
+> library(snow)
+> library(stats)
+> #library(arm)
+> library(car)
+Loading required package: nnet
+Loading required package: survival
+Loading required package: splines
+> library(np)
+Loading required package: boot
+
+Attaching package: 'boot'
+
+The following object(s) are masked from 'package:car':
+
+    logit
+
+The following object(s) are masked from 'package:survival':
+
+    aml
+
+Loading required package: cubature
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-7)
+> library(KernSmooth)
+KernSmooth 2.23 loaded
+Copyright M. P. Wand 1997-2009
+> library(boot)
+> library(sandwich)
+Loading required package: zoo
+Warning message:
+package 'zoo' was built under R version 2.13.1 
+> library(coda)
+Loading required package: lattice
+
+Attaching package: 'lattice'
+
+The following object(s) are masked from 'package:boot':
+
+    melanoma
+
+> library(rbounds)
+rbounds: Perform Rosenbaum bounds sensitivity tests for matched data.
+Version: 0.7
+> library(gdata)
+gdata: read.xls support for 'XLS' (Excel 97-2004) files ENABLED.
+
+gdata: read.xls support for 'XLSX' (Excel 2007+) files ENABLED.
+
+Attaching package: 'gdata'
+
+The following object(s) are masked from 'package:stats':
+
+    nobs
+
+The following object(s) are masked from 'package:utils':
+
+    object.size
+
+> library(gtools)
+
+Attaching package: 'gtools'
+
+The following object(s) are masked from 'package:boot':
+
+    inv.logit, logit
+
+The following object(s) are masked from 'package:car':
+
+    logit
+
+> library(gmodels)
+> library(gplots)
+Loading required package: caTools
+Loading required package: bitops
+
+Attaching package: 'gplots'
+
+The following object(s) are masked from 'package:stats':
+
+    lowess
+
+> library(coin)
+Loading required package: mvtnorm
+Loading required package: modeltools
+Loading required package: stats4
+
+Attaching package: 'modeltools'
+
+The following object(s) are masked from 'package:plyr':
+
+    empty
+
+> library(gsubfn)
+> library(mice)
+mice 2.8 2011-03-24 
+> library(fields)
+Loading required package: spam
+Package 'spam' is loaded. Spam version 0.23-0 (2010-09-01).
+Type demo( spam) for some demos, help( Spam) for an overview
+of this package.
+Help for individual functions is optained by adding the
+suffix '.spam' to the function name, e.g. 'help(chol.spam)'.
+
+Attaching package: 'spam'
+
+The following object(s) are masked from 'package:stats4':
+
+    mle
+
+The following object(s) are masked from 'package:xtable':
+
+    display
+
+The following object(s) are masked from 'package:base':
+
+    backsolve, forwardsolve, norm
+
+ Use help(fields) for an overview of this library
+
+library( fields, keep.source=TRUE) retains comments in the source code.
+
+Copyright 2004-2011, Licensed under GPL, www.gpl.org/licenses/gpl.html 
+
+Attaching package: 'fields'
+
+The following object(s) are masked from 'package:plyr':
+
+    ozone
+
+> library(pscl)
+Loading required package: gam
+Loading required package: vcd
+Loading required package: colorspace
+Classes and Methods for R developed in the
+Political Science Computational Laboratory
+Department of Political Science
+Stanford University
+Simon Jackman
+hurdle and zeroinfl functions by Achim Zeileis
+> library(MCMCpack)
+##
+## Markov Chain Monte Carlo Package (MCMCpack)
+## Copyright (C) 2003-2011 Andrew D. Martin, Kevin M. Quinn, and Jong Hee Park
+##
+## Support provided by the U.S. National Science Foundation
+## (Grants SES-0350646 and SES-0350613)
+##
+
+Attaching package: 'MCMCpack'
+
+The following object(s) are masked from 'package:gtools':
+
+    ddirichlet, rdirichlet
+
+> library(Synth)  
+Loading required package: kernlab
+
+Attaching package: 'kernlab'
+
+The following object(s) are masked from 'package:modeltools':
+
+    prior
+
+The following object(s) are masked from 'package:coda':
+
+    nvar
+
+##
+## Synth Package: Implements Synthetic Control Methods.
+## Copyright (C) 2005-2011 Alberto Abadie, Alexis J. Diamond, and Jens Hainmueller
+
+## See http://www.people.fas.harvard.edu/~jhainm/software.htm for additional information.
+
+> library(beanplot)
+> library(Kendall)
+> library(ggplot2)
+
+Attaching package: 'ggplot2'
+
+The following object(s) are masked from 'package:kernlab':
+
+    alpha
+
+The following object(s) are masked from 'package:gdata':
+
+    interleave
+
+> 
+> ### Function for naming plot files
+> mypdf <- function(name, ...) {
++   pdf(paste(name, Sys.Date(), ".pdf", sep = ""), ...)
++ }
+> 
+> ### Load data from data directory
+> setwd(data.dir)
+> rd <- read.dta("./RDReplication.dta")
+> ## Includes correction to DifDPct and political experience variables
+> ## in LA-3-2004
+> 
+> #########################################################
+> #### Fig. 1: Incumbent histogram broken out by party ####
+> #########################################################
+> ### Define subsets of data
+> use <- rd$Use == 1
+> close.25 <- abs(rd$DifDPct) < .25 & !is.na(rd$DifDPct)
+> close.5 <- abs(rd$DifDPct) < .5 & !is.na(rd$DifDPct)
+> close1 <- abs(rd$DifDPct) < 1 & !is.na(rd$DifDPct)
+> close2 <- abs(rd$DifDPct) < 2 & !is.na(rd$DifDPct)
+> close5 <- abs(rd$DifDPct) < 5 & !is.na(rd$DifDPct)
+> close10 <- abs(rd$DifDPct) < 10 & !is.na(rd$DifDPct)
+> dinc <- rd$DWinPrv == 1 & !is.na(rd$DWinPrv)
+> rinc <- rd$DWinPrv == 0 & !is.na(rd$DWinPrv)
+> use.5 <- use & close.5
+> 
+> sum(use & rinc & abs(rd$DifDPct) < .5)
+[1] 52
+> sum(use & dinc & abs(rd$DifDPct) < .5)
+[1] 33
+> summary(rd$DWinPrv[use])
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+  0.0000   0.0000   1.0000   0.5552   1.0000   1.0000 372.0000 
+> summary(rd$DWinNxt[use])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+ 0.0000  0.0000  1.0000  0.5661  1.0000  1.0000  6.0000 
+> sum(use & abs(rd$DifDPct) < .5, na.rm = T)
+[1] 85
+> with(rd[close.5 & use, ], table(x = DemWin, y = DWinPrv))
+   y
+x    0  1
+  0 34  8
+  1 18 25
+> with(rd[close.5, ], table(x = DemWin, y = DWinPrv))
+   y
+x    0  1
+  0 37  8
+  1 19 26
+> 
+> ### Plot histograms
+> 
+> ## Incumbent margin
+> ## DMC 2011-11-30: The sample of elections used in the following
+> ## figure differs slightly from the sample used in the figure
+> ## `IncHistByPartyUse', resulting in small discrepancies between the
+> ## figures. To create a version of the figure that is exactly
+> ## compatible with the by-party figure, uncomment the following three
+> ## lines of code:
+> #inc.margin <- NA
+> #inc.margin[dinc] <- rd$DifDPct[dinc]
+> #inc.margin[rinc] <- -rd$DifDPct[rinc]
+> ## and comment the following line:
+> inc.margin <- ifelse(dinc, rd$DifDPct, -rd$DifDPct)
+> 
+> brks <- seq(-10, 10, 0.5)
+> setwd(plot.dir)
+> pdf(file = paste("IncHistUse", Sys.Date(), ".pdf", sep = ""),
++     height = 3.5, width = 6.5)
+> par(mar = c(4.5, 4.5, 1.5, 0), mfrow = c(1, 1), cex = .6)
+> hist(x = inc.margin[close10 & use],
++      breaks = brks,
++      freq = TRUE,
++      labels = TRUE,
++      right = FALSE,
++      xlim = c(-10, 10),
++      col = "grey",
++      main = "",
++      xlab = "Incumbent Party Margin (%)",
++      ylab = 'Frequency Count in 0.5% Bins',
++      las = 1,
++      cex.lab = 1.2,
++      cex.main = 1.3)
+> abline(v = 0, lwd = 2) 
+> dev.off()
+null device 
+          1 
+> 
+> brks <- seq(-5, 5, 0.5)
+> setwd(plot.dir)
+> pdf(file = paste("IncHistByParty", Sys.Date(), ".pdf", sep = ""),
++     height = 7, width = 7)
+> par(mar = c(2.5, 4.5, 1.5, 0), mfrow = c(2, 1), cex = .6)
+> hist(x = rd$DifDPct[close5 & dinc],
++      breaks = brks,
++      freq = TRUE,
++      labels = TRUE,
++      right = FALSE,
++      xlim = c(-10, 10),
++      col = "grey",
++      main = "Democrat-Held Seats",
++      xlab = '',
++      ylab = 'Frequency Count in 0.5% Bins',
++      las = 1,
++      cex.lab = 1.2,
++      cex.main = 1.3)
+> abline(v = 0, lwd = 2)
+> par(mar = c(4.5, 4.5, 1.5, 0))
+> hist(x = rd$DifDPct[close5 & rinc],
++      breaks = brks,
++      freq = TRUE,
++      labels = TRUE,
++      right = FALSE, ## excludes DifDPct = 0.5 from the closest bin,
++      xlim = c(-10, 10),
++      col = "grey",
++      main = "Republican-Held Seats",
++      xlab = 'Democratic Margin (%)',
++      ylab = 'Frequency Count in 0.5% Bins',
++      las = 1,
++      cex.lab = 1.2,
++      cex.main = 1.3)
+> abline(v = 0, lwd = 2)
+> dev.off()   
+null device 
+          1 
+> 
+> brks <- seq(-5, 5, 0.5)
+> pdf(file = paste("IncHistByPartyUse", Sys.Date(), ".pdf", sep = ""),
++     height = 4, width = 7)
+> par(mar = c(4.5, 4.5, 2, 0), mfrow = c(1, 2), cex = .6)
+> hist(x = rd$DifDPct[close5 & use & dinc],
++      breaks = brks,
++      freq = TRUE,
++      labels = TRUE,
++      right = FALSE,
++      xlim = c(-5, 5),
++      ylim = c(0, 45),
++      col = "grey",
++      main = "Democrat-Held Seats",
++      xlab = "Democratic Margin (%)",
++      ylab = 'Frequency Count in 0.5% Bins',
++      las = 1,
++      cex.lab = 1.2,
++      cex.main = 1.3)
+> abline(v = 0, lwd = 2)
+> par(mar = c(4.5, 3.5, 2, 1))
+> hist(x = rd$DifDPct[close5 & use & rinc],
++      breaks = brks,
++      freq = TRUE,
++      labels = TRUE,
++      right = FALSE, ## excludes DifDPct = 0.5 from the closest bin
++      xlim = c(-5, 5),
++      ylim = c(0, 45),
++      col = "grey",
++      main = "Republican-Held Seats",
++      xlab = 'Democratic Margin (%)',
++      ylab = '',
++      las = 1,
++      cex.lab = 1.2,
++      cex.main = 1.3)
+> abline(v = 0, lwd = 2)
+> dev.off()
+null device 
+          1 
+> 
+> ####################################################################
+> #### Table 2: Cross-tabulation of current and lagged Democratic ####
+> #### victory, 1944–2006                                         ####
+> ####################################################################
+> with(rd[use & close2, ], table(x = DemWin, y = DWinPrv))
+   y
+x     0   1
+  0 107  65
+  1  74  74
+> with(rd[use & close1, ], table(x = DemWin, y = DWinPrv))
+   y
+x    0  1
+  0 62 23
+  1 37 45
+> with(rd[use & close.5, ], table(x = DemWin, y = DWinPrv))
+   y
+x    0  1
+  0 34  8
+  1 18 25
+> sum(use & close.5)
+[1] 85
+> with(rd[use & close.5, ],
++      sum(DWinPrv == 1 & DemWin == 1) / sum(DemWin == 1))
+[1] 0.5813953
+> with(rd[use & close.25, ], table(x = DemWin, y = DWinPrv))
+   y
+x    0  1
+  0 14  3
+  1 13 15
+> 
+> ######################################
+> #### CQ Rating in close elections ####
+> ######################################
+> with(rd[use & close.5, ], table(x = DemWin, y = CQRating3))
+   y
+x   -1  0  1
+  0 16 12  6
+  1  7 13 15
+> toss <- rd$CQRating3 == 0
+> with(rd[use & close.5 & toss, ], table(x = DemWin, y = DWinPrv))
+   y
+x    0  1
+  0 11  1
+  1  8  5
+> t.test(DWinPrv ~ DemWin, rd[use & close.5 & toss, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = -1.8449, df = 19.324, p-value = 0.08043
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.64269417  0.04013007 
+sample estimates:
+mean in group 0 mean in group 1 
+     0.08333333      0.38461538 
+
+> t.test(DWinNxt ~ DemWin, rd[use & close.5 & toss, ])
+
+	Welch Two Sample t-test
+
+data:  DWinNxt by DemWin 
+t = -1.4116, df = 22.929, p-value = 0.1715
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.6954698  0.1313673 
+sample estimates:
+mean in group 0 mean in group 1 
+      0.3333333       0.6153846 
+
+> 
+> ######################################################################
+> #### Table 3: Cross-tabulation of CQ Rating and Democratic        ####
+> #### Victory in elections decided by less than 0.5%.              ####
+> ######################################################################
+> with(rd[use & close.5, ], cbind(by(DWinPrv, CQRating3, length),
++                                 by(DWinPrv, CQRating3, mean),
++                                 by(DemWin, CQRating3, mean),
++                                 by(DWinNxt, CQRating3, mean)))
+   [,1]      [,2]      [,3]      [,4]
+-1   23 0.1739130 0.3043478 0.4782609
+0    25 0.2400000 0.5200000 0.4800000
+1    21 0.9047619 0.7142857 0.7142857
+> 
+> ######################################################################
+> #### Figure 2: Balance Plot                                       ####
+> ######################################################################
+> ## Outcome variables (post-treatment)
+> dvs <- matrix(c('DWinNxt', 'Dem Win t + 1',
++                 'DPctNxt', 'Dem % t + 1',
++                 'DifDPNxt', 'Dem % Margin t + 1'),
++               ncol = 2, byrow = TRUE)
+> ## Pre-treatment covariates
+> covs <- matrix(c('DWinPrv', 'Dem Win t - 1',
++                  'DPctPrv', 'Dem % t - 1',
++                  'DifDPPrv', 'Dem % Margin t - 1',
++                  'IncDWNOM1', 'Inc\'s D1 NOMINATE',
++                  'DemInc', 'Dem Inc in Race',
++                  'NonDInc', 'Rep Inc in Race',
++                  'PrvTrmsD', 'Dem\'s # Prev Terms',
++                  'PrvTrmsO', 'Rep\'s # Prev Terms', 
++                  'RExpAdv', 'Rep Experience Adv',
++                  'DExpAdv', 'Dem Experience Adv',
++                  'ElcSwing', 'Partisan Swing',
++                  'CQRating3', 'CQ Rating {-1, 0, 1}',
++                  'DSpndPct', 'Dem Spending %',
++                  'DDonaPct', 'Dem Donation %',
++                  'SoSDem', 'Dem Sec of State',
++                  'GovDem', 'Dem Governor',
++                  'DifPVDec', 'Dem Pres % Margin', ## average over decade
++                  'DemOpen', 'Dem-held Open Seat',
++                  'NonDOpen', 'Rep-held Open Seat',
++                  'OpenSeat', 'Open Seat',
++                  'VtTotPct', 'Voter Turnout %',
++                  'GovWkPct', 'Pct Gov\'t Worker',
++                  'UrbanPct', 'Pct Urban',
++                  'BlackPct', 'Pct Black',
++                  'ForgnPct', 'Pct Foreign Born'),
++                ncol = 2, byrow = TRUE)
+> ## Parameters for plotting
+> r <- 10000
+> varline <- 6
+> nline <- 4
+> tline <- 2
+> cline <- 0
+> 
+> ## Balance plot
+> setwd(plot.dir)
+> pdf(paste("BalancePlot", Sys.Date(), ".pdf", sep = ""),
++     width = 7, height = 8)
+> par(mar = c(2, 12, 1, 0))
+> plot(x = NULL, y = NULL, xlim = c(0, 1), ylim = c(1, nrow(covs) + 3),
++      ylab = '', xlab = '', xaxt = "n", yaxt = "n", bty = 'n')
+> mtext(text = c('Variable\nName', 'Valid\nCases',
++         'Treated\nMean', 'Control\nMean'),
++       side = 2, font = 2,
++       line = c(varline + 3, nline + .7, tline + .7, cline + 0.3),
++       adj = .5, las = 2, at = 29, cex = .7)
+> ## For each covariate...
+> for(i in 1:nrow(covs)) {
++   print(covs[i, 2])
++   print(sum(is.na(rd[use.5, covs[i, 1]])))
++   aty <- nrow(covs) - i + 1
++   print(aty)
++   mtext(text = covs[i, 2], side = 2, line = varline, adj = 1, las = 2,
++         at = aty, cex = .7)
++   ## Number of valid cases
++   nonna <- sum(!is.na(rd[use.5, covs[i, 1]]))
++   ## Mean of treated
++   meanT <- signif(mean(rd[(use.5 & rd$DemWin == 1), covs[i, 1]],
++                       na.rm = TRUE),
++                  digits = 2)
++   ## Adding/subtracting digits for presentation purposes
++   if(abs(meanT) < 0.1) {
++     meanT <- signif(meanT, digits = 1)
++   }
++   if(meanT %% 1 == 0 & abs(meanT) < 10) {
++     meanT <- paste(meanT, '.0', sep = '')
++   }
++   if(abs(as.numeric(meanT)) >= .1 & abs(as.numeric(meanT)) < 1 &
++      nchar(meanT) == 3) {
++     meanT <- paste(meanT, '0', sep = '')
++   }
++   ## Mean of control
++   meanC <- signif(mean(rd[(use.5 & rd$DemWin == 0), covs[i, 1]],
++                       na.rm = TRUE),
++                  digits = 2)
++   ## Presentation adjustments
++   if(abs(meanC) < 0.1) {
++     meanC <- signif(meanC, digits = 1)
++   }
++   if(meanC %% 1 == 0 & abs(meanC) < 10) {
++     meanC <- paste(meanC, '.0', sep = '')
++   }
++   if(as.numeric(meanC) %% .1 == 0 & abs(as.numeric(meanC)) < 1) {
++     meanC <- paste(meanC, '0', sep = '')
++   }
++   mtext(text = c(nonna, meanT, meanC), side = 2,
++         line = c(nline, tline, cline),
++         adj = 1, las = 2, at = aty, cex = .7) 
++   ## Gray bands
++   if(aty %% 2 == 1) {
++     polygon(x = c(0, 0, 1, 1),
++             y = c(aty - .5, aty + .5, aty + .5, aty - .5),
++             border = FALSE,
++             col = 'lightgray')
++   }
++   ## If the variable has three or more levels
++   if(length(levels(factor(rd[, covs[i, 1]]))) >= 3) {
++     p1 <- pvalue(wilcox_test(rd[, covs[i, 1]][use.5] ~
++                              factor(rd$DemWin[use.5]),
++                              distribution = 'exact'))
++     print(p1)
++     sym <- 18
++   } else
++   ## If the variable is dichotomous
++   {
++     p1 <- fisher.test(x = factor(rd[, covs[i, 1]][use.5]),
++                       y = factor(rd$DemWin[use.5])
++                       )$p.value
++     sym <- 20
++   }
++   ## Plot p-value
++   points(pch = sym, x = p1, y = aty)
++ }
+[1] "Dem Win t - 1"
+[1] 0
+[1] 25
+[1] "Dem % t - 1"
+[1] 0
+[1] 24
+[1] 0.00563894
+[1] "Dem % Margin t - 1"
+[1] 1
+[1] 23
+[1] 0.004224791
+[1] "Inc's D1 NOMINATE"
+[1] 0
+[1] 22
+[1] 0.0004777311
+[1] "Dem Inc in Race"
+[1] 0
+[1] 21
+[1] "Rep Inc in Race"
+[1] 0
+[1] 20
+[1] "Dem's # Prev Terms"
+[1] 0
+[1] 19
+[1] 0.005691334
+[1] "Rep's # Prev Terms"
+[1] 0
+[1] 18
+[1] 0.0008439769
+[1] "Rep Experience Adv"
+[1] 4
+[1] 17
+[1] "Dem Experience Adv"
+[1] 4
+[1] 16
+[1] "Partisan Swing"
+[1] 0
+[1] 15
+[1] 0.001722884
+[1] "CQ Rating {-1, 0, 1}"
+[1] 16
+[1] 14
+[1] 0.007156808
+[1] "Dem Spending %"
+[1] 38
+[1] 13
+[1] 0.01969564
+[1] "Dem Donation %"
+[1] 51
+[1] 12
+[1] 0.02465155
+[1] "Dem Sec of State"
+[1] 0
+[1] 11
+[1] "Dem Governor"
+[1] 0
+[1] 10
+[1] "Dem Pres % Margin"
+[1] 6
+[1] 9
+[1] 0.9475299
+[1] "Dem-held Open Seat"
+[1] 0
+[1] 8
+[1] "Rep-held Open Seat"
+[1] 0
+[1] 7
+[1] "Open Seat"
+[1] 0
+[1] 6
+[1] "Voter Turnout %"
+[1] 0
+[1] 5
+[1] 0.6155157
+[1] "Pct Gov't Worker"
+[1] 12
+[1] 4
+[1] 0.2804675
+[1] "Pct Urban"
+[1] 12
+[1] 3
+[1] 0.3057847
+[1] "Pct Black"
+[1] 12
+[1] 2
+[1] 0.4752686
+[1] "Pct Foreign Born"
+[1] 12
+[1] 1
+[1] 0.8622707
+> ## For each outcome variable...
+> for(i in 1:nrow(dvs)) {
++   print(dvs[i, 2])
++   aty <- nrow(covs) + nrow(dvs) - i + 1
++   print(aty)
++   mtext(text = dvs[i, 2], side = 2, line = varline, adj = 1, las = 2,
++         at = aty, cex = .7, font = 3)
++   nonna <- sum(!is.na(rd[use.5, dvs[i, 1]]))
++   meanT <- signif(mean(rd[(use.5 & rd$DemWin == 1), dvs[i, 1]],
++                       na.rm = TRUE),
++                  digits = 2)
++   if(abs(meanT) < 0.1) {
++     meanT <- signif(meanT, digits = 1)
++   }
++   if(meanT %% 1 == 0 & abs(meanT) < 10) {
++     meanT <- paste(meanT, '.0', sep = '')
++   }
++   if(as.numeric(meanT) %% .1 == 0 & abs(as.numeric(meanT)) < 1) {
++     meanT <- paste(meanT, '0', sep = '')
++   }
++   meanC <- signif(mean(rd[(use.5 & rd$DemWin == 0), dvs[i, 1]],
++                       na.rm = TRUE),
++                  digits = 2)
++   if(abs(meanC) < 0.1) {
++     meanC <- signif(meanC, digits = 1)
++   }
++   if(meanC %% 1 == 0 & abs(meanC) < 10) {
++     meanC <- paste(meanC, '.0', sep = '')
++   }
++   if(as.numeric(meanC) %% .1 == 0 & abs(as.numeric(meanC)) < 1) {
++     meanC <- paste(meanC, '0', sep = '')
++   }
++   mtext(text = c(nonna, meanT, meanC), side = 2,
++         line = c(nline, tline, cline),
++         adj = 1, las = 2, at = aty, cex = .7, font = 3) 
++   if(aty %% 2 == 1) {
++     polygon(x = c(0, 0, 1, 1),
++             y = c(aty - .5, aty + .5, aty + .5, aty - .5),
++             border = FALSE,
++             col = 'lightgray')
++   }
++   if(length(levels(factor(rd[, covs[i, 1]]))) >= 3) {
++     p1 <- pvalue(wilcox_test(rd[, dvs[i, 1]][use.5] ~
++                              factor(rd$DemWin[use.5]),
++                              distribution = 'exact'))
++     print(p1)
++     sym <- 18
++   } else {
++     p1 <- p2 <- NA
++     p1 <- fisher.test(x = factor(rd[, dvs[i, 1]][use.5]),
++                       y = factor(rd$DemWin[use.5])
++                       )$p.value
++     sym <- 20
++   }
++   points(pch = sym[1], x = p1, y = aty)
++   points(pch = sym[2], x = p2, y = aty)
++ }
+[1] "Dem Win t + 1"
+[1] 28
+[1] "Dem % t + 1"
+[1] 27
+[1] 3.103739e-05
+[1] "Dem % Margin t + 1"
+[1] 26
+[1] 1.266069e-05
+> segments(x0 = 0, x1 = 0, y0 = .5, y1 = 28.5)
+> segments(x0 = 0, x1 = 1, y0 = .49, y1 = .49)
+> segments(x0 = c(.05, .1), x1 = c(.05, .1),
++          y0 = .5, y1 = 28.5,
++          lty = 'dotted')
+> segments(x0 = 0, x1 = 1, y0 = 25.5, y1 = 25.5, lty = 'dashed')
+> mtext(side = 1, at = c(0, .05, .1, 1), text = c('0', '.05', '.1', '1'),
++       cex = .7, line = -.75)
+> mtext(side = 1, at = .5, text = 'p-value')
+> dev.off()
+null device 
+          1 
+> 
+> ##################
+> #### Spending ####
+> ##################
+> spend.pct.winner <-
++   ifelse(rd$DemWin == 1, rd$DSpndPct, 100 - rd$DSpndPct)
+> ## CQ tossups
+> summary(spend.pct.winner[toss])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  17.27   43.78   51.90   52.39   60.92   99.33 7954.00 
+> mean(spend.pct.winner[toss] > 50, na.rm = T)
+[1] 0.5786925
+> t.test(spend.pct.winner[toss] - 50)
+
+	One Sample t-test
+
+data:  spend.pct.winner[toss] - 50 
+t = 3.8978, df = 412, p-value = 0.0001133
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+ 1.186794 3.601787 
+sample estimates:
+mean of x 
+ 2.394291 
+
+> wilcox.test(spend.pct.winner[toss] - 50, exact = TRUE)
+
+	Wilcoxon signed rank test
+
+data:  spend.pct.winner[toss] - 50 
+V = 51935, p-value = 0.0001438
+alternative hypothesis: true location is not equal to 0 
+
+> ## 0.5% window
+> summary(spend.pct.winner[use.5])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  22.66   48.40   53.29   54.60   62.97   87.25   38.00 
+> mean(spend.pct.winner[use.5] > 50, na.rm = T)
+[1] 0.6170213
+> t.test(spend.pct.winner[use.5] - 50)
+
+	One Sample t-test
+
+data:  spend.pct.winner[use.5] - 50 
+t = 2.5122, df = 46, p-value = 0.01557
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+ 0.9137803 8.2820602 
+sample estimates:
+mean of x 
+  4.59792 
+
+> wilcox.test(spend.pct.winner[use.5] - 50, exact = TRUE)
+
+	Wilcoxon signed rank test
+
+data:  spend.pct.winner[use.5] - 50 
+V = 794, p-value = 0.01418
+alternative hypothesis: true location is not equal to 0 
+
+> ## CQ tossups in 0.5% window
+> summary(spend.pct.winner[use.5 & toss])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  41.78   49.82   54.35   56.26   62.92   76.93   21.00 
+> mean(spend.pct.winner[use.5 & toss] > 50, na.rm = T)
+[1] 0.65
+> t.test(spend.pct.winner[use.5 & toss] - 50)
+
+	One Sample t-test
+
+data:  spend.pct.winner[use.5 & toss] - 50 
+t = 3.0119, df = 19, p-value = 0.007169
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+  1.910959 10.616107 
+sample estimates:
+mean of x 
+ 6.263533 
+
+> wilcox.test(spend.pct.winner[use.5 & toss] - 50, exact = TRUE)
+
+	Wilcoxon signed rank test
+
+data:  spend.pct.winner[use.5 & toss] - 50 
+V = 171, p-value = 0.01208
+alternative hypothesis: true location is not equal to 0 
+
+> 
+> ###################
+> #### Donations ####
+> ###################
+> donation.pct.winner <-
++   ifelse(rd$DemWin == 1, rd$DDonaPct, 100 - rd$DDonaPct)
+> ## CQ tossups
+> summary(donation.pct.winner[toss])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  13.85   42.11   51.79   51.61   60.11   99.70 8047.00 
+> mean(donation.pct.winner[toss] > 50, na.rm = T)
+[1] 0.546875
+> t.test(donation.pct.winner[toss] - 50)
+
+	One Sample t-test
+
+data:  donation.pct.winner[toss] - 50 
+t = 2.0206, df = 319, p-value = 0.04416
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+ 0.04237866 3.17960894 
+sample estimates:
+mean of x 
+ 1.610994 
+
+> wilcox.test(donation.pct.winner[toss] - 50, exact = TRUE)
+
+	Wilcoxon signed rank test
+
+data:  donation.pct.winner[toss] - 50 
+V = 29019, p-value = 0.04374
+alternative hypothesis: true location is not equal to 0 
+
+> ## 0.5% window
+> summary(donation.pct.winner[use.5])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  9.215  47.130  55.520  55.440  65.320  83.330  51.000 
+> mean(donation.pct.winner[use.5] > 50, na.rm = T)
+[1] 0.6764706
+> t.test(donation.pct.winner[use.5] - 50)
+
+	One Sample t-test
+
+data:  donation.pct.winner[use.5] - 50 
+t = 2.1108, df = 33, p-value = 0.04245
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+  0.1965716 10.6802471 
+sample estimates:
+mean of x 
+ 5.438409 
+
+> wilcox.test(donation.pct.winner[use.5] - 50, exact = TRUE)
+
+	Wilcoxon signed rank test
+
+data:  donation.pct.winner[use.5] - 50 
+V = 432, p-value = 0.02058
+alternative hypothesis: true location is not equal to 0 
+
+> ## CQ tossups in 0.5% window
+> summary(donation.pct.winner[use.5 & toss])
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  42.25   49.36   57.93   56.78   59.30   78.38   26.00 
+> mean(donation.pct.winner[use.5 & toss] > 50, na.rm = T)
+[1] 0.7333333
+> t.test(donation.pct.winner[use.5 & toss] - 50)
+
+	One Sample t-test
+
+data:  donation.pct.winner[use.5 & toss] - 50 
+t = 2.5981, df = 14, p-value = 0.02105
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+  1.182943 12.375582 
+sample estimates:
+mean of x 
+ 6.779263 
+
+> wilcox.test(donation.pct.winner[use.5 & toss] - 50, exact = TRUE)
+
+	Wilcoxon signed rank test
+
+data:  donation.pct.winner[use.5 & toss] - 50 
+V = 102, p-value = 0.01508
+alternative hypothesis: true location is not equal to 0 
+
+> 
+> ####################
+> #### Experience ####
+> ####################
+> with(rd[use.5, ], mean(DExpAdv, na.rm = T) + mean(RExpAdv, na.rm = T))
+[1] 0.7901235
+> with(rd[use.5 & (rd$DExpAdv == 1 | rd$RExpAdv == 1), ],
++      mean((DExpAdv == 1 & DemWin == 1) |
++           (RExpAdv == 1 & DemWin == 0),
++           na.rm = T))
+[1] 0.703125
+> 
+> #############################
+> #### Best balance window ####
+> #############################
+> ## Windows
+> window <- seq(10, 0.25, -0.01)
+> ### DWinPrv
+> dwp.prop.diff <- rep(NA, length(window)) 
+> dwn.prop.diff <- rep(NA, length(window)) 
+> dwp.min.pv <- rep(NA, length(window))
+> for (i in 1:length(window)) {
++   print(i)
++   win <- (abs(rd$DifDPct) < window[i] + 0.25 &
++           abs(rd$DifDPct) > window[i] - 0.25 &
++           use)
++   tt <- t.test(DWinPrv ~ DemWin, data = rd[win, ])
++   dwp.prop.diff[i] <- tt$estimate[2] - tt$estimate[1]
++   dwp.min.pv[i] <- tt$p.value
++   tt2 <- t.test(DWinNxt ~ DemWin, data = rd[win, ])
++   dwn.prop.diff[i] <- tt2$estimate[2] - tt2$estimate[1]
++ }
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 15
+[1] 16
+[1] 17
+[1] 18
+[1] 19
+[1] 20
+[1] 21
+[1] 22
+[1] 23
+[1] 24
+[1] 25
+[1] 26
+[1] 27
+[1] 28
+[1] 29
+[1] 30
+[1] 31
+[1] 32
+[1] 33
+[1] 34
+[1] 35
+[1] 36
+[1] 37
+[1] 38
+[1] 39
+[1] 40
+[1] 41
+[1] 42
+[1] 43
+[1] 44
+[1] 45
+[1] 46
+[1] 47
+[1] 48
+[1] 49
+[1] 50
+[1] 51
+[1] 52
+[1] 53
+[1] 54
+[1] 55
+[1] 56
+[1] 57
+[1] 58
+[1] 59
+[1] 60
+[1] 61
+[1] 62
+[1] 63
+[1] 64
+[1] 65
+[1] 66
+[1] 67
+[1] 68
+[1] 69
+[1] 70
+[1] 71
+[1] 72
+[1] 73
+[1] 74
+[1] 75
+[1] 76
+[1] 77
+[1] 78
+[1] 79
+[1] 80
+[1] 81
+[1] 82
+[1] 83
+[1] 84
+[1] 85
+[1] 86
+[1] 87
+[1] 88
+[1] 89
+[1] 90
+[1] 91
+[1] 92
+[1] 93
+[1] 94
+[1] 95
+[1] 96
+[1] 97
+[1] 98
+[1] 99
+[1] 100
+[1] 101
+[1] 102
+[1] 103
+[1] 104
+[1] 105
+[1] 106
+[1] 107
+[1] 108
+[1] 109
+[1] 110
+[1] 111
+[1] 112
+[1] 113
+[1] 114
+[1] 115
+[1] 116
+[1] 117
+[1] 118
+[1] 119
+[1] 120
+[1] 121
+[1] 122
+[1] 123
+[1] 124
+[1] 125
+[1] 126
+[1] 127
+[1] 128
+[1] 129
+[1] 130
+[1] 131
+[1] 132
+[1] 133
+[1] 134
+[1] 135
+[1] 136
+[1] 137
+[1] 138
+[1] 139
+[1] 140
+[1] 141
+[1] 142
+[1] 143
+[1] 144
+[1] 145
+[1] 146
+[1] 147
+[1] 148
+[1] 149
+[1] 150
+[1] 151
+[1] 152
+[1] 153
+[1] 154
+[1] 155
+[1] 156
+[1] 157
+[1] 158
+[1] 159
+[1] 160
+[1] 161
+[1] 162
+[1] 163
+[1] 164
+[1] 165
+[1] 166
+[1] 167
+[1] 168
+[1] 169
+[1] 170
+[1] 171
+[1] 172
+[1] 173
+[1] 174
+[1] 175
+[1] 176
+[1] 177
+[1] 178
+[1] 179
+[1] 180
+[1] 181
+[1] 182
+[1] 183
+[1] 184
+[1] 185
+[1] 186
+[1] 187
+[1] 188
+[1] 189
+[1] 190
+[1] 191
+[1] 192
+[1] 193
+[1] 194
+[1] 195
+[1] 196
+[1] 197
+[1] 198
+[1] 199
+[1] 200
+[1] 201
+[1] 202
+[1] 203
+[1] 204
+[1] 205
+[1] 206
+[1] 207
+[1] 208
+[1] 209
+[1] 210
+[1] 211
+[1] 212
+[1] 213
+[1] 214
+[1] 215
+[1] 216
+[1] 217
+[1] 218
+[1] 219
+[1] 220
+[1] 221
+[1] 222
+[1] 223
+[1] 224
+[1] 225
+[1] 226
+[1] 227
+[1] 228
+[1] 229
+[1] 230
+[1] 231
+[1] 232
+[1] 233
+[1] 234
+[1] 235
+[1] 236
+[1] 237
+[1] 238
+[1] 239
+[1] 240
+[1] 241
+[1] 242
+[1] 243
+[1] 244
+[1] 245
+[1] 246
+[1] 247
+[1] 248
+[1] 249
+[1] 250
+[1] 251
+[1] 252
+[1] 253
+[1] 254
+[1] 255
+[1] 256
+[1] 257
+[1] 258
+[1] 259
+[1] 260
+[1] 261
+[1] 262
+[1] 263
+[1] 264
+[1] 265
+[1] 266
+[1] 267
+[1] 268
+[1] 269
+[1] 270
+[1] 271
+[1] 272
+[1] 273
+[1] 274
+[1] 275
+[1] 276
+[1] 277
+[1] 278
+[1] 279
+[1] 280
+[1] 281
+[1] 282
+[1] 283
+[1] 284
+[1] 285
+[1] 286
+[1] 287
+[1] 288
+[1] 289
+[1] 290
+[1] 291
+[1] 292
+[1] 293
+[1] 294
+[1] 295
+[1] 296
+[1] 297
+[1] 298
+[1] 299
+[1] 300
+[1] 301
+[1] 302
+[1] 303
+[1] 304
+[1] 305
+[1] 306
+[1] 307
+[1] 308
+[1] 309
+[1] 310
+[1] 311
+[1] 312
+[1] 313
+[1] 314
+[1] 315
+[1] 316
+[1] 317
+[1] 318
+[1] 319
+[1] 320
+[1] 321
+[1] 322
+[1] 323
+[1] 324
+[1] 325
+[1] 326
+[1] 327
+[1] 328
+[1] 329
+[1] 330
+[1] 331
+[1] 332
+[1] 333
+[1] 334
+[1] 335
+[1] 336
+[1] 337
+[1] 338
+[1] 339
+[1] 340
+[1] 341
+[1] 342
+[1] 343
+[1] 344
+[1] 345
+[1] 346
+[1] 347
+[1] 348
+[1] 349
+[1] 350
+[1] 351
+[1] 352
+[1] 353
+[1] 354
+[1] 355
+[1] 356
+[1] 357
+[1] 358
+[1] 359
+[1] 360
+[1] 361
+[1] 362
+[1] 363
+[1] 364
+[1] 365
+[1] 366
+[1] 367
+[1] 368
+[1] 369
+[1] 370
+[1] 371
+[1] 372
+[1] 373
+[1] 374
+[1] 375
+[1] 376
+[1] 377
+[1] 378
+[1] 379
+[1] 380
+[1] 381
+[1] 382
+[1] 383
+[1] 384
+[1] 385
+[1] 386
+[1] 387
+[1] 388
+[1] 389
+[1] 390
+[1] 391
+[1] 392
+[1] 393
+[1] 394
+[1] 395
+[1] 396
+[1] 397
+[1] 398
+[1] 399
+[1] 400
+[1] 401
+[1] 402
+[1] 403
+[1] 404
+[1] 405
+[1] 406
+[1] 407
+[1] 408
+[1] 409
+[1] 410
+[1] 411
+[1] 412
+[1] 413
+[1] 414
+[1] 415
+[1] 416
+[1] 417
+[1] 418
+[1] 419
+[1] 420
+[1] 421
+[1] 422
+[1] 423
+[1] 424
+[1] 425
+[1] 426
+[1] 427
+[1] 428
+[1] 429
+[1] 430
+[1] 431
+[1] 432
+[1] 433
+[1] 434
+[1] 435
+[1] 436
+[1] 437
+[1] 438
+[1] 439
+[1] 440
+[1] 441
+[1] 442
+[1] 443
+[1] 444
+[1] 445
+[1] 446
+[1] 447
+[1] 448
+[1] 449
+[1] 450
+[1] 451
+[1] 452
+[1] 453
+[1] 454
+[1] 455
+[1] 456
+[1] 457
+[1] 458
+[1] 459
+[1] 460
+[1] 461
+[1] 462
+[1] 463
+[1] 464
+[1] 465
+[1] 466
+[1] 467
+[1] 468
+[1] 469
+[1] 470
+[1] 471
+[1] 472
+[1] 473
+[1] 474
+[1] 475
+[1] 476
+[1] 477
+[1] 478
+[1] 479
+[1] 480
+[1] 481
+[1] 482
+[1] 483
+[1] 484
+[1] 485
+[1] 486
+[1] 487
+[1] 488
+[1] 489
+[1] 490
+[1] 491
+[1] 492
+[1] 493
+[1] 494
+[1] 495
+[1] 496
+[1] 497
+[1] 498
+[1] 499
+[1] 500
+[1] 501
+[1] 502
+[1] 503
+[1] 504
+[1] 505
+[1] 506
+[1] 507
+[1] 508
+[1] 509
+[1] 510
+[1] 511
+[1] 512
+[1] 513
+[1] 514
+[1] 515
+[1] 516
+[1] 517
+[1] 518
+[1] 519
+[1] 520
+[1] 521
+[1] 522
+[1] 523
+[1] 524
+[1] 525
+[1] 526
+[1] 527
+[1] 528
+[1] 529
+[1] 530
+[1] 531
+[1] 532
+[1] 533
+[1] 534
+[1] 535
+[1] 536
+[1] 537
+[1] 538
+[1] 539
+[1] 540
+[1] 541
+[1] 542
+[1] 543
+[1] 544
+[1] 545
+[1] 546
+[1] 547
+[1] 548
+[1] 549
+[1] 550
+[1] 551
+[1] 552
+[1] 553
+[1] 554
+[1] 555
+[1] 556
+[1] 557
+[1] 558
+[1] 559
+[1] 560
+[1] 561
+[1] 562
+[1] 563
+[1] 564
+[1] 565
+[1] 566
+[1] 567
+[1] 568
+[1] 569
+[1] 570
+[1] 571
+[1] 572
+[1] 573
+[1] 574
+[1] 575
+[1] 576
+[1] 577
+[1] 578
+[1] 579
+[1] 580
+[1] 581
+[1] 582
+[1] 583
+[1] 584
+[1] 585
+[1] 586
+[1] 587
+[1] 588
+[1] 589
+[1] 590
+[1] 591
+[1] 592
+[1] 593
+[1] 594
+[1] 595
+[1] 596
+[1] 597
+[1] 598
+[1] 599
+[1] 600
+[1] 601
+[1] 602
+[1] 603
+[1] 604
+[1] 605
+[1] 606
+[1] 607
+[1] 608
+[1] 609
+[1] 610
+[1] 611
+[1] 612
+[1] 613
+[1] 614
+[1] 615
+[1] 616
+[1] 617
+[1] 618
+[1] 619
+[1] 620
+[1] 621
+[1] 622
+[1] 623
+[1] 624
+[1] 625
+[1] 626
+[1] 627
+[1] 628
+[1] 629
+[1] 630
+[1] 631
+[1] 632
+[1] 633
+[1] 634
+[1] 635
+[1] 636
+[1] 637
+[1] 638
+[1] 639
+[1] 640
+[1] 641
+[1] 642
+[1] 643
+[1] 644
+[1] 645
+[1] 646
+[1] 647
+[1] 648
+[1] 649
+[1] 650
+[1] 651
+[1] 652
+[1] 653
+[1] 654
+[1] 655
+[1] 656
+[1] 657
+[1] 658
+[1] 659
+[1] 660
+[1] 661
+[1] 662
+[1] 663
+[1] 664
+[1] 665
+[1] 666
+[1] 667
+[1] 668
+[1] 669
+[1] 670
+[1] 671
+[1] 672
+[1] 673
+[1] 674
+[1] 675
+[1] 676
+[1] 677
+[1] 678
+[1] 679
+[1] 680
+[1] 681
+[1] 682
+[1] 683
+[1] 684
+[1] 685
+[1] 686
+[1] 687
+[1] 688
+[1] 689
+[1] 690
+[1] 691
+[1] 692
+[1] 693
+[1] 694
+[1] 695
+[1] 696
+[1] 697
+[1] 698
+[1] 699
+[1] 700
+[1] 701
+[1] 702
+[1] 703
+[1] 704
+[1] 705
+[1] 706
+[1] 707
+[1] 708
+[1] 709
+[1] 710
+[1] 711
+[1] 712
+[1] 713
+[1] 714
+[1] 715
+[1] 716
+[1] 717
+[1] 718
+[1] 719
+[1] 720
+[1] 721
+[1] 722
+[1] 723
+[1] 724
+[1] 725
+[1] 726
+[1] 727
+[1] 728
+[1] 729
+[1] 730
+[1] 731
+[1] 732
+[1] 733
+[1] 734
+[1] 735
+[1] 736
+[1] 737
+[1] 738
+[1] 739
+[1] 740
+[1] 741
+[1] 742
+[1] 743
+[1] 744
+[1] 745
+[1] 746
+[1] 747
+[1] 748
+[1] 749
+[1] 750
+[1] 751
+[1] 752
+[1] 753
+[1] 754
+[1] 755
+[1] 756
+[1] 757
+[1] 758
+[1] 759
+[1] 760
+[1] 761
+[1] 762
+[1] 763
+[1] 764
+[1] 765
+[1] 766
+[1] 767
+[1] 768
+[1] 769
+[1] 770
+[1] 771
+[1] 772
+[1] 773
+[1] 774
+[1] 775
+[1] 776
+[1] 777
+[1] 778
+[1] 779
+[1] 780
+[1] 781
+[1] 782
+[1] 783
+[1] 784
+[1] 785
+[1] 786
+[1] 787
+[1] 788
+[1] 789
+[1] 790
+[1] 791
+[1] 792
+[1] 793
+[1] 794
+[1] 795
+[1] 796
+[1] 797
+[1] 798
+[1] 799
+[1] 800
+[1] 801
+[1] 802
+[1] 803
+[1] 804
+[1] 805
+[1] 806
+[1] 807
+[1] 808
+[1] 809
+[1] 810
+[1] 811
+[1] 812
+[1] 813
+[1] 814
+[1] 815
+[1] 816
+[1] 817
+[1] 818
+[1] 819
+[1] 820
+[1] 821
+[1] 822
+[1] 823
+[1] 824
+[1] 825
+[1] 826
+[1] 827
+[1] 828
+[1] 829
+[1] 830
+[1] 831
+[1] 832
+[1] 833
+[1] 834
+[1] 835
+[1] 836
+[1] 837
+[1] 838
+[1] 839
+[1] 840
+[1] 841
+[1] 842
+[1] 843
+[1] 844
+[1] 845
+[1] 846
+[1] 847
+[1] 848
+[1] 849
+[1] 850
+[1] 851
+[1] 852
+[1] 853
+[1] 854
+[1] 855
+[1] 856
+[1] 857
+[1] 858
+[1] 859
+[1] 860
+[1] 861
+[1] 862
+[1] 863
+[1] 864
+[1] 865
+[1] 866
+[1] 867
+[1] 868
+[1] 869
+[1] 870
+[1] 871
+[1] 872
+[1] 873
+[1] 874
+[1] 875
+[1] 876
+[1] 877
+[1] 878
+[1] 879
+[1] 880
+[1] 881
+[1] 882
+[1] 883
+[1] 884
+[1] 885
+[1] 886
+[1] 887
+[1] 888
+[1] 889
+[1] 890
+[1] 891
+[1] 892
+[1] 893
+[1] 894
+[1] 895
+[1] 896
+[1] 897
+[1] 898
+[1] 899
+[1] 900
+[1] 901
+[1] 902
+[1] 903
+[1] 904
+[1] 905
+[1] 906
+[1] 907
+[1] 908
+[1] 909
+[1] 910
+[1] 911
+[1] 912
+[1] 913
+[1] 914
+[1] 915
+[1] 916
+[1] 917
+[1] 918
+[1] 919
+[1] 920
+[1] 921
+[1] 922
+[1] 923
+[1] 924
+[1] 925
+[1] 926
+[1] 927
+[1] 928
+[1] 929
+[1] 930
+[1] 931
+[1] 932
+[1] 933
+[1] 934
+[1] 935
+[1] 936
+[1] 937
+[1] 938
+[1] 939
+[1] 940
+[1] 941
+[1] 942
+[1] 943
+[1] 944
+[1] 945
+[1] 946
+[1] 947
+[1] 948
+[1] 949
+[1] 950
+[1] 951
+[1] 952
+[1] 953
+[1] 954
+[1] 955
+[1] 956
+[1] 957
+[1] 958
+[1] 959
+[1] 960
+[1] 961
+[1] 962
+[1] 963
+[1] 964
+[1] 965
+[1] 966
+[1] 967
+[1] 968
+[1] 969
+[1] 970
+[1] 971
+[1] 972
+[1] 973
+[1] 974
+[1] 975
+[1] 976
+> bal.df <- data.frame(dwp.diff = dwp.prop.diff,
++                      dwn.diff = dwn.prop.diff,
++                      window = window)
+> 
+> mypdf("OptBalWinDWP", width = 9, height = 6)
+> ggplot(aes(window, dwp.diff), data = bal.df) +
++   geom_hline(yintercept = 0, color = "black", size = .5) +
++   geom_vline(xintercept = 0, color = "black", size = .5) +
++   geom_point(colour = alpha("black", 1/2)) +
++   geom_smooth(se = FALSE, color = "black", size = 1.5,
++               method = "loess", span = .3) +
++   ylab("Treated-Control Difference") +
++   xlab("Absolute Value of Democratic Margin (%)") +
++   scale_x_continuous(breaks = seq(0, 10, 1)) +
++   scale_y_continuous(breaks = seq(0, 0.6, 0.1)) +
++   opts(title = "Previous Democratic Victory")
+> dev.off()
+null device 
+          1 
+> 
+> ## In color        
+> setwd(plot.dir)
+> mypdf("OptBalWinDWPvsDWN", width = 9, height = 6)
+> ggplot(aes(window, dwn.diff), data = bal.df) +
++   geom_hline(yintercept = 0, colour = "black", size = .5) +
++   geom_vline(xintercept = 0, colour = "black", size = .5) +
++   geom_point(alpha = I(1/3), shape = 19, colour = "red") +
++   geom_smooth(se = FALSE, colour = "red",
++               size = 1,
++               method = "loess", span = .15) +
++   labs(x = "Absolute Value of Democratic Margin (%), Election t",
++        y = "Difference in Proportion") +
++   scale_x_continuous(breaks = seq(0, 10, 1)) +
++   #scale_y_continuous(breaks = seq(0, 0.6, 0.1)) +
++   opts(title = "Treated-Control Difference in Proportion of Democratic Victories, t+1 vs. t-1") +
++   geom_point(mapping = aes(window, dwp.diff),
++              shape = 19,
++              colour = I("blue"),
++              alpha = I(1/3),
++              data = bal.df) +
++   geom_smooth(mapping = aes(window, dwp.diff),
++               colour = I("blue"),
++               linetype = "solid",
++               data = bal.df,
++               se = FALSE, size = 1,
++               method = "loess", span = .15) +
++   geom_text(data = data.frame(x = c(9.75, 9.75), y = c(0.79, 0.47)),
++             mapping = aes(x, y,  label = c("t+1", "t-1")))
+> dev.off()
+null device 
+          1 
+> 
+> ### More covariates
+> covs <- c("DWinPrv", "DPctPrv", "DifDPPrv", "IncDWNOM1", "ElcSwing",
++            "SoSDem", "GovDem", "YearElec", "DifPVDec", "DemInc", "NonDInc")
+> summary(rd[use, covs])
+    DWinPrv            DPctPrv           DifDPPrv          IncDWNOM1        
+ Min.   :  0.0000   Min.   :   0.00   Min.   :-100.000   Min.   :-1.290000  
+ 1st Qu.:  0.0000   1st Qu.:  39.34   1st Qu.: -22.148   1st Qu.:-0.318000  
+ Median :  1.0000   Median :  52.93   Median :   6.164   Median :-0.016000  
+ Mean   :  0.5552   Mean   :  55.60   Mean   :  11.300   Mean   :-0.007465  
+ 3rd Qu.:  1.0000   3rd Qu.:  69.85   3rd Qu.:  40.046   3rd Qu.: 0.283000  
+ Max.   :  1.0000   Max.   : 100.00   Max.   : 100.000   Max.   : 1.666000  
+ NA's   :372.0000   NA's   :1247.00   NA's   : 436.000   NA's   :74.000000  
+    ElcSwing             SoSDem            GovDem          YearElec   
+ Min.   :-12.75937   Min.   : 0.0000   Min.   :0.0000   Min.   :1942  
+ 1st Qu.: -5.62174   1st Qu.: 0.0000   1st Qu.:0.0000   1st Qu.:1958  
+ Median : -0.02052   Median : 1.0000   Median :1.0000   Median :1976  
+ Mean   :  0.89810   Mean   : 0.5723   Mean   :0.5383   Mean   :1975  
+ 3rd Qu.:  7.01725   3rd Qu.: 1.0000   3rd Qu.:1.0000   3rd Qu.:1990  
+ Max.   : 13.68269   Max.   : 1.0000   Max.   :1.0000   Max.   :2006  
+ NA's   :  8.00000   NA's   :55.0000                                  
+    DifPVDec              DemInc            NonDInc        
+ Min.   : -0.868800   Min.   :  0.0000   Min.   :  0.0000  
+ 1st Qu.: -0.186147   1st Qu.:  0.0000   1st Qu.:  0.0000  
+ Median : -0.046933   Median :  0.0000   Median :  0.0000  
+ Mean   :  0.002303   Mean   :  0.4887   Mean   :  0.3727  
+ 3rd Qu.:  0.141533   3rd Qu.:  1.0000   3rd Qu.:  1.0000  
+ Max.   :  0.911400   Max.   :  1.0000   Max.   :  1.0000  
+ NA's   :393.000000   NA's   :866.0000   NA's   :920.0000  
+> 
+> min.pv <- rep(NA, length(window))
+> for (i in 1:length(window)) {
++   ttp <- vector(mode = "numeric", length = length(covs))
++   #ksp <- vector(mode = "numeric", length = length(covs))
++   print(i)
++   win <- (abs(rd$DifDPct) < window[i] + 0.25 &
++           abs(rd$DifDPct) > window[i] - 0.25 &
++           use)
++   for (j in 1:length(covs)) {
++     ttp[j] <- t.test(rd[win, covs[j]] ~ rd$DemWin[win])$p.value
++     #ksp[j] <- ks.boot(rd[win, covs[j]], rd$DemWin[win],
++     #                 nboots = 1000)$ks.boot.value
++   min.pv[i] <- min(ttp)
++   }
++ }
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10
+[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 15
+[1] 16
+[1] 17
+[1] 18
+[1] 19
+[1] 20
+[1] 21
+[1] 22
+[1] 23
+[1] 24
+[1] 25
+[1] 26
+[1] 27
+[1] 28
+[1] 29
+[1] 30
+[1] 31
+[1] 32
+[1] 33
+[1] 34
+[1] 35
+[1] 36
+[1] 37
+[1] 38
+[1] 39
+[1] 40
+[1] 41
+[1] 42
+[1] 43
+[1] 44
+[1] 45
+[1] 46
+[1] 47
+[1] 48
+[1] 49
+[1] 50
+[1] 51
+[1] 52
+[1] 53
+[1] 54
+[1] 55
+[1] 56
+[1] 57
+[1] 58
+[1] 59
+[1] 60
+[1] 61
+[1] 62
+[1] 63
+[1] 64
+[1] 65
+[1] 66
+[1] 67
+[1] 68
+[1] 69
+[1] 70
+[1] 71
+[1] 72
+[1] 73
+[1] 74
+[1] 75
+[1] 76
+[1] 77
+[1] 78
+[1] 79
+[1] 80
+[1] 81
+[1] 82
+[1] 83
+[1] 84
+[1] 85
+[1] 86
+[1] 87
+[1] 88
+[1] 89
+[1] 90
+[1] 91
+[1] 92
+[1] 93
+[1] 94
+[1] 95
+[1] 96
+[1] 97
+[1] 98
+[1] 99
+[1] 100
+[1] 101
+[1] 102
+[1] 103
+[1] 104
+[1] 105
+[1] 106
+[1] 107
+[1] 108
+[1] 109
+[1] 110
+[1] 111
+[1] 112
+[1] 113
+[1] 114
+[1] 115
+[1] 116
+[1] 117
+[1] 118
+[1] 119
+[1] 120
+[1] 121
+[1] 122
+[1] 123
+[1] 124
+[1] 125
+[1] 126
+[1] 127
+[1] 128
+[1] 129
+[1] 130
+[1] 131
+[1] 132
+[1] 133
+[1] 134
+[1] 135
+[1] 136
+[1] 137
+[1] 138
+[1] 139
+[1] 140
+[1] 141
+[1] 142
+[1] 143
+[1] 144
+[1] 145
+[1] 146
+[1] 147
+[1] 148
+[1] 149
+[1] 150
+[1] 151
+[1] 152
+[1] 153
+[1] 154
+[1] 155
+[1] 156
+[1] 157
+[1] 158
+[1] 159
+[1] 160
+[1] 161
+[1] 162
+[1] 163
+[1] 164
+[1] 165
+[1] 166
+[1] 167
+[1] 168
+[1] 169
+[1] 170
+[1] 171
+[1] 172
+[1] 173
+[1] 174
+[1] 175
+[1] 176
+[1] 177
+[1] 178
+[1] 179
+[1] 180
+[1] 181
+[1] 182
+[1] 183
+[1] 184
+[1] 185
+[1] 186
+[1] 187
+[1] 188
+[1] 189
+[1] 190
+[1] 191
+[1] 192
+[1] 193
+[1] 194
+[1] 195
+[1] 196
+[1] 197
+[1] 198
+[1] 199
+[1] 200
+[1] 201
+[1] 202
+[1] 203
+[1] 204
+[1] 205
+[1] 206
+[1] 207
+[1] 208
+[1] 209
+[1] 210
+[1] 211
+[1] 212
+[1] 213
+[1] 214
+[1] 215
+[1] 216
+[1] 217
+[1] 218
+[1] 219
+[1] 220
+[1] 221
+[1] 222
+[1] 223
+[1] 224
+[1] 225
+[1] 226
+[1] 227
+[1] 228
+[1] 229
+[1] 230
+[1] 231
+[1] 232
+[1] 233
+[1] 234
+[1] 235
+[1] 236
+[1] 237
+[1] 238
+[1] 239
+[1] 240
+[1] 241
+[1] 242
+[1] 243
+[1] 244
+[1] 245
+[1] 246
+[1] 247
+[1] 248
+[1] 249
+[1] 250
+[1] 251
+[1] 252
+[1] 253
+[1] 254
+[1] 255
+[1] 256
+[1] 257
+[1] 258
+[1] 259
+[1] 260
+[1] 261
+[1] 262
+[1] 263
+[1] 264
+[1] 265
+[1] 266
+[1] 267
+[1] 268
+[1] 269
+[1] 270
+[1] 271
+[1] 272
+[1] 273
+[1] 274
+[1] 275
+[1] 276
+[1] 277
+[1] 278
+[1] 279
+[1] 280
+[1] 281
+[1] 282
+[1] 283
+[1] 284
+[1] 285
+[1] 286
+[1] 287
+[1] 288
+[1] 289
+[1] 290
+[1] 291
+[1] 292
+[1] 293
+[1] 294
+[1] 295
+[1] 296
+[1] 297
+[1] 298
+[1] 299
+[1] 300
+[1] 301
+[1] 302
+[1] 303
+[1] 304
+[1] 305
+[1] 306
+[1] 307
+[1] 308
+[1] 309
+[1] 310
+[1] 311
+[1] 312
+[1] 313
+[1] 314
+[1] 315
+[1] 316
+[1] 317
+[1] 318
+[1] 319
+[1] 320
+[1] 321
+[1] 322
+[1] 323
+[1] 324
+[1] 325
+[1] 326
+[1] 327
+[1] 328
+[1] 329
+[1] 330
+[1] 331
+[1] 332
+[1] 333
+[1] 334
+[1] 335
+[1] 336
+[1] 337
+[1] 338
+[1] 339
+[1] 340
+[1] 341
+[1] 342
+[1] 343
+[1] 344
+[1] 345
+[1] 346
+[1] 347
+[1] 348
+[1] 349
+[1] 350
+[1] 351
+[1] 352
+[1] 353
+[1] 354
+[1] 355
+[1] 356
+[1] 357
+[1] 358
+[1] 359
+[1] 360
+[1] 361
+[1] 362
+[1] 363
+[1] 364
+[1] 365
+[1] 366
+[1] 367
+[1] 368
+[1] 369
+[1] 370
+[1] 371
+[1] 372
+[1] 373
+[1] 374
+[1] 375
+[1] 376
+[1] 377
+[1] 378
+[1] 379
+[1] 380
+[1] 381
+[1] 382
+[1] 383
+[1] 384
+[1] 385
+[1] 386
+[1] 387
+[1] 388
+[1] 389
+[1] 390
+[1] 391
+[1] 392
+[1] 393
+[1] 394
+[1] 395
+[1] 396
+[1] 397
+[1] 398
+[1] 399
+[1] 400
+[1] 401
+[1] 402
+[1] 403
+[1] 404
+[1] 405
+[1] 406
+[1] 407
+[1] 408
+[1] 409
+[1] 410
+[1] 411
+[1] 412
+[1] 413
+[1] 414
+[1] 415
+[1] 416
+[1] 417
+[1] 418
+[1] 419
+[1] 420
+[1] 421
+[1] 422
+[1] 423
+[1] 424
+[1] 425
+[1] 426
+[1] 427
+[1] 428
+[1] 429
+[1] 430
+[1] 431
+[1] 432
+[1] 433
+[1] 434
+[1] 435
+[1] 436
+[1] 437
+[1] 438
+[1] 439
+[1] 440
+[1] 441
+[1] 442
+[1] 443
+[1] 444
+[1] 445
+[1] 446
+[1] 447
+[1] 448
+[1] 449
+[1] 450
+[1] 451
+[1] 452
+[1] 453
+[1] 454
+[1] 455
+[1] 456
+[1] 457
+[1] 458
+[1] 459
+[1] 460
+[1] 461
+[1] 462
+[1] 463
+[1] 464
+[1] 465
+[1] 466
+[1] 467
+[1] 468
+[1] 469
+[1] 470
+[1] 471
+[1] 472
+[1] 473
+[1] 474
+[1] 475
+[1] 476
+[1] 477
+[1] 478
+[1] 479
+[1] 480
+[1] 481
+[1] 482
+[1] 483
+[1] 484
+[1] 485
+[1] 486
+[1] 487
+[1] 488
+[1] 489
+[1] 490
+[1] 491
+[1] 492
+[1] 493
+[1] 494
+[1] 495
+[1] 496
+[1] 497
+[1] 498
+[1] 499
+[1] 500
+[1] 501
+[1] 502
+[1] 503
+[1] 504
+[1] 505
+[1] 506
+[1] 507
+[1] 508
+[1] 509
+[1] 510
+[1] 511
+[1] 512
+[1] 513
+[1] 514
+[1] 515
+[1] 516
+[1] 517
+[1] 518
+[1] 519
+[1] 520
+[1] 521
+[1] 522
+[1] 523
+[1] 524
+[1] 525
+[1] 526
+[1] 527
+[1] 528
+[1] 529
+[1] 530
+[1] 531
+[1] 532
+[1] 533
+[1] 534
+[1] 535
+[1] 536
+[1] 537
+[1] 538
+[1] 539
+[1] 540
+[1] 541
+[1] 542
+[1] 543
+[1] 544
+[1] 545
+[1] 546
+[1] 547
+[1] 548
+[1] 549
+[1] 550
+[1] 551
+[1] 552
+[1] 553
+[1] 554
+[1] 555
+[1] 556
+[1] 557
+[1] 558
+[1] 559
+[1] 560
+[1] 561
+[1] 562
+[1] 563
+[1] 564
+[1] 565
+[1] 566
+[1] 567
+[1] 568
+[1] 569
+[1] 570
+[1] 571
+[1] 572
+[1] 573
+[1] 574
+[1] 575
+[1] 576
+[1] 577
+[1] 578
+[1] 579
+[1] 580
+[1] 581
+[1] 582
+[1] 583
+[1] 584
+[1] 585
+[1] 586
+[1] 587
+[1] 588
+[1] 589
+[1] 590
+[1] 591
+[1] 592
+[1] 593
+[1] 594
+[1] 595
+[1] 596
+[1] 597
+[1] 598
+[1] 599
+[1] 600
+[1] 601
+[1] 602
+[1] 603
+[1] 604
+[1] 605
+[1] 606
+[1] 607
+[1] 608
+[1] 609
+[1] 610
+[1] 611
+[1] 612
+[1] 613
+[1] 614
+[1] 615
+[1] 616
+[1] 617
+[1] 618
+[1] 619
+[1] 620
+[1] 621
+[1] 622
+[1] 623
+[1] 624
+[1] 625
+[1] 626
+[1] 627
+[1] 628
+[1] 629
+[1] 630
+[1] 631
+[1] 632
+[1] 633
+[1] 634
+[1] 635
+[1] 636
+[1] 637
+[1] 638
+[1] 639
+[1] 640
+[1] 641
+[1] 642
+[1] 643
+[1] 644
+[1] 645
+[1] 646
+[1] 647
+[1] 648
+[1] 649
+[1] 650
+[1] 651
+[1] 652
+[1] 653
+[1] 654
+[1] 655
+[1] 656
+[1] 657
+[1] 658
+[1] 659
+[1] 660
+[1] 661
+[1] 662
+[1] 663
+[1] 664
+[1] 665
+[1] 666
+[1] 667
+[1] 668
+[1] 669
+[1] 670
+[1] 671
+[1] 672
+[1] 673
+[1] 674
+[1] 675
+[1] 676
+[1] 677
+[1] 678
+[1] 679
+[1] 680
+[1] 681
+[1] 682
+[1] 683
+[1] 684
+[1] 685
+[1] 686
+[1] 687
+[1] 688
+[1] 689
+[1] 690
+[1] 691
+[1] 692
+[1] 693
+[1] 694
+[1] 695
+[1] 696
+[1] 697
+[1] 698
+[1] 699
+[1] 700
+[1] 701
+[1] 702
+[1] 703
+[1] 704
+[1] 705
+[1] 706
+[1] 707
+[1] 708
+[1] 709
+[1] 710
+[1] 711
+[1] 712
+[1] 713
+[1] 714
+[1] 715
+[1] 716
+[1] 717
+[1] 718
+[1] 719
+[1] 720
+[1] 721
+[1] 722
+[1] 723
+[1] 724
+[1] 725
+[1] 726
+[1] 727
+[1] 728
+[1] 729
+[1] 730
+[1] 731
+[1] 732
+[1] 733
+[1] 734
+[1] 735
+[1] 736
+[1] 737
+[1] 738
+[1] 739
+[1] 740
+[1] 741
+[1] 742
+[1] 743
+[1] 744
+[1] 745
+[1] 746
+[1] 747
+[1] 748
+[1] 749
+[1] 750
+[1] 751
+[1] 752
+[1] 753
+[1] 754
+[1] 755
+[1] 756
+[1] 757
+[1] 758
+[1] 759
+[1] 760
+[1] 761
+[1] 762
+[1] 763
+[1] 764
+[1] 765
+[1] 766
+[1] 767
+[1] 768
+[1] 769
+[1] 770
+[1] 771
+[1] 772
+[1] 773
+[1] 774
+[1] 775
+[1] 776
+[1] 777
+[1] 778
+[1] 779
+[1] 780
+[1] 781
+[1] 782
+[1] 783
+[1] 784
+[1] 785
+[1] 786
+[1] 787
+[1] 788
+[1] 789
+[1] 790
+[1] 791
+[1] 792
+[1] 793
+[1] 794
+[1] 795
+[1] 796
+[1] 797
+[1] 798
+[1] 799
+[1] 800
+[1] 801
+[1] 802
+[1] 803
+[1] 804
+[1] 805
+[1] 806
+[1] 807
+[1] 808
+[1] 809
+[1] 810
+[1] 811
+[1] 812
+[1] 813
+[1] 814
+[1] 815
+[1] 816
+[1] 817
+[1] 818
+[1] 819
+[1] 820
+[1] 821
+[1] 822
+[1] 823
+[1] 824
+[1] 825
+[1] 826
+[1] 827
+[1] 828
+[1] 829
+[1] 830
+[1] 831
+[1] 832
+[1] 833
+[1] 834
+[1] 835
+[1] 836
+[1] 837
+[1] 838
+[1] 839
+[1] 840
+[1] 841
+[1] 842
+[1] 843
+[1] 844
+[1] 845
+[1] 846
+[1] 847
+[1] 848
+[1] 849
+[1] 850
+[1] 851
+[1] 852
+[1] 853
+[1] 854
+[1] 855
+[1] 856
+[1] 857
+[1] 858
+[1] 859
+[1] 860
+[1] 861
+[1] 862
+[1] 863
+[1] 864
+[1] 865
+[1] 866
+[1] 867
+[1] 868
+[1] 869
+[1] 870
+[1] 871
+[1] 872
+[1] 873
+[1] 874
+[1] 875
+[1] 876
+[1] 877
+[1] 878
+[1] 879
+[1] 880
+[1] 881
+[1] 882
+[1] 883
+[1] 884
+[1] 885
+[1] 886
+[1] 887
+[1] 888
+[1] 889
+[1] 890
+[1] 891
+[1] 892
+[1] 893
+[1] 894
+[1] 895
+[1] 896
+[1] 897
+[1] 898
+[1] 899
+[1] 900
+[1] 901
+[1] 902
+[1] 903
+[1] 904
+[1] 905
+[1] 906
+[1] 907
+[1] 908
+[1] 909
+[1] 910
+[1] 911
+[1] 912
+[1] 913
+[1] 914
+[1] 915
+[1] 916
+[1] 917
+[1] 918
+[1] 919
+[1] 920
+[1] 921
+[1] 922
+[1] 923
+[1] 924
+[1] 925
+[1] 926
+[1] 927
+[1] 928
+[1] 929
+[1] 930
+[1] 931
+[1] 932
+[1] 933
+[1] 934
+[1] 935
+[1] 936
+[1] 937
+[1] 938
+[1] 939
+[1] 940
+[1] 941
+[1] 942
+[1] 943
+[1] 944
+[1] 945
+[1] 946
+[1] 947
+[1] 948
+[1] 949
+[1] 950
+[1] 951
+[1] 952
+[1] 953
+[1] 954
+[1] 955
+[1] 956
+[1] 957
+[1] 958
+[1] 959
+[1] 960
+[1] 961
+[1] 962
+[1] 963
+[1] 964
+[1] 965
+[1] 966
+[1] 967
+[1] 968
+[1] 969
+[1] 970
+[1] 971
+[1] 972
+[1] 973
+[1] 974
+[1] 975
+[1] 976
+> cov.df <- data.frame(pvalue = min.pv, window = window)
+>                               
+> ## In color
+> setwd(plot.dir)
+> mypdf("OptBalWinCovs", width = 9, height = 6)
+> ggplot(aes(window, pvalue), data = cov.df) +
++   geom_hline(yintercept = 0, color = "black", size = .5) +
++   geom_vline(xintercept = 0, color = "black", size = .5) +
++   geom_point(alpha = (1/2)) +
++   geom_smooth(se = FALSE, size = 1,
++               method = "loess", span = .15) +
++   ylab("Minimum p-Value") +
++   xlab("Absolute Value of Democratic Margin (%), Election t") +
++   scale_x_continuous(breaks = seq(0, 10, 1)) +
++   opts(title = "Balance Tests of Ten Covariates in Disjoint 0.5% Intervals")
+> dev.off()
+null device 
+          1 
+> 
+> ### Differences in campaign spending in "optimal" window, among all
+> ### elections (n = 53) for which data are available
+> opt.win <- with(rd, abs(DifDPct) < 1.75 & abs(DifDPct) > 1.25 &
++                 !is.na(DifDPct))
+> t.test(DSpndPct ~ DemWin, data = rd[opt.win, ], alternative = "less")
+
+	Welch Two Sample t-test
+
+data:  DSpndPct by DemWin 
+t = -1.9784, df = 46.166, p-value = 0.02693
+alternative hypothesis: true difference in means is less than 0 
+95 percent confidence interval:
+      -Inf -1.158571 
+sample estimates:
+mean in group 0 mean in group 1 
+       49.36779        57.01178 
+
+> 
+> 
+> ##############################
+> #### Sensitivity analysis ####
+> ##############################
+> sumTestSensUnmatch <- function(T, q, n, m, Gamma) { 
++   ## Created by Devin Caughey on 26 February 2010
++   ## Last modified on 2 December 2010
++   ##
++   ## The function 'sumTestSensUnmatch' is an implementation of the method of
++   ## sensitivity analysis for comparing two unmatched groups described in
++   ## Section 4.6 of Paul Rosenbaum "Observational Studies" (2nd Ed., 2002).
++   ## It is designed to be used for sum statistics, such as Wilcoxon's rank sum
++   ## statistic.
++   ##
++   ## It takes five arguments:
++   ##   T, the observed value of the test statistic (e.g., the sum of the ranks
++   ## of the responses of the treated group);
++   ##   q, a vector of functions of the responses (e.g., their ranks; note 
++   ## that a higher rank corresponds to a higher response), sorted in
++   ## decreasing order (don't forget to do this).
++   ##   n, the total number of observations
++   ##   m, the number of treated observations
++   ##   Gamma, an upper limit on the ratio of the a priori odds of treatment
++   ## assignment between the treated and control groups.
++   ##
++   ## This function prints the upper bound of the normal approximation
++   ## p-value for the test at the given value of Gamma. It also
++   ## invisibly returns a list of important intermediate statistics.
++   ##
++   ## An example of how this function may be used, taken from Section
++   ## 4.6 of Rosenbaum (2002), is provided at the end of this code.
++   
++   K <- 0:n
++   u <- matrix(nrow = n + 1, ncol = n)
++   gamma <- log(Gamma)
++   rho.i <- matrix(data = NA, nrow = n + 1, ncol = n)
++   rho.ij <- array(data = NA, dim = c(n + 1, n, n))
++   mu.T <- rep(NA, n + 1)
++   var.T <- rep(NA, n + 1)
++   sd.T <- rep(NA, n + 1)
++   deviate <- rep(NA, n + 1)                   
++   
++   for(k in K) {
++     ## Fix u[k+1,] so that it consists of k 0's followed by n-k 1's.
++     u[k + 1,] <- c(rep(1, k), rep(0, n - k))
++     ## Define function 'zeta'.
++     zeta <- function(n, m, k, Gamma) {
++       zeta.out <- 0
++       if(m >= 0 & k >= 0) { 
++         for(a in max(0, m + k - n):min(m, k)) { 
++           zeta.out <- (zeta.out +
++                        (choose(k, a) *
++                         choose((n - k), (m - a)) *
++                         (Gamma ^ a)))
++         }
++       }
++       return(zeta.out)
++     }
++     ## Calculate unit i's probability of treatment
++     for(i in 1:n) {
++       rho.i[k + 1, i] <-
++         exp(gamma * u[k + 1, i]) *
++           zeta(n - 1, m - 1, k - u[k + 1, i], Gamma) /
++             zeta(n, m, k, Gamma)
++     }
++     ## Calculate i and j's joint probability of treatment.
++     for(i in 1:n) {
++       for(j in 1:n) {
++         if(i == j) {
++           rho.ij[k + 1, i, j] <- rho.i[k + 1, i]
++         } else {
++           rho.ij[k + 1, i, j] <-
++             ((exp(gamma * (u[k + 1, i] + u[k + 1, j])) *
++               zeta(n - 2,
++                    m - 2,
++                    k - u[k + 1, i] - u[k + 1, j],
++                    Gamma)) / zeta(n, m, k, Gamma))
++         }
++       } 
++     }
++     ## Calculate mean of T under the null
++     mu.T[k + 1] <- q %*% rho.i[k + 1, ]
++     ## Calculate standard deviation of T under the null
++     var.T[k + 1] <- 0
++     for(i in 1:n) {
++       for(j in 1:n) {
++         var.T[k + 1] <-
++           (var.T[k + 1] +
++            (q[i] * q[j] *
++            (rho.ij[k + 1, i, j] - rho.i[k + 1, i] * rho.i[k + 1, j])))
++       }
++     }
++     sd.T[k + 1] <- sqrt(var.T[k + 1])
++     ## Calculate deviate
++     deviate[k + 1] <- (T - mu.T[k + 1]) / sd.T[k + 1]
++   }
++   ## Main result
++   minDeviate <- min(deviate)
++   pValueUB <- pnorm(q = minDeviate,
++                     mean = 0,
++                     sd = 1,
++                     lower.tail = FALSE)
++   pValueUB.print <- ifelse(pValueUB < 0.0001,
++                            "< 0.0001",
++                            as.character(round(pValueUB, 4)))
++   ## Collect output
++   kMin <- K[which(deviate == min(deviate))]
++   output <- list(pValueUB,
++                  minDeviate,
++                  deviate,
++                  kMin,
++                  T,
++                  mu.T,
++                  var.T,
++                  sd.T,
++                  rho.i,
++                  rho.ij)
++   names(output) <- c("pValueUB",
++                      "minDeviate",
++                      "deviate",
++                      "kMin",
++                      "T",
++                      "mu.T",
++                      "var.T",
++                      "sd.T",
++                      "rho.i",
++                      "rho.ij")
++   cat("For Gamma = ",
++       Gamma, 
++       ", the upper-bound on the p-value of the sum test is: ", 
++       pValueUB.print,
++       ".\n",
++       sep = "")                 
++   invisible(output)
++ }
+> 
+> valid.obs <- close.5 & use & !is.na(rd$DPctNxt) & !is.na(rd$DPctPrv)
+> 
+> wilcox_test(DifDPNxt ~ factor(DemWin), data = rd[valid.obs, ],
++             alternative = "less", distribution = "exact")
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DifDPNxt by factor(DemWin) (0, 1) 
+Z = -4.2404, p-value = 6.33e-06
+alternative hypothesis: true mu is less than 0 
+
+> wilcox_test(DifDPPrv ~ factor(DemWin), data = rd[valid.obs, ],
++             alternative = "less", distribution = "exact")
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DifDPPrv by factor(DemWin) (0, 1) 
+Z = -2.8361, p-value = 0.002112
+alternative hypothesis: true mu is less than 0 
+
+> wilcox_test(DPctNxt ~ factor(DemWin), data = rd[valid.obs, ],
++             alternative = "less", distribution = "exact")
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DPctNxt by factor(DemWin) (0, 1) 
+Z = -4.0609, p-value = 1.552e-05
+alternative hypothesis: true mu is less than 0 
+
+> wilcox_test(DPctPrv ~ factor(DemWin), data = rd[valid.obs, ],
++             alternative = "less", distribution = "exact")
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DPctPrv by factor(DemWin) (0, 1) 
+Z = -2.747, p-value = 0.002819
+alternative hypothesis: true mu is less than 0 
+
+> 
+> rd.q <- sort(rank(rd$DPctNxt[valid.obs]), decreasing = TRUE)
+> rdT <- rank(rd$DPctNxt[valid.obs]) %*% rd$DemWin[valid.obs]
+> rdN <- sum(valid.obs)
+> rdM <- sum(rd$DemWin[valid.obs])
+> 
+> # system.time(rdOut <- sumTestSensUnmatch(T = rdT,
+> #                                         q = rd.q,
+> #                                         n = rdN,
+> #                                         m = rdM,
+> #                                         Gamma = 1))
+> ## Takes over four minutes per value of Gamma.
+> 
+> system.time(for (g in seq(3.6, 3.7, .1)) {
++   print(g)
++   sumTestSensUnmatch(T = rdT, q = rd.q, n = rdN, m = rdM, Gamma = g)
++ })
+[1] 3.6
+For Gamma = 3.6, the upper-bound on the p-value of the sum test is: 0.0489.
+[1] 3.7
+For Gamma = 3.7, the upper-bound on the p-value of the sum test is: 0.0541.
+   user  system elapsed 
+384.410   0.341 384.754 
+> ## > For Gamma = 3.7, the upper-bound on the p-value of the sum test is: 0.0541.
+> ## > For Gamma = 3.6, the upper-bound on the p-value of the sum test is: 0.0489.
+> 
+> ### Sensitivity for DWinPrv and DWinNxt
+> with(rd[valid.obs, ], table(DemWin, DWinNxt))
+      DWinNxt
+DemWin  0  1
+     0 28 14
+     1 11 32
+> with(rd[valid.obs, ], table(DemWin, DWinPrv))
+      DWinPrv
+DemWin  0  1
+     0 34  8
+     1 18 25
+> with(rd[valid.obs, ],
++      fisher.test(DemWin, DWinNxt, alternative = "greater"))
+
+	Fisher's Exact Test for Count Data
+
+data:  DemWin and DWinNxt 
+p-value = 0.0001434
+alternative hypothesis: true odds ratio is greater than 1 
+95 percent confidence interval:
+ 2.389273      Inf 
+sample estimates:
+odds ratio 
+  5.683334 
+
+> with(rd[valid.obs, ],
++      fisher.test(DemWin, DWinPrv, alternative = "greater"))
+
+	Fisher's Exact Test for Count Data
+
+data:  DemWin and DWinPrv 
+p-value = 0.0002106
+alternative hypothesis: true odds ratio is greater than 1 
+95 percent confidence interval:
+ 2.337083      Inf 
+sample estimates:
+odds ratio 
+  5.768249 
+
+> 
+> FisherSens <- function(totalN,
++                        numberTreated,
++                        numberSuccesses,
++                        treatedSuccesses,
++                        Gammas) { 
++   ## 'FisherSens' 
++   ## Created by Devin Caughey on 1 March 2010
++   ## Last modified: 4 December 2010
++   ##
++   ## This function performs a sensitivity analysis for Fisher's Exact Test
++   ## for count (binary) data. It is derived from Section 4.4 of Paul
++   ## Rosenbaum’s ``Observational Studies" (2nd Ed., 2002). The test is
++   ## one-sided; that is, the alternative hypothesis to the null is
++   ## that the number of "successes" (however defined) greater in among
++   ## the "treated" (however defined).
++   ##
++   ## It takes five arguments:
++   ##   'totalN': total number of observations
++   ##   'numberTreated': number of observations that received treatment
++   ##   'numberSuccesses': total number of "successes"--i.e., 1's
++   ##   'treatedSuccesses': number of successes among the treated
++   ##   'Gammas': a vector Gammas (bounds on the differential odds of 
++   ##  treatment) at which to test the significance of the results.
++   ##
++   ## It returns a matrix of Gammas and upper and lower bounds on the exact 
++   ## p-value for Fisher's test.
++   
++   n <- totalN
++   m <- numberTreated
++   c_plus <- numberSuccesses
++   a <- treatedSuccesses
++   
++   Upsilon <- function(n, m, c_plus, a, Gamma) {
++     ## Prob A >= a 
++     numer <- 0
++     for(k in max(a, (m + c_plus - n)):min(m, c_plus)) {
++       numer <- numer +
++         choose(c_plus, k) * choose((n-c_plus), m - k) * (Gamma ^ k)
++     }
++     denom <- 0
++     for(k in max(0, (m + c_plus - n)):min(m, c_plus)) {
++       denom <- denom +
++         choose(c_plus, k) * choose((n - c_plus), (m - k)) * Gamma ^ k
++     }
++     return(numer / denom)
++   }
++   p_plus <- rep(NA, length(Gammas))
++   p_minus <- rep(NA, length(Gammas))
++   
++   for(g in 1:length(Gammas)) {
++     p_plus[g] <- Upsilon(n = n, m = m, c_plus = c_plus,
++                          a = a, Gamma = Gammas[g])
++     p_minus[g] <- Upsilon(n = n, m = m, c_plus = c_plus,
++                           a = a, Gamma = (1 / Gammas[g]))
++   }
++   
++   output <- cbind(Gammas, p_minus, p_plus)
++   dimnames(output)[[2]] <- c("Gamma", "P-Value LB", "P-Value UB")
++   return(output)
++ }
+> 
+> trSuc <- sum(rd$DWinNxt[valid.obs] == 1 & rd$DemWin[valid.obs] == 1)
+> 
+> FisherSens(totalN = rdN,
++            numberTreated = rdM,
++            numberSuccesses = sum(rd$DWinNxt[valid.obs]),
++            treatedSuccesses = trSuc,
++            Gammas = seq(1, 5, .1))
+      Gamma   P-Value LB   P-Value UB
+ [1,]   1.0 1.433898e-04 0.0001433898
+ [2,]   1.1 5.994053e-05 0.0003273518
+ [3,]   1.2 2.594916e-05 0.0006678115
+ [4,]   1.3 1.160472e-05 0.0012436937
+ [5,]   1.4 5.348482e-06 0.0021488677
+ [6,]   1.5 2.534939e-06 0.0034878652
+ [7,]   1.6 1.233060e-06 0.0053705760
+ [8,]   1.7 6.144661e-07 0.0079066215
+ [9,]   1.8 3.131832e-07 0.0112000087
+[10,]   1.9 1.630204e-07 0.0153445015
+[11,]   2.0 8.654539e-08 0.0204199746
+[12,]   2.1 4.680289e-08 0.0264898564
+[13,]   2.2 2.575397e-08 0.0335996491
+[14,]   2.3 1.440511e-08 0.0417764265
+[15,]   2.4 8.182504e-09 0.0510291619
+[16,]   2.5 4.716095e-09 0.0613497166
+[17,]   2.6 2.755914e-09 0.0727143155
+[18,]   2.7 1.631633e-09 0.0850853519
+[19,]   2.8 9.780574e-10 0.0984133791
+[20,]   2.9 5.932318e-10 0.1126391737
+[21,]   3.0 3.638778e-10 0.1276957781
+[22,]   3.1 2.255946e-10 0.1435104523
+[23,]   3.2 1.412962e-10 0.1600064856
+[24,]   3.3 8.936404e-11 0.1771048372
+[25,]   3.4 5.704801e-11 0.1947255881
+[26,]   3.5 3.674437e-11 0.2127891968
+[27,]   3.6 2.386997e-11 0.2312175624
+[28,]   3.7 1.563408e-11 0.2499349023
+[29,]   3.8 1.032072e-11 0.2688684575
+[30,]   3.9 6.864847e-12 0.2879490404
+[31,]   4.0 4.599491e-12 0.3071114411
+[32,]   4.1 3.103331e-12 0.3262947106
+[33,]   4.2 2.108017e-12 0.3454423351
+[34,]   4.3 1.441260e-12 0.3645023196
+[35,]   4.4 9.915926e-13 0.3834271945
+[36,]   4.5 6.863604e-13 0.4021739587
+[37,]   4.6 4.778702e-13 0.4207039720
+[38,]   4.7 3.345966e-13 0.4389828068
+[39,]   4.8 2.355628e-13 0.4569800698
+[40,]   4.9 1.667204e-13 0.4746692003
+[41,]   5.0 1.186028e-13 0.4920272538
+> ## > Crosses one-side p-value of 0.05 at Gamma = 2.4
+> 
+> ####################################################
+> #### Bootstrapped local linear regression plots ####
+> ####################################################
+> 
+> ### Define functions
+> EdgeKernel <- function(X, mid, bw, norm = FALSE) {
++   ## Created by: Devin Caughey
++   ## Last modified: 12 April 2011
++   
++   ## Invisibly returns a vector of edge (triangular) kernel weights.
++   ## If an observation's distance from the midpoint is greater than
++   ## bw, it receives zero weight. If it is within the bandwidth, it
++   ## receives a weight equal to 1 minus the distance over the
++   ## bandwidth.
++   ## 'norm' regulates whether the weights should be normalized to a
++   ## mean of 1 (and thus to a sum equal to the number of non-missing
++   ## observations)
++   
++   wts.out <- ifelse(abs(X - mid) > bw, 0, 1 - (abs(X - mid) / bw))
++   if(norm) {
++     mean.wts <- mean(wts.out, na.rm = TRUE)
++     wts.out <- wts.out /  mean.wts
++   }
++   
++   invisible(wts.out)
++ }
+> 
+> EdgeLocalEst <- function(Y, X, bw, point,
++                          norm = FALSE, print = FALSE,
++                          verbose = FALSE) {
++   ## Returns the estimate of the local regression function at
++   ## 'point', with weights determined by an edge kernel with a
++   ## bandwidth of bw.
++   Xcentered <- X - point
++   wts.c <- EdgeKernel(X = Xcentered, mid = 0, bw = bw, norm = TRUE)
++   llr.c <- lm(Y ~ Xcentered, weights = wts.c)
++   if(verbose) {
++     print(summary(llr.c))
++   }
++   PointEst <- coef(llr.c)[[1]]
++   SEofEst <- sqrt(diag(vcov(llr.c)))[1]
++   names(SEofEst) <- NULL
++   out <- list(PointEst, SEofEst)
++   names(out) <- c("Point Estimate", "Standard Error of Estimate")
++   if(print) {
++     return(out)
++   }
++   if(!print) {
++     invisible(out)
++   }
++ }
+> 
+> EdgeLocalDiffEst <- function(Y, X, bw, point,
++                              norm = FALSE, print = FALSE,
++                              verbose = FALSE) {
++   ## Returns the difference in the value of a function at a given
++   ## point estimated from above and from below, using local linear
++   ## regression with an edge kernel.
++   Xcentered <- X - point
++   wts.c <- EdgeKernel(X = Xcentered, mid = 0, bw = bw, norm = TRUE)
++   trmt <- as.numeric(Xcentered >= 0)
++   llr.c <- lm(Y ~ trmt + Xcentered + I(trmt * Xcentered),
++               weights = wts.c)
++   if(verbose) {
++     print(summary(llr.c))
++   }
++   DiffEst <- coef(llr.c)[[2]]
++   SEofEst <- sqrt(diag(vcov(llr.c)))[2]
++   names(SEofEst) <- NULL 
++   out <- list(DiffEst, SEofEst)
++   names(out) <- c("Estimated Difference", "Standard Error of Estimate")
++   if(print) {
++     return(out)
++   }
++   if(!print) {
++     invisible(out)
++   }
++ }
+> 
+> EdgeSmoothBoot <- function(dat, inds, y.name, x.name, points, bw) {
++   y <- dat[inds, y.name]
++   x <- dat[inds, x.name]
++                                         # print(summary(y))
++                                         # print(summary(x))
++   fit <- vector(mode = 'numeric', length = length(points))
++   for(i in 1:length(points)) {
++     p <- points[i]
++                                         # print(p)
++     fit[i] <-
++       unlist(EdgeLocalEst(Y = y, X = x, point = p, bw = bw)[1])
++   }
++                                         # fit.df <- as.data.frame(fit)
++                                         # rownames(fit.df) <- points
++   invisible(fit)
++ }
+> 
+> ## Test weights (normalized to mean = 1)
+> wts.test <- EdgeKernel(X = rd$DifDPct, mid = 0, bw = 10, norm = TRUE)
+> summary(wts.test)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   0.00    0.00    0.00    1.00    0.00   12.26 3170.00 
+> plot(x = rd$DifDPct, y = wts.test)
+> ## Test difference estimator
+> EdgeLocalDiffEst(Y = rd$DPctPrv, X = rd$DifDPct,
++                  point = 0, bw = 6, print = TRUE, verbose = TRUE)
+
+Call:
+lm(formula = Y ~ trmt + Xcentered + I(trmt * Xcentered), weights = wts.c)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-226.0    0.0    0.0    0.0  235.6 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          46.5958     1.0659  43.714   <2e-16 ***
+trmt                  3.8193     1.5156   2.520   0.0119 *  
+Xcentered            -0.1088     0.4458  -0.244   0.8072    
+I(trmt * Xcentered)   0.2613     0.6190   0.422   0.6731    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 44.28 on 963 degrees of freedom
+  (7906 observations deleted due to missingness)
+Multiple R-squared: 0.02023,	Adjusted R-squared: 0.01718 
+F-statistic: 6.627 on 3 and 963 DF,  p-value: 0.0001968 
+
+$`Estimated Difference`
+[1] 3.819303
+
+$`Standard Error of Estimate`
+[1] 1.515563
+
+> 
+> ## Definitions
+> breaks.5 <- seq(-100, 100, .5)
+> mids.5 <- hist(rd$DifDPct, freq = TRUE, breaks = breaks.5)$mids
+> cuts.5 <- cut(rd$DifDPct, breaks = breaks.5)
+> covs.llr <- matrix(c('DWinPrv', 'Dem Win t - 1',
++                  'DPctPrv', 'Dem % t - 1',
++                  'DifDPPrv', 'Dem % Margin t - 1',
++                  'IncDWNOM1', 'Inc\'s 1st Dim NOMINATE',
++                  'DemInc', 'Dem Inc in Race',
++                  'NonDInc', 'Rep Inc in Race',
++                  'RExpAdv', 'Rep Experience Adv',
++                  'DExpAdv', 'Dem Experience Adv',
++                  'ElcSwing', 'Partisan Swing',
++                  'DSpndPct', 'Dem Spending %',
++                  'DDonaPct', 'Dem Donation %',
++                  'SoSDem', 'Dem Sec of State',
++                  'GovDem', 'Dem Governor',
++                  'DifPVDec', 'Dem Pres % Margin', ## Average over decade
++                  'DemOpen', 'Dem-held Open Seat',
++                  'NonDOpen', 'Rep-held Open Seat',
++                  'OpenSeat', 'Open Seat',
++                  'VtTotPct', 'Voter Turnout %',
++                  'GovWkPct', 'Pct Gov\'t Worker',
++                  'UrbanPct', 'Pct Urban',
++                  'BlackPct', 'Pct Black',
++                  'ForgnPct', 'Pct Foreign Born'
++                  ),
++                ncol = 2, byrow = TRUE
++                )
+> bws <- c(1, 2, 5, 10, 15, 20)
+> left <- rd$DifDPct < 0 & !is.na(rd$DifDPct)
+> right <- rd$DifDPct > 0 & !is.na(rd$DifDPct)
+> left.points <- seq(-25, 0, 0.5)
+> right.points <- seq(0, 25, 0.5)
+> bw.names <- paste('bw', bws, sep = '')
+> nboots <- 1000
+> boot.out <- vector(mode = 'list', length = nrow(covs.llr))
+> names(boot.out) <- covs.llr[, 1]
+> rd.sub <- rd[, c('DifDPct', covs.llr[, 1])]
+> dim(rd.sub)
+[1] 16968    23
+> 
+> 
+> ## Note: Each plot may take a half an hour or more to calculate.
+> ## Loop over covariates---uncomment below to do all covariates.
+> #for (i in 1:nrow(covs.llr)) {
+> for (i in 1) {
++   cat(covs.llr[i, 1], ' (', as.character(Sys.time()), ')', '\n', sep = '')
++   boot.out[[i]] <- vector(mode = 'list', length = length(bws))
++   names(boot.out[[i]]) <- bw.names
++   mean.5 <- tapply(rd.sub[, covs.llr[i, 1]], cuts.5, function(x) {
++     mean(x, na.rm = TRUE)
++   })
++   plot.data <- data.frame(Midpoints = mids.5[abs(mids.5) < 25],
++                           BinMeans = mean.5[abs(mids.5) < 25])     
++   pdf.name <- paste("EdgeBoot_", covs.llr[i, 1], "_", sep = "")
++   mypdf(pdf.name)
++   ## Loop over bandwidths---uncomment below to do all bandwidths
++   #for (h in 1:length(bws)) {
++   for (h in 1) {
++     cat(bws[h], '\n')
++     boot.out[[i]][[h]] <- vector(mode = 'list', length = 2)
++     names(boot.out[[i]][[h]]) <- c('Left', 'Right')
++     boot.out[[i]][[h]]$Left <- vector(mode = 'list')
++     boot.out[[i]][[h]]$Right <- vector(mode = 'list')
++     left.txt <-
++       paste("boot(data = rd.sub[left, ], statistic = EdgeSmoothBoot, R = nboots, sim = 'ordinary', y.name = '",
++             covs.llr[i, 1],
++             "', x.name = 'DifDPct', points = left.points, bw = ",
++             bws[h], ")",
++             sep = '')
++     right.txt <-
++       paste("boot(data = rd.sub[right, ], statistic = EdgeSmoothBoot, R = nboots, sim = 'ordinary', y.name = '",
++             covs.llr[i, 1],
++             "', x.name = 'DifDPct', points = right.points, bw = ",
++             bws[h], ")",
++             sep = '')
++     boot.out[[i]][[h]]$Left <- eval(parse(text = left.txt))
++     boot.out[[i]][[h]]$Right <- eval(parse(text = right.txt))
++     file.name <- paste('EdgeKernel', covs.llr[i, 1], bws[h], 'boot',
++                        Sys.Date(), '.RData',
++                        sep = '')
++     ## Assign boot output to stand-alone object
++     eval(parse(text = paste(covs.llr[i, 1],
++                  '.boot <- boot.out[[i]][[h]]',
++                  sep = '')))
++     ## Save boot object to disk
++     eval(parse(text = paste('save(',
++                  covs.llr[i, 1],
++                  '.boot, file = file.name)',
++                  sep = '')))
++     left.ci <- matrix(NA, nrow = 2,
++                       ncol = length(left.points))
++     for(p in 1:length(left.points)) {
++       left.ci[, p] <- quantile(boot.out[[i]][[h]]$Left$t[, p],
++                                c(.025, .975))
++     }
++     right.ci <- matrix(NA, nrow = 2,
++                        ncol = length(right.points))
++     for(p in 1:length(right.points)) {
++       right.ci[, p] <- quantile(boot.out[[i]][[h]]$Right$t[, p],
++                                 c(.025, .975))
++     }
++     ldata <-
++       data.frame(Points = left.points,
++                  FittedEst = boot.out[[i]][[h]]$Left$t0,
++                  LowerCI = left.ci[1, ],
++                  UpperCI = left.ci[2, ])
++     rdata <-
++       data.frame(Points = right.points,
++                  FittedEst = boot.out[[i]][[h]]$Right$t0,
++                  LowerCI = right.ci[1, ],
++                  UpperCI = right.ci[2, ])
++     binplot <- qplot(x = Midpoints, y = BinMeans, data = plot.data,
++                      ylab = 'Local Average',
++                      xlab = 'Democratic Vote Percentage Margin',
++                      main = paste(covs.llr[i, 2],' (h = ', bws[h], 
++                        ')', sep = ''))
++     ci.aes <- aes(x = c(Points, rev(Points)),
++                   y = c(LowerCI, rev(UpperCI)))
++     fit.aes <- aes(x = Points, y = FittedEst)
++     print(binplot +
++           geom_polygon(mapping = ci.aes, data = ldata,
++                        fill = 'grey') +
++           geom_line(mapping = fit.aes, data = ldata, size = .5) +
++           geom_polygon(mapping = ci.aes, data = rdata,
++                        fill = 'grey') +
++           geom_line(mapping = fit.aes, data = rdata, size = .5) +
++           geom_point(mapping = aes(x = Midpoints, y = BinMeans),
++                      data = plot.data) + 
++           geom_vline(xintercept = 0))    
++     ## Drop object so doesn't take up memory
++     eval(parse(text = paste('rm(', covs.llr[i, 1], '.boot)', sep = '')))
++     boot.out[[i]][[h]]$Left <- boot.out[[i]][[h]]$Left$t
++     boot.out[[i]][[h]]$Right <- boot.out[[i]][[h]]$Right$t
++   } ## End bandwidth loop
++   dev.off()
++ } ## End covariate loop
+DWinPrv (2011-11-16 00:22:24)
+1 
+> 
+> #############################
+> #### Imbalance over time ####
+> #############################
+> inc.win <- with(rd, as.numeric(DemWin == DWinPrv))
+> winner.pct.prv <- with(rd, ifelse(DemWin == 1, DifDPPrv, -DifDPPrv))
+> imbal.df.5 <- data.frame(year = rd$YearElec[close.5],
++                          inc.win = inc.win[close.5],
++                          winner.pct.prv = winner.pct.prv[close.5])
+> 
+> pdf(file = paste("ImbalIncWin.5Time", Sys.Date(), ".pdf", sep = ""),
++     height = 4, width = 7)
+> jit <- position_jitter(width = 0, height = .01)
+> ggplot(data = imbal.df.5, aes(x = year, y = inc.win)) +
++   geom_jitter(position = jit, colour = alpha("black", 1/2)) +
++   geom_smooth() +
++   ylab("Incumbent Party Win") +
++   xlab("Year") +
++   opts(title = "Imbalance over Time in 0.5% Window") +
++   geom_hline(yintercept = .5, color = "black")
+Warning messages:
+1: Removed 20 rows containing missing values (stat_smooth). 
+2: Removed 20 rows containing missing values (geom_point). 
+> dev.off()
+pdf 
+  2 
+> ## >> Two peaks (1940 & mid-1980s) and two troughs (mid-1960s & 2006),
+> ## >> but almost always statistically different from 0.   
+> 
+> setwd(plot.dir)
+> pdf(file = paste("ImbalIncWin05TimeNoSmooth", Sys.Date(), ".pdf", sep = ""),
++     height = 4, width = 7) 
+> set.seed(4)
+> jit <- position_jitter(width = 0, height = .2)
+> ggplot(data = imbal.df.5, aes(x = year, y = inc.win)) +
++   geom_jitter(position = jit, colour = alpha("black", 1/2)) +  
++   ylab("Incumbent Party Win (Jittered)") +
++   xlab("Year") +
++   opts(title = "Incumbent Victories and Losses in 0.5% Window, Over Time") +
++   geom_hline(yintercept = .5, color = "black") +
++   scale_y_continuous(breaks = seq(0, 1, 1), )
+Warning message:
+Removed 20 rows containing missing values (geom_point). 
+> dev.off()
+pdf 
+  2 
+> 
+> pdf(file = paste("ImbalPrevMarg.5TimeNoSmooth", Sys.Date(), ".pdf", sep = ""),
++     height = 4, width = 7)
+> ggplot(data = imbal.df.5, aes(x = year, y = winner.pct.prv)) +
++   geom_jitter(position = jit, colour = alpha("black", 1/2)) +
++   ylab("Winning Party's Previous Margin") +
++   xlab("Year") +
++   opts(title = "Imbalance over Time in 0.5% Window") +
++   geom_hline(yintercept = 0, color = "black")
+Warning message:
+Removed 21 rows containing missing values (geom_point). 
+> dev.off()
+pdf 
+  2 
+> ## >> Peak in mid-1970s and trough in late 1980s - 2000, during which
+> ## >> not statistically different from 0.
+> 
+> imbal.df1 <- data.frame(year = rd$YearElec[close1],
++                          inc.win = inc.win[close1],
++                          winner.pct.prv = winner.pct.prv[close1])
+> 
+> pdf(file = paste("ImbalIncWin1Time", Sys.Date(), ".pdf", sep = ""),
++     height = 4, width = 7)
+> jit <- position_jitter(width = 0.5, height = 0)
+> ggplot(data = imbal.df1, aes(x = year, y = inc.win)) +
++   geom_jitter(position = jit, colour = alpha("black", 1/3)) +
++   geom_smooth() +
++   ylab("Incumbent Party Win") +
++   xlab("Year") +
++   opts(title = "Imbalance over Time in 1% Window") +
++   geom_hline(yintercept = .5, color = "black")
+Warning messages:
+1: Removed 43 rows containing missing values (stat_smooth). 
+2: Removed 43 rows containing missing values (geom_point). 
+> dev.off()
+pdf 
+  2 
+> ## >> Two peaks (1940 & mid-1980s) and two troughs (mid-1960s & 2006),
+> ## >> like above, except that the drop from the mid-1980s is much more
+> ## >> dramatic (fitted line crosses 0).   
+> 
+> pdf(file = paste("ImbalPrevMarg1Time", Sys.Date(), ".pdf", sep = ""),
++     height = 4, width = 7)
+> jit <- position_jitter(width = 0, height = 0)
+> ggplot(data = imbal.df1, aes(x = year, y = winner.pct.prv)) +
++   geom_jitter(position = jit, colour = alpha("black", 1/2)) +
++   geom_smooth() +
++   ylab("Winning Party's Previous Margin") +
++   xlab("Year") +
++   opts(title = "Imbalance over Time in 1% Window") +
++   geom_hline(yintercept = 0, color = "black")
+Warning messages:
+1: Removed 44 rows containing missing values (stat_smooth). 
+2: Removed 44 rows containing missing values (geom_point). 
+> dev.off()
+pdf 
+  2 
+> ## >> Peak in early 1970s, then gradual decline (not significant from
+> ## >> 0 by 1990)
+> 
+> ####################
+> #### Open seats ####
+> #################### 
+> ### Previous Democratic Victory
+> open <- rd$OpenSeat == 1
+> table(rd$DWinPrv[open & close.25 & use],
++       rd$DemWin[open & close.25 & use])
+   
+    0 1
+  0 4 3
+  1 2 1
+> table(rd$DWinPrv[open & close.5 & use],
++       rd$DemWin[open & close.5 & use])
+   
+    0 1
+  0 8 6
+  1 2 4
+> table(rd$DWinPrv[open & close1 & use],
++       rd$DemWin[open & close1 & use])
+   
+     0  1
+  0 12 11
+  1  5 10
+> t.test(DWinPrv ~ DemWin, data = rd[close.5 & use, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = -3.9991, df = 79.783, p-value = 0.0001412
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.5854604 -0.1963780 
+sample estimates:
+mean in group 0 mean in group 1 
+      0.1904762       0.5813953 
+
+> t.test(DWinPrv ~ DemWin, data = rd[open & close.25 & use, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = 0.2548, df = 6.739, p-value = 0.8065
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.6960667  0.8627334 
+sample estimates:
+mean in group 0 mean in group 1 
+      0.3333333       0.2500000 
+
+> t.test(DWinPrv ~ DemWin, data = rd[open & close.5 & use, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = -0.9487, df = 17.308, p-value = 0.3558
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.6441866  0.2441866 
+sample estimates:
+mean in group 0 mean in group 1 
+            0.2             0.4 
+
+> t.test(DWinPrv ~ DemWin, data = rd[open & close1 & use, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = -1.1414, df = 35.386, p-value = 0.2614
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.5057946  0.1416489 
+sample estimates:
+mean in group 0 mean in group 1 
+      0.2941176       0.4761905 
+
+> t.test(DWinPrv ~ DemWin, data = rd[open & close.5, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = -0.9487, df = 17.308, p-value = 0.3558
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.6441866  0.2441866 
+sample estimates:
+mean in group 0 mean in group 1 
+            0.2             0.4 
+
+> t.test(DWinPrv ~ DemWin, data = rd[open & close1, ])
+
+	Welch Two Sample t-test
+
+data:  DWinPrv by DemWin 
+t = -0.9052, df = 36.001, p-value = 0.3714
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.4558103  0.1744804 
+sample estimates:
+mean in group 0 mean in group 1 
+      0.2941176       0.4347826 
+
+> binom.test(sum(rd$DWinPrv[open & close.5 & use] ==
++                rd$DemWin[open & close.5 & use]),
++            sum(open & close.5 & use))
+
+	Exact binomial test
+
+data:  sum(rd$DWinPrv[open & close.5 & use] == rd$DemWin[open & close.5 &  and sum(open & close.5 & use)     use]) and sum(open & close.5 & use) 
+number of successes = 12, number of trials = 20, p-value = 0.5034
+alternative hypothesis: true probability of success is not equal to 0.5 
+95 percent confidence interval:
+ 0.3605426 0.8088099 
+sample estimates:
+probability of success 
+                   0.6 
+
+> binom.test(sum(rd$DWinPrv[close.5 & use] ==
++                rd$DemWin[close.5 & use]),
++            sum(close.5 & use))
+
+	Exact binomial test
+
+data:  sum(rd$DWinPrv[close.5 & use] == rd$DemWin[close.5 & use]) and sum(close.5 & use) 
+number of successes = 59, number of trials = 85, p-value = 0.0004472
+alternative hypothesis: true probability of success is not equal to 0.5 
+95 percent confidence interval:
+ 0.5847347 0.7895128 
+sample estimates:
+probability of success 
+             0.6941176 
+
+> 
+> ### Spending 
+> ## All open seats 
+> t.test(DSpndPct ~ DemWin, data = rd[open, ]) 
+
+	Welch Two Sample t-test
+
+data:  DSpndPct by DemWin 
+t = -20.9198, df = 684.951, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -33.13731 -27.45079 
+sample estimates:
+mean in group 0 mean in group 1 
+       37.04361        67.33766 
+
+> wilcox_test(DSpndPct ~ factor(DemWin), data = rd[open, ])
+
+	Asymptotic Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DSpndPct by factor(DemWin) (0, 1) 
+Z = -16.6093, p-value < 2.2e-16
+alternative hypothesis: true mu is not equal to 0 
+
+> ## Open seats in 1% window 
+> t.test(DSpndPct ~ DemWin, data = rd[open & close1, ])   
+
+	Welch Two Sample t-test
+
+data:  DSpndPct by DemWin 
+t = -2.1042, df = 28.343, p-value = 0.04436
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -13.5885591  -0.1861678 
+sample estimates:
+mean in group 0 mean in group 1 
+       46.64325        53.53061 
+
+> wilcox_test(DSpndPct ~ factor(DemWin),
++             data = rd[open & close1, ],
++             distribution = exact())
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DSpndPct by factor(DemWin) (0, 1) 
+Z = -1.5923, p-value = 0.1167
+alternative hypothesis: true mu is not equal to 0 
+
+> ## Open seats in 1% window and in `use' sample
+> t.test(DSpndPct ~ DemWin, data = rd[open & close1 & use, ])   
+
+	Welch Two Sample t-test
+
+data:  DSpndPct by DemWin 
+t = -1.5303, df = 20.785, p-value = 0.141
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -14.750289   2.248865 
+sample estimates:
+mean in group 0 mean in group 1 
+       47.72317        53.97388 
+
+> wilcox_test(DSpndPct ~ factor(DemWin),
++             data = rd[open & close1 & use, ],
++             distribution = exact())
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DSpndPct by factor(DemWin) (0, 1) 
+Z = -0.9847, p-value = 0.347
+alternative hypothesis: true mu is not equal to 0 
+
+> ## Open seats in 0.5% window    
+> t.test(DSpndPct ~ DemWin, data = rd[open & close.5, ])   
+
+	Welch Two Sample t-test
+
+data:  DSpndPct by DemWin 
+t = -2.6177, df = 19.212, p-value = 0.01683
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -17.550272  -1.961354 
+sample estimates:
+mean in group 0 mean in group 1 
+       45.16868        54.92449 
+
+> wilcox_test(DSpndPct ~ factor(DemWin),
++             data = rd[open & close.5, ],
++             distribution = exact())     
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DSpndPct by factor(DemWin) (0, 1) 
+Z = -2.11, p-value = 0.03583
+alternative hypothesis: true mu is not equal to 0 
+
+> ## Open seats in 0.5% window and in `use' sample
+> t.test(DSpndPct ~ DemWin, data = rd[open & close.5 & use, ])   
+
+	Welch Two Sample t-test
+
+data:  DSpndPct by DemWin 
+t = -2.1654, df = 13.524, p-value = 0.04877
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -18.88361436  -0.05915014 
+sample estimates:
+mean in group 0 mean in group 1 
+       46.28493        55.75631 
+
+> wilcox_test(DSpndPct ~ factor(DemWin),
++             data = rd[open & close.5 & use, ],
++             distribution = exact())                 
+
+	Exact Wilcoxon Mann-Whitney Rank Sum Test
+
+data:  DSpndPct by factor(DemWin) (0, 1) 
+Z = -1.6803, p-value = 0.1049
+alternative hypothesis: true mu is not equal to 0 
+
+> 
+> #################################################### 
+> #### EFFECT ESTIMATES CONDITIONAL ON COVARIATES ####
+> ####################################################
+> ### 0.5% Window, all races, DPctNxt 
+> summary(lm(DPctNxt ~ DemWin, data = rd[close.5 & use, ]))  
+
+Call:
+lm(formula = DPctNxt ~ DemWin, data = rd[close.5 & use, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-52.845  -3.713   0.898   7.101  46.544 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   42.913      2.126  20.183  < 2e-16 ***
+DemWin        10.543      2.989   3.527 0.000688 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 13.78 on 83 degrees of freedom
+Multiple R-squared: 0.1303,	Adjusted R-squared: 0.1199 
+F-statistic: 12.44 on 1 and 83 DF,  p-value: 0.000688 
+
+> summary(lm(DPctNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
++   data = rd[close.5 & use, ]))
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
+    data = rd[close.5 & use, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-52.760  -3.166   0.696   7.345  46.491 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)           36.527      4.601   7.938 9.94e-12 ***
+DemWin                18.659      5.859   3.185  0.00206 ** 
+DifDPct              -24.171     15.466  -1.563  0.12200    
+I(DemWin * DifDPct)   15.918     20.948   0.760  0.44952    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 13.71 on 81 degrees of freedom
+Multiple R-squared: 0.1592,	Adjusted R-squared: 0.1281 
+F-statistic: 5.113 on 3 and 81 DF,  p-value: 0.00273 
+
+> summary(lm(DPctNxt ~ DemWin + DWinPrv + DifDPct + 
++ 	I(DemWin * DifDPct) + DPctPrv, 
++ 	data = rd[close.5 & use, ])) 
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * 
+    DifDPct) + DPctPrv, data = rd[close.5 & use, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-47.238  -6.669   0.979   7.372  33.162 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          21.2812     6.2184   3.422 0.000986 ***
+DemWin               23.0538     5.6544   4.077 0.000108 ***
+DWinPrv             -12.4684     3.9092  -3.190 0.002044 ** 
+DifDPct             -26.2870    14.4251  -1.822 0.072191 .  
+I(DemWin * DifDPct)  13.2008    19.5632   0.675 0.501790    
+DPctPrv               0.3763     0.1061   3.546 0.000660 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 12.78 on 79 degrees of freedom
+Multiple R-squared: 0.2879,	Adjusted R-squared: 0.2429 
+F-statistic: 6.389 on 5 and 79 DF,  p-value: 4.943e-05 
+
+> summary(lm(DPctNxt ~ DemWin + DWinPrv + DifDPct + 
++ 	I(DemWin * DifDPct) + DPctPrv + factor(CQRating3),
++ 	data = rd[close.5 & use, ]))
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * 
+    DifDPct) + DPctPrv + factor(CQRating3), data = rd[close.5 & 
+    use, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-43.268  -7.106   0.180   8.179  36.079 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          20.3542     6.9365   2.934 0.004705 ** 
+DemWin               24.9289     6.4759   3.849 0.000286 ***
+DWinPrv             -18.8000     5.2577  -3.576 0.000691 ***
+DifDPct             -23.7811    16.6112  -1.432 0.157355    
+I(DemWin * DifDPct)   7.1087    23.0524   0.308 0.758852    
+DPctPrv               0.4202     0.1196   3.513 0.000841 ***
+factor(CQRating3)0   -1.1980     4.1623  -0.288 0.774449    
+factor(CQRating3)1    3.7739     5.3841   0.701 0.486006    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 13.28 on 61 degrees of freedom
+  (16 observations deleted due to missingness)
+Multiple R-squared: 0.3373,	Adjusted R-squared: 0.2612 
+F-statistic: 4.435 on 7 and 61 DF,  p-value: 0.0004884 
+
+> summary(lm(DPctNxt ~ DemWin + DWinPrv + DifDPct + 
++ 	I(DemWin * DifDPct) + DPctPrv + factor(CQRating3) + DSpndPct, 
++ 	data = rd[close.5 & use, ]))        
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * 
+    DifDPct) + DPctPrv + factor(CQRating3) + DSpndPct, data = rd[close.5 & 
+    use, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.647 -11.420   2.133  10.101  30.707 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          13.3735    10.4586   1.279 0.208756    
+DemWin               32.6680     8.3333   3.920 0.000358 ***
+DWinPrv             -27.1840     6.6588  -4.082 0.000221 ***
+DifDPct             -34.5110    21.8647  -1.578 0.122766    
+I(DemWin * DifDPct)  25.6331    32.3397   0.793 0.432920    
+DPctPrv               0.5862     0.1534   3.821 0.000479 ***
+factor(CQRating3)0    3.3573     6.0216   0.558 0.580424    
+factor(CQRating3)1    7.3491     7.5723   0.971 0.337921    
+DSpndPct             -0.1482     0.2139  -0.693 0.492553    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 14.4 on 38 degrees of freedom
+  (38 observations deleted due to missingness)
+Multiple R-squared: 0.4725,	Adjusted R-squared: 0.3615 
+F-statistic: 4.255 on 8 and 38 DF,  p-value: 0.001016 
+
+> ### 0.5% Window, all races, DWinNxt
+> summary(glm(DWinNxt ~ DemWin, 
++ 	data = rd[close.5 & use, ],
++ 	family = binomial(link = "logit")))  
+
+Call:
+glm(formula = DWinNxt ~ DemWin, family = binomial(link = "logit"), 
+    data = rd[close.5 & use, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6512  -0.9005   0.7687   0.7687   1.4823  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -0.6931     0.3273  -2.118 0.034209 *  
+DemWin        1.7610     0.4789   3.678 0.000236 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 117.26  on 84  degrees of freedom
+Residual deviance: 102.37  on 83  degrees of freedom
+AIC: 106.37
+
+Number of Fisher Scoring iterations: 4
+
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
++ 	data = rd[close.5 & use, ],
++ 	family = binomial(link = "logit")))
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
+    family = binomial(link = "logit"), data = rd[close.5 & use, 
+        ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6713  -0.9150   0.7551   0.7783   1.5593  
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)  
+(Intercept)          -0.8817     0.7248  -1.216   0.2238  
+DemWin                2.0002     0.9470   2.112   0.0347 *
+DifDPct              -0.7077     2.4066  -0.294   0.7687  
+I(DemWin * DifDPct)   0.4677     3.3648   0.139   0.8895  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 117.26  on 84  degrees of freedom
+Residual deviance: 102.27  on 81  degrees of freedom
+AIC: 110.27
+
+Number of Fisher Scoring iterations: 4
+
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + DWinPrv + 
++   DPctPrv, 
++ 	data = rd[close.5 & use, ],
++ 	family = binomial(link = "logit"))) 
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + 
+    DWinPrv + DPctPrv, family = binomial(link = "logit"), data = rd[close.5 & 
+    use, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.7650  -0.8917   0.6826   0.8553   1.5937  
+
+Coefficients:
+                     Estimate Std. Error z value Pr(>|z|)  
+(Intercept)         -1.014684   1.068770  -0.949   0.3424  
+DemWin               1.831577   0.972151   1.884   0.0596 .
+DifDPct             -0.648515   2.413106  -0.269   0.7881  
+I(DemWin * DifDPct)  0.337178   3.376290   0.100   0.9205  
+DWinPrv              0.462906   0.670988   0.690   0.4903  
+DPctPrv              0.001216   0.018494   0.066   0.9476  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 117.26  on 84  degrees of freedom
+Residual deviance: 101.42  on 79  degrees of freedom
+AIC: 113.42
+
+Number of Fisher Scoring iterations: 4
+
+> ## >> Marginal significance
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + DWinPrv + 
++   DPctPrv + factor(CQRating3), 
++ 	data = rd[close.5 & use, ],
++ 	family = binomial(link = "logit")))           
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + 
+    DWinPrv + DPctPrv + factor(CQRating3), family = binomial(link = "logit"), 
+    data = rd[close.5 & use, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.7918  -0.9732   0.6113   0.8714   1.6666  
+
+Coefficients:
+                     Estimate Std. Error z value Pr(>|z|)  
+(Intercept)         -0.864404   1.143860  -0.756   0.4498  
+DemWin               2.075887   1.108477   1.873   0.0611 .
+DifDPct             -0.442536   2.669436  -0.166   0.8683  
+I(DemWin * DifDPct) -0.346396   3.886639  -0.089   0.9290  
+DWinPrv             -0.655162   0.884423  -0.741   0.4588  
+DPctPrv              0.005815   0.020112   0.289   0.7725  
+factor(CQRating3)0  -0.374855   0.690402  -0.543   0.5872  
+factor(CQRating3)1   0.750628   0.920095   0.816   0.4146  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 94.943  on 68  degrees of freedom
+Residual deviance: 81.958  on 61  degrees of freedom
+  (16 observations deleted due to missingness)
+AIC: 97.958
+
+Number of Fisher Scoring iterations: 4
+
+> ## >> Marginal significance
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + DWinPrv + 
++   DPctPrv + factor(CQRating3) + DSpndPct, 
++ 	data = rd[close.5 & use, ],
++ 	family = binomial(link = "logit")))      
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + 
+    DWinPrv + DPctPrv + factor(CQRating3) + DSpndPct, family = binomial(link = "logit"), 
+    data = rd[close.5 & use, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.3253  -0.7705   0.3713   0.8554   2.0364  
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)   
+(Intercept)         -3.98789    2.10192  -1.897  0.05779 . 
+DemWin               5.00017    1.92365   2.599  0.00934 **
+DifDPct             -7.77058    4.23022  -1.837  0.06622 . 
+I(DemWin * DifDPct)  7.37579    6.31737   1.168  0.24299   
+DWinPrv             -2.78239    1.46266  -1.902  0.05713 . 
+DPctPrv              0.02108    0.02657   0.793  0.42771   
+factor(CQRating3)0  -0.83922    1.06746  -0.786  0.43176   
+factor(CQRating3)1   0.24896    1.34518   0.185  0.85317   
+DSpndPct             0.02807    0.03559   0.789  0.43035   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 64.109  on 46  degrees of freedom
+Residual deviance: 47.556  on 38  degrees of freedom
+  (38 observations deleted due to missingness)
+AIC: 65.556
+
+Number of Fisher Scoring iterations: 5
+
+> ### 0.5% Window, open seats, DPctNxt 
+> summary(lm(DPctNxt ~ DemWin, data = rd[close.5 & use & open, ]))  
+
+Call:
+lm(formula = DPctNxt ~ DemWin, data = rd[close.5 & use & open, 
+    ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.523  -7.591  -3.741   9.444  40.418 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   37.831      5.081   7.446 6.71e-07 ***
+DemWin        21.751      7.185   3.027  0.00725 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 16.07 on 18 degrees of freedom
+Multiple R-squared: 0.3373,	Adjusted R-squared: 0.3005 
+F-statistic: 9.163 on 1 and 18 DF,  p-value: 0.007245 
+
+> summary(lm(DPctNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
++ 	data = rd[close.5 & use & open, ]))
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
+    data = rd[close.5 & use & open, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-30.725  -7.856  -2.342   8.394  39.411 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)  
+(Intercept)            29.17      12.44   2.345   0.0322 *
+DemWin                 34.63      17.45   1.984   0.0646 .
+DifDPct               -34.60      45.02  -0.769   0.4533  
+I(DemWin * DifDPct)    18.78      61.16   0.307   0.7628  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 16.66 on 16 degrees of freedom
+Multiple R-squared: 0.3665,	Adjusted R-squared: 0.2477 
+F-statistic: 3.086 on 3 and 16 DF,  p-value: 0.0571 
+
+> ## >> Marginal significance
+> summary(lm(DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * DifDPct) + 
++   DPctPrv, 
++ 	data = rd[close.5 & use & open, ])) 
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * 
+    DifDPct) + DPctPrv, data = rd[close.5 & use & open, ])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-26.5246 -11.6180   0.5131  10.9585  23.5491 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)  
+(Intercept)          10.8790    16.6719   0.653    0.525  
+DemWin               30.6649    17.1263   1.791    0.095 .
+DWinPrv             -12.3872    11.2716  -1.099    0.290  
+DifDPct             -36.4490    45.4676  -0.802    0.436  
+I(DemWin * DifDPct)  43.0468    62.6251   0.687    0.503  
+DPctPrv               0.4595     0.2666   1.724    0.107  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 16.18 on 14 degrees of freedom
+Multiple R-squared: 0.4776,	Adjusted R-squared: 0.291 
+F-statistic: 2.559 on 5 and 14 DF,  p-value: 0.07598 
+
+> ## >> Marginal significance
+> summary(lm(DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * DifDPct) + 
++   DPctPrv + factor(CQRating3),
++ 	data = rd[close.5 & use & open, ])) 
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * 
+    DifDPct) + DPctPrv + factor(CQRating3), data = rd[close.5 & 
+    use & open, ])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-26.3518 -11.9814   0.8371  11.9163  23.4106 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)
+(Intercept)          14.0011    22.4486   0.624    0.546
+DemWin               30.8361    21.6101   1.427    0.181
+DWinPrv             -12.4372    13.8789  -0.896    0.389
+DifDPct             -33.7647    56.3461  -0.599    0.561
+I(DemWin * DifDPct)  40.0673    72.4239   0.553    0.591
+DPctPrv               0.4608     0.3126   1.474    0.168
+factor(CQRating3)0   -3.1756    14.6023  -0.217    0.832
+factor(CQRating3)1   -4.4985    15.9923  -0.281    0.784
+
+Residual standard error: 18.14 on 11 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared: 0.4839,	Adjusted R-squared: 0.1555 
+F-statistic: 1.473 on 7 and 11 DF,  p-value: 0.2714 
+
+> ## >> Marginal significance
+> summary(lm(DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * DifDPct) + 
++   DPctPrv + factor(CQRating3) + DSpndPct, 
++ 	data = rd[close.5 & use & open, ]))        
+
+Call:
+lm(formula = DPctNxt ~ DemWin + DWinPrv + DifDPct + I(DemWin * 
+    DifDPct) + DPctPrv + factor(CQRating3) + DSpndPct, data = rd[close.5 & 
+    use & open, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.964  -6.797  -1.177  10.436  14.847 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)  
+(Intercept)           8.8607    24.5813   0.360   0.7278  
+DemWin               66.8328    22.9122   2.917   0.0194 *
+DWinPrv             -30.4921    13.0890  -2.330   0.0482 *
+DifDPct             -16.1658    48.3424  -0.334   0.7467  
+I(DemWin * DifDPct) -66.5405    81.4995  -0.816   0.4379  
+DPctPrv               0.5085     0.3237   1.571   0.1549  
+factor(CQRating3)1  -10.0514    12.1459  -0.828   0.4319  
+DSpndPct              0.1158     0.6758   0.171   0.8682  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 14.74 on 8 degrees of freedom
+  (4 observations deleted due to missingness)
+Multiple R-squared: 0.7517,	Adjusted R-squared: 0.5345 
+F-statistic:  3.46 on 7 and 8 DF,  p-value: 0.05151 
+
+> ### 0.5% Window, open seats, DWinNxt
+> summary(glm(DWinNxt ~ DemWin, 
++ 	data = rd[close.5 & use & open, ],
++ 	family = binomial(link = "logit")))  
+
+Call:
+glm(formula = DWinNxt ~ DemWin, family = binomial(link = "logit"), 
+    data = rd[close.5 & use & open, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5518  -0.6681  -0.6681   0.8446   1.7941  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)  
+(Intercept)  -1.3863     0.7906  -1.754   0.0795 .
+DemWin        2.2336     1.0494   2.128   0.0333 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 27.526  on 19  degrees of freedom
+Residual deviance: 22.225  on 18  degrees of freedom
+AIC: 26.225
+
+Number of Fisher Scoring iterations: 4
+
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
++ 	data = rd[close.5 & use & open, ],
++ 	family = binomial(link = "logit")))
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
+    family = binomial(link = "logit"), data = rd[close.5 & use & 
+        open, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.7031  -0.7009  -0.6108   0.7273   1.7930  
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)
+(Intercept)          -1.1004     1.8243  -0.603    0.546
+DemWin               -0.2221     2.5701  -0.086    0.931
+DifDPct               1.1647     6.8275   0.171    0.865
+I(DemWin * DifDPct)   7.8251    10.0458   0.779    0.436
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 27.526  on 19  degrees of freedom
+Residual deviance: 20.207  on 16  degrees of freedom
+AIC: 28.207
+
+Number of Fisher Scoring iterations: 4
+
+> ## Linear probability model  
+> summary(lm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
++ 	data = rd[close.5 & use & open, ]))
+
+Call:
+lm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct), 
+    data = rd[close.5 & use & open, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.7180 -0.2180 -0.1694  0.2796  0.7987 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)
+(Intercept)          0.24621    0.34004   0.724    0.479
+DemWin               0.04757    0.47711   0.100    0.922
+DifDPct              0.18465    1.23080   0.150    0.883
+I(DemWin * DifDPct)  1.33751    1.67220   0.800    0.436
+
+Residual standard error: 0.4555 on 16 degrees of freedom
+Multiple R-squared: 0.3293,	Adjusted R-squared: 0.2035 
+F-statistic: 2.618 on 3 and 16 DF,  p-value: 0.08663 
+
+> summary(lm(DWinNxt ~ DemWin + DifDPct, 
++ 	data = rd[close.5 & use & open, ]))
+
+Call:
+lm(formula = DWinNxt ~ DemWin + DifDPct, data = rd[close.5 & 
+    use & open, ])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.71076 -0.28854 -0.04923  0.28783  0.79360 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)   0.4275     0.2507   1.705    0.106
+DemWin        0.0298     0.4715   0.063    0.950
+DifDPct       0.9093     0.8243   1.103    0.285
+
+Residual standard error: 0.4507 on 17 degrees of freedom
+Multiple R-squared: 0.3025,	Adjusted R-squared: 0.2204 
+F-statistic: 3.686 on 2 and 17 DF,  p-value: 0.04682 
+
+> ## >> Negative estimate
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + DWinPrv + DPctPrv, 
++ 	data = rd[close.5 & use & open, ],
++ 	family = binomial(link = "logit"))) 
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + 
+    DWinPrv + DPctPrv, family = binomial(link = "logit"), data = rd[close.5 & 
+    use & open, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.9577  -0.6217  -0.5777   0.6378   1.9101  
+
+Coefficients:
+                     Estimate Std. Error z value Pr(>|z|)
+(Intercept)         -1.863987   2.564282  -0.727    0.467
+DemWin               0.238914   2.643492   0.090    0.928
+DifDPct             -0.667035   7.105966  -0.094    0.925
+I(DemWin * DifDPct)  8.844308   9.790104   0.903    0.366
+DWinPrv              1.033458   1.751653   0.590    0.555
+DPctPrv              0.001323   0.042497   0.031    0.975
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 27.526  on 19  degrees of freedom
+Residual deviance: 19.500  on 14  degrees of freedom
+AIC: 31.5
+
+Number of Fisher Scoring iterations: 4
+
+> ## >> Not significant
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + DWinPrv + DPctPrv + 
++ 	factor(CQRating3), 
++ 	data = rd[close.5 & use & open, ],
++ 	family = binomial(link = "logit"))) 
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + 
+    DWinPrv + DPctPrv + factor(CQRating3), family = binomial(link = "logit"), 
+    data = rd[close.5 & use & open, ])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.4795  -0.5968  -0.3127   0.6575   1.9903  
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)
+(Intercept)         -1.18626    2.99870  -0.396    0.692
+DemWin              -2.15298    3.79492  -0.567    0.570
+DifDPct              3.34538    9.87902   0.339    0.735
+I(DemWin * DifDPct)  9.57801   11.03189   0.868    0.385
+DWinPrv              0.12333    1.94383   0.063    0.949
+DPctPrv              0.02598    0.04700   0.553    0.580
+factor(CQRating3)0  -1.06886    1.84417  -0.580    0.562
+factor(CQRating3)1   1.50237    2.16156   0.695    0.487
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 26.287  on 18  degrees of freedom
+Residual deviance: 17.205  on 11  degrees of freedom
+  (1 observation deleted due to missingness)
+AIC: 33.205
+
+Number of Fisher Scoring iterations: 5
+
+> ## Can't estimate model below
+> summary(glm(DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + DWinPrv + DPctPrv + 
++ 	factor(CQRating3) + DSpndPct, 
++ 	data = rd[close.5 & use & open, ],
++ 	family = binomial(link = "logit"))) 
+
+Call:
+glm(formula = DWinNxt ~ DemWin + DifDPct + I(DemWin * DifDPct) + 
+    DWinPrv + DPctPrv + factor(CQRating3) + DSpndPct, family = binomial(link = "logit"), 
+    data = rd[close.5 & use & open, ])
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-8.109e-05  -2.363e-05   0.000e+00   2.560e-06   7.305e-05  
+
+Coefficients:
+                      Estimate Std. Error z value Pr(>|z|)
+(Intercept)         -5.611e+02  1.885e+05  -0.003    0.998
+DemWin               4.698e+03  1.554e+06   0.003    0.998
+DifDPct             -5.561e+02  2.199e+05  -0.003    0.998
+I(DemWin * DifDPct) -7.653e+03  2.586e+06  -0.003    0.998
+DWinPrv             -2.390e+03  7.826e+05  -0.003    0.998
+DPctPrv              1.064e+01  3.442e+03   0.003    0.998
+factor(CQRating3)1  -9.445e+01  4.213e+04  -0.002    0.998
+DSpndPct            -8.264e-01  1.395e+03  -0.001    1.000
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2.2181e+01  on 15  degrees of freedom
+Residual deviance: 2.0007e-08  on  8  degrees of freedom
+  (4 observations deleted due to missingness)
+AIC: 16
+
+Number of Fisher Scoring iterations: 25
+
+Warning messages:
+1: glm.fit: algorithm did not converge 
+2: glm.fit: fitted probabilities numerically 0 or 1 occurred 
+>      
+> 
+> proc.time()
+    user   system  elapsed 
+1584.473   80.053 1670.433 

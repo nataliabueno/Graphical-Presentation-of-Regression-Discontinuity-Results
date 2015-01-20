@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: blind_letter.aux
+The style file: apsr.bst
+Database file #1: RDnote.bib
+You've used 13 entries,
+            2874 wiz_defined-function locations,
+            719 strings with 7056 characters,
+and the built_in function-call counts, 56657 in all, are:
+= -- 9337
+> -- 637
+< -- 0
++ -- 4399
+- -- 226
+* -- 4834
+:= -- 11365
+add.period$ -- 52
+call.type$ -- 13
+change.case$ -- 169
+chr.to.int$ -- 13
+cite$ -- 13
+duplicate$ -- 194
+empty$ -- 423
+format.name$ -- 234
+if$ -- 10171
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 15
+newline$ -- 58
+num.names$ -- 154
+pop$ -- 53
+preamble$ -- 1
+purify$ -- 195
+quote$ -- 0
+skip$ -- 164
+stack$ -- 0
+substring$ -- 13192
+swap$ -- 23
+text.length$ -- 182
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 48
+warning$ -- 0
+while$ -- 308
+width$ -- 0
+write$ -- 179

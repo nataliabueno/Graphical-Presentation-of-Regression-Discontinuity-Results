@@ -1,0 +1,7 @@
+The replication data file is "RDReplication.dta". The R code file
+(named "RD2011-07-19replicationC.R") replicates all figures, tables,
+and major analyses in the paper.
+
+The Stata file (RDrdobReplication.do) provides replication code for
+Imbens-Kalyanaraman RD optimal bandwidth estimates that are provided
+in the appendix.

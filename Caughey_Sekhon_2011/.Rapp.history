@@ -1,0 +1,1175 @@
+install.packages("estout")
+http://www.r-bloggers.com/how-to-extract-text-from-multiple-websites-with-r/
+install.packages("XML", repos = "http://www.omegahat.org/R")
+library(R)
+library(car)
+Create Vectors for coefs and standard errors for each model, and variable names#
+#note that we  exclude "margin squared since it doesn't appear in either model#
+#
+coef.vec.1<- c(0.5099, 4.6572, 0.1572, 2.3171, -0.2082,  3.0555)#
+se.vec.1 <-  c(0.5896, 0.6027, 0.1987, 0.5600, 0.0481, 1.1659)#
+coef.vec.2 <-  c(0.871255, 3.112158, -0.003806,  2.027412, -0.175817, -1.484435)#
+se.vec.2 <- c(0.388478, 0.203508,0.136230, 0.380159, 0.032765 ,0.816069)#
+var.names <- c("x1" , "x2", "x3", "x4", #
+               "x4squared", "Constant")#
+#
+y.axis <- length(var.names):1#
+adjust <- .15  #
+#
+layout(matrix(c(2,1),1,2), #
+       widths = c(1.5, 5))#
+#
+par(mar=c(2,8,.5,1), lheight = .8)#set margins for regression plot#
+plot(coef.vec.1, y.axis+adjust, type = "p", axes = F, xlab = "", ylab = "", pch = 19, cex = 1.2, #
+     xlim = c(min((coef.vec.1-qnorm(.975)*se.vec.1 -.1), (coef.vec.2-qnorm(.975)*se.vec.2 -.1), na.rm = T), #set xlims at mins and maximums (from both models) of confidence intervals, plus .1 to leave room at ends of plots#
+              max((coef.vec.1+qnorm(.975)*se.vec.1 -.1), (coef.vec.2+qnorm(.975)*se.vec.2 -.1), na.rm = T)),  #
+     ylim = c(min(y.axis), max(y.axis)), main = "")#
+axis(1,at = seq(-10,10, by = 1), label = seq(-10,10, by = 1), mgp = c(2,.8,1), cex.axis = 1.3)##
+axis(2, at = y.axis, label = var.names, las = 1, tick = T, cex.axis =1.3)#
+#axis(3,pretty(coef.vec.1, 3))#same as x-axis, but on top axis #
+abline(h = y.axis, lty = 2, lwd = .5, col = "light grey")#draw light dotted line at each variable for dotplot effect#
+#box(bty="l")#draw box around plot#
+segments(coef.vec.1-qnorm(.975)*se.vec.1, y.axis+adjust, coef.vec.1+qnorm(.975)*se.vec.1, y.axis+adjust, lwd =  1.3)#draw lines connecting 95% confidence intervals#
+#for tick marks indicating 90% ci's use following 2 lines:#
+#segments(coef.vec.1-qnorm(.95)*se.vec.1, y.axis+adjust -.035, coef.vec.1-qnorm(.95)*se.vec.1, y.axis+adjust +.035, lwd = 1.1)#draw vertical tick marks at 90% #
+#segments(coef.vec.1+qnorm(.95)*se.vec.1, y.axis+adjust -.035, coef.vec.1+qnorm(.95)*se.vec.1, y.axis+adjust +.035, lwd = 1.1)   #confidence intervals#
+abline(v=0, lty = 2) # draw dotted line through 0 for reference line for null significance hypothesis testing#
+#
+#add 2nd model#
+#because we are using white points and do want the lines to go "through" points rather than over them#
+#we draw lines first and the overlay points#
+segments(coef.vec.2-qnorm(.975)*se.vec.2, y.axis-adjust, coef.vec.2+qnorm(.975)*se.vec.2, y.axis-adjust, lwd =  1.3)#draw lines connecting 95% confidence intervals#
+#for tick marks indicating 90% ci's use following 2 lines:#
+#segments(coef.vec.2-qnorm(.95)*se.vec.2, y.axis-adjust -.035, coef.vec.2-qnorm(.95)*se.vec.2, y.axis-adjust +.035, lwd = 1.1)#draw vertical tick marks at 90% #
+#segments(coef.vec.2+qnorm(.95)*se.vec.2, y.axis-adjust -.035, coef.vec.2+qnorm(.95)*se.vec.2, y.axis-adjust +.035, lwd = 1.1)  #confidence intervals#
+points(coef.vec.2, y.axis-adjust, pch = 21, cex = 1.2, bg = "white" ) #add point estimates for 2nd model; pch = 21 uses for overlay points, and "white" for white color#
+#
+#add legend (manually) to identify which dots denote model 1 and which denote model 2#
+#legend(-4.5, 20, c("Model 1", "Model 2"), pch = c(19,21),bty = "n")#
+points(-4, 19.5, pch = 19, cex  = 1.2)#
+text(-3.7, 19.5, "Model 1", adj = 0,cex  = 1.2)#left-justify text using adj  = 0#
+points(-4, 18.5, pch = 21,cex  = 1.2)#
+text(-3.7, 18.5, "Model 2", adj = 0,cex  = 1.2)#left-justify text using adj  = 0
+load("/Users/nataliabueno/Dropbox/Brazil_Race and Class/ibope_survey/surveys_ibope_final/rdddata.Rda")
+2 + 2
+install.packages("ri"")
+install.packages("ri")
+library(rdplot)
+library(rdrobust)
+data(rdrobust_RDsenate)
+vote = rdrobust_RDsenate$vote
+margin = rdrobust_RDsenate$margin
+rdplot(y=vote, x=margin, title="RD Plot - Senate Elections Data",
+y.label="Vote Share in Election at time t+1",
+x.label="Vote Share in Election at time t")
+rdplot(y=vote, x=margin, title="RD Plot - Senate Elections Data")
+rd_plot(y=vote, x=margin, title="RD Plot - Senate Elections Data")
+install.package("rdplot")
+install.packages("rdrobust")
+library(rdrobust)
+data(rdrobust_RDsenate)
+vote = rdrobust_RDsenate$vote
+margin = rdrobust_RDsenate$margin
+rd_plot(y=vote, x=margin, title="RD Plot - Senate Elections Data")
+rdplot(y=vote, x=margin, title="RD Plot - Senate Elections Data")
+rdrobust
+??rdrobust
+sort
+lm
+load("/Users/nataliabueno/Downloads/rdrobust/Meta/Rd.rds")
+rdplot(y=vote, x=margin, title="RD Plot - Senate Elections Data")
+require(rdrobust)
+rdplot(y=vote, x=margin, title="RD Plot - Senate Elections Data")
+rdrobust(y=vote, x=margin)
+#############################################################################
+# Bueno, 2014#
+# Replication code#
+#############################################################################
+#Figure 1: Balance (standardized variables)#
+#Tables for balance#
+#Figure 2: RDD plots (Bueno and Tunon -- per capita)#
+#Figure 3: Traditional RDD plots (per capita)#
+#Table 2: NSP transfers and mayoral transfers (per capita)#
+#############################################################################
+#
+#R 3.1.1#
+#
+rm(list = ls(all = TRUE))#
+#
+#Run these packages#
+library(sandwich) #
+library(xtable)#
+library(ri)#
+library(gtools)#
+library(rdrobust)#
+#
+#Functions#
+source("~/Dropbox/replication - Bueno, 2014/codes/Bueno_2014_functionsf.R") #functions#
+source("~/Dropbox/R & W/R&W final paper/Green_et_al_polanalysis_2009_optimal_bw.R")#
+source("~/Dropbox/R & W/R&W final paper/Green_et_al_polanalysis_2009_edge.R")#
+source("~/Dropbox/R & W/R&W final paper/Green_et_al_polanalysis_2009_CV_bw.R")#
+source("~/Dropbox/R & W/R&W final paper/Green_et_al_polanalysis_2009_CV_kern 2.R")#
+#
+#Preambule#
+options(scipen=999) # supressing scientific notation#
+par(mar=c(5.1,4.1,4.1,2.1)) #
+par(mfrow=c(1,1))#
+#
+#############################################################################
+#Getting data#
+#
+#NSP DATA#
+load("~/Dropbox/replication - Bueno, 2014/data/all_data.RData")#
+emendasf <- data_200211#
+#
+#MAYORS DATA#
+load("~/Dropbox/replication - Bueno, 2014/data/all_data_mayors.RData")#
+emendasmunf <- data_200211_mayors#
+#
+#Bootstrapped SEs (see end of file)#
+#load -- NSP#
+#load -- MAYORS#
+#Covariates#
+load("~/Dropbox/replication - Bueno, 2014/data/all.covariates.Rda")#
+#
+#IPTU#
+iptu <- read.csv("~/Dropbox/R & W/final_data/iptu_v4.csv",#
+                 header=T, encoding="latin1", stringsAsFactors=F)#
+#
+#Windows (used in plots and tables)#
+H0 <- seq(from = .01, to = .05, by = .001)#
+H <- c(0.005, 0.0055, 0.0060, 0.0065, 0.0070, 0.0075, 0.008, 0.0085, 0.009, 0.0095, H0)#
+#
+#############################################################################
+#Creating variables used in the analysis#
+#
+#Recoding for per capita or vote share#
+#
+emendasf$p_13.1 <- emendasf$p_13/emendasf$p_val#
+emendasf$p_45.1 <- emendasf$p_45/emendasf$p_val#
+emendasf$f.nom_13.1 <- emendasf$f.nom_13/emendasf$f.nom_total#
+emendasf$f.leg_13.1 <- emendasf$f.leg_13/emendasf$f.leg_total#
+emendasf$e.nom_13.1 <- emendasf$e.nom_13/emendasf$e.nom_total#
+emendasf$p2t_13.1 <- emendasf$p2t_13/emendasf$p2t_val#
+emendasf$p2t_45.1 <- emendasf$p2t_45/emendasf$p2t_val#
+emendasf$g_13.1 <- emendasf$g_13/emendasf$g_val#
+emendasf$g_45.1 <- emendasf$g_45/emendasf$g_val#
+#
+# Create vectors for tests#
+#
+X2000_incomepercapita <- NA#
+X2000_doctor <- NA#
+X2000_govt_transfer <- NA#
+X2000_idh_education <- NA#
+X2000_idh_income <- NA#
+X2000_idh_longevity <- NA#
+X2000_illiterate <- NA#
+X2000_income_labor <- NA#
+X2000_infant <- NA#
+X2000_pop <- NA#
+X2000_poverty <- NA#
+p_13.1 <- NA#
+p_45.1 <- NA#
+f.nom_13.1 <- NA#
+p2t_13.1 <- NA#
+p2t_45.1 <- NA#
+g_13.1 <- NA#
+g_45.1 <- NA#
+f.leg_13.1 <- NA#
+e.nom_13.1 <- NA#
+ftest.h <- NA#
+#
+#Renaming variables#
+names(X2000_incomepercapita) <- "Income per capita"#
+names(X2000_doctor) <- "Doctors per thousand inhabitants"#
+names(X2000_govt_transfer) <- "Income from gov. transfer"#
+names(X2000_idh_education) <- "Education (IDH)"#
+names(X2000_idh_income) <- "Income (IDH)"#
+names(X2000_idh_longevity) <- "Longevity (IDH)"#
+names(X2000_illiterate) <- "Illiteracy rate"#
+names(X2000_income_labor) <- "Income from labor"#
+names(X2000_infant) <- "Infant mortality"#
+names(X2000_pop)  <- "Population"#
+names(X2000_poverty) <- "Poverty rate"#
+names(p_13.1) <- "Vote for Lula in 2002 (1 round)"#
+names(p_45.1) <- "Vote for Serra in 2002 (1 round)"#
+names(f.nom_13.1) <- "Vote for PT cand. - federal dep."#
+names(p2t_13.1) <- "Vote for Lula in 2002 (2 round)"#
+names(p2t_45.1) <- "Vote for Serra in 2002 (2 round)"#
+names(g_13.1) <- "Vote for PT (governor) in 2002"#
+names(g_45.1) <- "Vote for PSDB (governor) in 2002"#
+names(f.leg_13.1) <- "Votes for party label (federal - PT) in 2002"#
+names(e.nom_13.1) <- "Votes for PT cand. - state dep. in 2002"#
+names(ftest.h) <-  "F-test"#
+#
+#Creating Standardized Variables#
+#
+emendasf$X2000_incomepercapita2 <- (emendasf$X2000_incomepercapita - mean(emendasf$X2000_incomepercapita, na.rm=T))/sd(emendasf$X2000_incomepercapita, na.rm=T)#
+emendasf$X2000_doctor2 <- (emendasf$X2000_doctor- mean(emendasf$X2000_doctor, na.rm=T))/sd(emendasf$X2000_doctor, na.rm=T)#
+emendasf$X2000_govt_transfer2 <- (emendasf$X2000_govt_transfer - mean(emendasf$X2000_govt_transfer, na.rm=T))/sd(emendasf$X2000_govt_transfer, na.rm=T)#
+emendasf$X2000_idh_education2 <- (emendasf$X2000_idh_education - mean(emendasf$X2000_idh_education, na.rm=T))/sd(emendasf$X2000_idh_education, na.rm=T)#
+emendasf$X2000_idh_income2 <- (emendasf$X2000_idh_income - mean(emendasf$X2000_idh_income, na.rm=T))/sd(emendasf$X2000_idh_income, na.rm=T)#
+emendasf$X2000_idh_longevity2 <- (emendasf$X2000_idh_longevity - mean(emendasf$X2000_idh_longevity, na.rm=T))/sd(emendasf$X2000_idh_longevity, na.rm=T)#
+emendasf$X2000_illiterate2 <- (emendasf$X2000_illiterate - mean(emendasf$X2000_illiterate, na.rm=T))/sd(emendasf$X2000_illiterate, na.rm=T)#
+emendasf$X2000_income_labor2 <- (emendasf$X2000_income_labor - mean(emendasf$X2000_income_labor, na.rm=T))/sd(emendasf$X2000_income_labor, na.rm=T)#
+emendasf$X2000_infant2 <- (emendasf$X2000_infant - mean(emendasf$X2000_infant, na.rm=T))/sd(emendasf$X2000_infant, na.rm=T)#
+emendasf$X2000_pop2 <- (emendasf$X2000_pop - mean(emendasf$X2000_pop, na.rm=T))/sd(emendasf$X2000_pop, na.rm=T)#
+emendasf$X2000_poverty2 <- (emendasf$X2000_poverty - mean(emendasf$X2000_poverty, na.rm=T))/sd(emendasf$X2000_poverty, na.rm=T)#
+emendasf$p_13.2 <- (emendasf$p_13.1 - mean(emendasf$p_13.1, na.rm=T))/sd(emendasf$p_13.1, na.rm=T)#
+emendasf$p_45.2 <- (emendasf$p_45.1 - mean(emendasf$p_45.1, na.rm=T))/sd(emendasf$p_45.1, na.rm=T)#
+emendasf$f.nom_13.2 <- (emendasf$f.nom_13.1 - mean(emendasf$f.nom_13.1, na.rm=T))/sd(emendasf$f.nom_13.1, na.rm=T) #
+emendasf$f.leg_13.2 <- (emendasf$f.leg_13.1 - mean(emendasf$f.leg_13.1, na.rm=T))/sd(emendasf$f.leg_13.1, na.rm=T)#
+emendasf$p2t_13.2 <- (emendasf$p2t_13.1 - mean(emendasf$p2t_13.1, na.rm=T))/sd(emendasf$p2t_13.1, na.rm=T)#
+emendasf$p2t_45.2 <- (emendasf$p2t_45.1 - mean(emendasf$p2t_45.1, na.rm=T))/sd(emendasf$p2t_45.1, na.rm=T) #
+emendasf$g_13.2 <- (emendasf$g_13.1 - mean(emendasf$g_13.1, na.rm=T))/sd(emendasf$g_13.1, na.rm=T) #
+emendasf$g_45.2 <- (emendasf$g_45.1 - mean(emendasf$g_45.1, na.rm=T))/sd(emendasf$g_45.1, na.rm=T)#
+emendasf$e.nom_13.2 <- (emendasf$e.nom_13.1 - mean(emendasf$e.nom_13.1, na.rm=T))/sd(emendasf$e.nom_13.1, na.rm=T)#
+#
+#Imputing with median (for optimal bd and local linear kernel regression)#
+emendasf$dliquidadosum0.pc1 <- input.med(emendasf$dliquidadosum0.pc) #
+emendasf$dliquidadosum01 <- input.med(emendasf$dliquidadosum0) #
+emendasmunf$dliquidadosum0.pc1 <- input.med(emendasmunf$dliquidadosum0.pc) #
+emendasmunf$dliquidadosum01 <- input.med(emendasmunf$dliquidadosum0) #
+#Optimal Bandwidths#
+opt.npo.liquipc <- optimal.bw(Y = emendasf$dliquidadosum0.pc1, X = emendasf$vote_margin_share, #
+                              c = 0, reg = T)#
+#
+opt.npo.liquitotal <- optimal.bw(Y = emendasf$dliquidadosum01, X = emendasf$vote_margin_share, #
+                                 c = 0, reg = T)#
+#
+opt.mun.liquipc <- optimal.bw(Y = emendasmunf$dliquidadosum0.pc1, X = emendasmunf$vote_margin_share, #
+                              c = 0, reg = T)#
+#
+opt.mun.liquitotal <- optimal.bw(Y = emendasmunf$dliquidadosum01, X = emendasmunf$vote_margin_share, #
+                                 c = 0, reg = T)
+######################################################################
+####### Bootstrap standard-error (NSP transfers)#
+#
+# bootstrapped SEs #
+bs.all <- 10000#
+boot.coef.all <- matrix(NA, bs.all, 6)#
+#
+#0.5%#
+data.treat.005 <- emendasf[emendasf$treat==1 & abs(emendasf$vote.marginf) <= 0.005,]#
+data.control.005 <- emendasf[emendasf$treat==0 & abs(emendasf$vote.marginf) <= 0.005,]#
+#
+#1%#
+data.treat.01 <- emendasf[emendasf$treat==1 & abs(emendasf$vote.marginf) <= 0.01,]#
+data.control.01 <- emendasf[emendasf$treat==0 & abs(emendasf$vote.marginf) <= 0.01,]#
+#
+#2%#
+data.treat.02 <- emendasf[emendasf$treat==1 & abs(emendasf$vote.marginf) <= 0.02,]#
+data.control.02 <- emendasf[emendasf$treat==0 & abs(emendasf$vote.marginf) <= 0.02,]#
+#
+#3%#
+data.treat.03 <- emendasf[emendasf$treat==1 & abs(emendasf$vote.marginf) <= 0.03,]#
+data.control.03 <- emendasf[emendasf$treat==0 & abs(emendasf$vote.marginf) <= 0.03,]#
+#
+#4%#
+data.treat.04 <- emendasf[emendasf$treat==1 & abs(emendasf$vote.marginf) <= 0.04,]#
+data.control.04 <- emendasf[emendasf$treat==0 & abs(emendasf$vote.marginf) <= 0.04,]#
+#
+#5%#
+data.treat.05 <- emendasf[emendasf$treat==1 & abs(emendasf$vote.marginf) <= 0.05,]#
+data.control.05 <- emendasf[emendasf$treat==0 & abs(emendasf$vote.marginf) <= 0.05,]#
+#
+# Bootstrapping se difference of means estimator and local linear estimator #
+set.seed(06511)#
+for(i in 1:bs.all){#
+  sel.treat.005 <- sample(1:nrow(data.treat.005), nrow(data.treat.005), replace = T)#
+  sel.control.005 <- sample(1:nrow(data.control.005), nrow(data.control.005), replace = T)#
+  sel.treat.01 <- sample(1:nrow(data.treat.01), nrow(data.treat.01), replace = T)#
+  sel.control.01 <- sample(1:nrow(data.control.01), nrow(data.control.01), replace = T)#
+  sel.treat.02 <- sample(1:nrow(data.treat.02), nrow(data.treat.02), replace = T)#
+  sel.control.02 <- sample(1:nrow(data.control.02), nrow(data.control.02), replace = T)#
+  sel.treat.03 <- sample(1:nrow(data.treat.03), nrow(data.treat.03), replace = T)#
+  sel.control.03 <- sample(1:nrow(data.control.03), nrow(data.control.03), replace = T)#
+  sel.treat.04 <- sample(1:nrow(data.treat.04), nrow(data.treat.04), replace = T)#
+  sel.control.04 <- sample(1:nrow(data.control.04), nrow(data.control.04), replace = T)#
+  sel.treat.05 <- sample(1:nrow(data.treat.05), nrow(data.treat.05), replace = T)#
+  sel.control.05 <- sample(1:nrow(data.control.05), nrow(data.control.05), replace = T)#
+  boot.data.treat.005 <- data.treat.005[sel.treat.005,]#
+  boot.data.control.005 <- data.control.005[sel.control.005,]#
+  boot.data.treat.01 <- data.treat.01[sel.treat.01,]#
+  boot.data.control.01 <- data.control.01[sel.control.01,]#
+  boot.data.treat.02 <- data.treat.02[sel.treat.02,]#
+  boot.data.control.02 <- data.control.02[sel.control.02,]#
+  boot.data.treat.03 <- data.treat.03[sel.treat.03,]#
+  boot.data.control.03 <- data.control.03[sel.control.03,]#
+  boot.data.treat.04 <- data.treat.04[sel.treat.04,]#
+  boot.data.control.04 <- data.control.04[sel.control.04,]#
+  boot.data.treat.05 <- data.treat.05[sel.treat.05,]#
+  boot.data.control.05 <- data.control.05[sel.control.05,]#
+  temp.data.005 <- rbind(boot.data.treat.005, boot.data.control.005)#
+  temp.data.01 <- rbind(boot.data.treat.01, boot.data.control.01)#
+  temp.data.02 <- rbind(boot.data.treat.02, boot.data.control.02)#
+  temp.data.03 <- rbind(boot.data.treat.03, boot.data.control.03)#
+  temp.data.04 <- rbind(boot.data.treat.04, boot.data.control.04)#
+  temp.data.05 <- rbind(boot.data.treat.05, boot.data.control.05)#
+  boot.coef.all[i, 1] <- with(temp.data.005, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 2] <- with(temp.data.01, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 3] <- with(temp.data.02, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 4] <- with(temp.data.03, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 5] <- with(temp.data.04, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 6] <- with(temp.data.05, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  print(i)#
+}#
+colnames(boot.coef.all) <-  c("h=0.005 pc", "h=0.01 pc", "h=0.02 pc", "h=0.03 pc",#
+                              "h=0.04 pc", "h=0.05 pc")
+# bootstrapped SEs #
+bs.all <- 10000#
+boot.coef.all <- matrix(NA, bs.all, 6)#
+#
+#0.5%#
+data.treat.005 <- emendasf[emendasf$treat==1 & abs(emendasf$vote_margin_share) <= 0.005,]#
+data.control.005 <- emendasf[emendasf$treat==0 & abs(emendasf$vote_margin_share) <= 0.005,]#
+#
+#1%#
+data.treat.01 <- emendasf[emendasf$treat==1 & abs(emendasf$vote_margin_share) <= 0.01,]#
+data.control.01 <- emendasf[emendasf$treat==0 & abs(emendasf$vote_margin_share) <= 0.01,]#
+#
+#2%#
+data.treat.02 <- emendasf[emendasf$treat==1 & abs(emendasf$vote_margin_share) <= 0.02,]#
+data.control.02 <- emendasf[emendasf$treat==0 & abs(emendasf$vote_margin_share) <= 0.02,]#
+#
+#3%#
+data.treat.03 <- emendasf[emendasf$treat==1 & abs(emendasf$vote_margin_share) <= 0.03,]#
+data.control.03 <- emendasf[emendasf$treat==0 & abs(emendasf$vote_margin_share) <= 0.03,]#
+#
+#4%#
+data.treat.04 <- emendasf[emendasf$treat==1 & abs(emendasf$vote_margin_share) <= 0.04,]#
+data.control.04 <- emendasf[emendasf$treat==0 & abs(emendasf$vote_margin_share) <= 0.04,]#
+#
+#5%#
+data.treat.05 <- emendasf[emendasf$treat==1 & abs(emendasf$vote_margin_share) <= 0.05,]#
+data.control.05 <- emendasf[emendasf$treat==0 & abs(emendasf$vote_margin_share) <= 0.05,]
+# Bootstrapping se difference of means estimator and local linear estimator #
+set.seed(06511)#
+for(i in 1:bs.all){#
+  sel.treat.005 <- sample(1:nrow(data.treat.005), nrow(data.treat.005), replace = T)#
+  sel.control.005 <- sample(1:nrow(data.control.005), nrow(data.control.005), replace = T)#
+  sel.treat.01 <- sample(1:nrow(data.treat.01), nrow(data.treat.01), replace = T)#
+  sel.control.01 <- sample(1:nrow(data.control.01), nrow(data.control.01), replace = T)#
+  sel.treat.02 <- sample(1:nrow(data.treat.02), nrow(data.treat.02), replace = T)#
+  sel.control.02 <- sample(1:nrow(data.control.02), nrow(data.control.02), replace = T)#
+  sel.treat.03 <- sample(1:nrow(data.treat.03), nrow(data.treat.03), replace = T)#
+  sel.control.03 <- sample(1:nrow(data.control.03), nrow(data.control.03), replace = T)#
+  sel.treat.04 <- sample(1:nrow(data.treat.04), nrow(data.treat.04), replace = T)#
+  sel.control.04 <- sample(1:nrow(data.control.04), nrow(data.control.04), replace = T)#
+  sel.treat.05 <- sample(1:nrow(data.treat.05), nrow(data.treat.05), replace = T)#
+  sel.control.05 <- sample(1:nrow(data.control.05), nrow(data.control.05), replace = T)#
+  boot.data.treat.005 <- data.treat.005[sel.treat.005,]#
+  boot.data.control.005 <- data.control.005[sel.control.005,]#
+  boot.data.treat.01 <- data.treat.01[sel.treat.01,]#
+  boot.data.control.01 <- data.control.01[sel.control.01,]#
+  boot.data.treat.02 <- data.treat.02[sel.treat.02,]#
+  boot.data.control.02 <- data.control.02[sel.control.02,]#
+  boot.data.treat.03 <- data.treat.03[sel.treat.03,]#
+  boot.data.control.03 <- data.control.03[sel.control.03,]#
+  boot.data.treat.04 <- data.treat.04[sel.treat.04,]#
+  boot.data.control.04 <- data.control.04[sel.control.04,]#
+  boot.data.treat.05 <- data.treat.05[sel.treat.05,]#
+  boot.data.control.05 <- data.control.05[sel.control.05,]#
+  temp.data.005 <- rbind(boot.data.treat.005, boot.data.control.005)#
+  temp.data.01 <- rbind(boot.data.treat.01, boot.data.control.01)#
+  temp.data.02 <- rbind(boot.data.treat.02, boot.data.control.02)#
+  temp.data.03 <- rbind(boot.data.treat.03, boot.data.control.03)#
+  temp.data.04 <- rbind(boot.data.treat.04, boot.data.control.04)#
+  temp.data.05 <- rbind(boot.data.treat.05, boot.data.control.05)#
+  boot.coef.all[i, 1] <- with(temp.data.005, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 2] <- with(temp.data.01, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 3] <- with(temp.data.02, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 4] <- with(temp.data.03, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 5] <- with(temp.data.04, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  boot.coef.all[i, 6] <- with(temp.data.05, lm(dliquidadosum0.pc ~ treat))$coefficients[2]#
+  print(i)#
+}#
+colnames(boot.coef.all) <-  c("h=0.005 pc", "h=0.01 pc", "h=0.02 pc", "h=0.03 pc",#
+                              "h=0.04 pc", "h=0.05 pc")
+ds
+rm(list=ls())#
+#
+#Libraries#
+#
+library(plyr)#
+#
+#Loding data (for data analysis)#
+load("~/Dropbox/TSE_2014_atualizado/CEPESP/numeros.RData")#
+#
+#Custom functions used in the analysis#
+#
+repeticao_adjacent <- function(data, type, nr_office=5){#
+  numbers <- data[,c(c(ncol(data)-nr_office+1):c(ncol(data)))]#
+  temp1 <- NA#
+  if (type=="vereador"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V1V4 <- ifelse(temp[1]==temp[4], 1, 0)#
+      V1V5 <- ifelse(temp[1]==temp[5], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      V2V4 <- ifelse(temp[2]==temp[4], 1, 0)#
+      V2V5 <- ifelse(temp[2]==temp[5], 1, 0)#
+      V3V4 <- ifelse(temp[3]==temp[4], 1, 0)#
+      V3V5 <- ifelse(temp[3]==temp[5], 1, 0)#
+      V4V5 <- ifelse(temp[4]==temp[5], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      adj.V3V4 <- ifelse(temp[4] == (temp[3] - 1) | temp[4] == (temp[3] + 1), 1, 0)#
+      adj.V4V5 <- ifelse(temp[5] == (temp[4] - 1) | temp[5] == (temp[4] + 1), 1, 0)      #
+      temp_c <- cbind(temp.id, V1V2, V1V3, V1V4, V1V5, V2V3, V2V4, V2V5, V3V5, V4V5,#
+                     adj.V1V2, adj.V2V3, adj.V3V4, adj.V4V5)#
+      temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  if (type=="estadual"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V1V4 <- ifelse(temp[1]==temp[4], 1, 0)#
+      V1V5 <- ifelse(temp[1]==temp[5], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      V2V4 <- ifelse(temp[2]==temp[4], 1, 0)#
+      V2V5 <- ifelse(temp[2]==temp[5], 1, 0)#
+      V3V4 <- ifelse(temp[3]==temp[4], 1, 0)#
+      V3V5 <- ifelse(temp[3]==temp[5], 1, 0)#
+      V4V5 <- ifelse(temp[4]==temp[5], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      adj.V3V4 <- ifelse(temp[4] == (temp[3] - 1) | temp[4] == (temp[3] + 1), 1, 0)#
+      adj.V4V5 <- ifelse(temp[5] == (temp[4] - 1) | temp[5] == (temp[4] + 1), 1, 0)#
+      temp_c <- cbind(temp.id, V1V2, V1V3, V1V4, V1V5, V2V3, V2V4, V2V5, V3V5, V4V5,#
+                     adj.V1V2, adj.V2V3, adj.V3V4, adj.V4V5)#
+      temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  if (type=="federal"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V1V4 <- ifelse(temp[1]==temp[4], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      V2V4 <- ifelse(temp[2]==temp[4], 1, 0)#
+      V3V4 <- ifelse(temp[3]==temp[4], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      adj.V3V4 <- ifelse(temp[4] == (temp[3] - 1) | temp[4] == (temp[3] + 1), 1, 0)#
+      temp_c <- cbind(temp.id, V1V2, V1V3, V1V4, V2V3, V2V4,#
+                     adj.V1V2, adj.V2V3, adj.V3V4) #
+    temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  if(type=="senador"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      temp_c <- cbind(temp.id, V1V2, V1V3, V2V3,#
+                     adj.V1V2, adj.V2V3) #
+      temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  temp1 <- temp1[-1,]#
+  results <- as.data.frame(cbind(data, temp1))#
+}
+results_senador <- repeticao_adjacent(data=senador, type="senador", nr_office=3)#
+results_estadual <- epeticao_adjacent(data=estadual, type="estadual", nr_office=5)#
+results_federal <- epeticao_adjacent(data=federal, type="federal", nr_office=4)#
+results_federal <- epeticao_adjacent(data=vereador, type="vereador", nr_office=5)#
+#
+save(results_estadual, results_federal, results_vereador, results_senador, #
+     file="~/Dropbox/TSE_2014_atualizado/CEPESP/numeros_complete.RData")
+results_estadual <- repeticao_adjacent(data=estadual, type="estadual", nr_office=5)#
+results_federal <- repeticao_adjacent(data=federal, type="federal", nr_office=4)#
+results_federal <- repeticao_adjacent(data=vereador, type="vereador", nr_office=5)#
+#
+save(results_estadual, results_federal, results_vereador, results_senador, #
+     file="~/Dropbox/TSE_2014_atualizado/CEPESP/numeros_complete.RData")
+results_senador <- repeticao_adjacent(data=senador, type="senador", nr_office=3)#
+results_estadual <- repeticao_adjacent(data=estadual, type="estadual", nr_office=5)#
+results_federal <- repeticao_adjacent(data=federal, type="federal", nr_office=4)#
+results_vereador <- repeticao_adjacent(data=vereador, type="vereador", nr_office=5)#
+#
+save(results_estadual, results_federal, results_vereador, results_senador, #
+     file="~/Dropbox/TSE_2014_atualizado/CEPESP/numeros_complete.RData")
+save(results_estadual, results_federal, results_senador, #
+     file="~/Dropbox/TSE_2014_atualizado/CEPESP/numeros_complete.RData")
+results_vereador <- repeticao_adjacent(data=vereador, type="vereador", nr_office=5)#
+#
+save(results_estadual, results_federal, results_senador, #
+     file="~/Dropbox/TSE_2014_atualizado/CEPESP/numeros_complete.RData")
+repeticao_adjacent <- function(data, type, nr_office=5){#
+  numbers <- data[,c(c(ncol(data)-nr_office+1):c(ncol(data)))]#
+  temp1 <- NA#
+  if (type=="vereador"){#
+    for (i in  1:nrow(numbers)) {#
+      print(i)#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V1V4 <- ifelse(temp[1]==temp[4], 1, 0)#
+      V1V5 <- ifelse(temp[1]==temp[5], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      V2V4 <- ifelse(temp[2]==temp[4], 1, 0)#
+      V2V5 <- ifelse(temp[2]==temp[5], 1, 0)#
+      V3V4 <- ifelse(temp[3]==temp[4], 1, 0)#
+      V3V5 <- ifelse(temp[3]==temp[5], 1, 0)#
+      V4V5 <- ifelse(temp[4]==temp[5], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      adj.V3V4 <- ifelse(temp[4] == (temp[3] - 1) | temp[4] == (temp[3] + 1), 1, 0)#
+      adj.V4V5 <- ifelse(temp[5] == (temp[4] - 1) | temp[5] == (temp[4] + 1), 1, 0)      #
+      temp_c <- cbind(temp.id, V1V2, V1V3, V1V4, V1V5, V2V3, V2V4, V2V5, V3V5, V4V5,#
+                     adj.V1V2, adj.V2V3, adj.V3V4, adj.V4V5)#
+      temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  if (type=="estadual"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V1V4 <- ifelse(temp[1]==temp[4], 1, 0)#
+      V1V5 <- ifelse(temp[1]==temp[5], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      V2V4 <- ifelse(temp[2]==temp[4], 1, 0)#
+      V2V5 <- ifelse(temp[2]==temp[5], 1, 0)#
+      V3V4 <- ifelse(temp[3]==temp[4], 1, 0)#
+      V3V5 <- ifelse(temp[3]==temp[5], 1, 0)#
+      V4V5 <- ifelse(temp[4]==temp[5], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      adj.V3V4 <- ifelse(temp[4] == (temp[3] - 1) | temp[4] == (temp[3] + 1), 1, 0)#
+      adj.V4V5 <- ifelse(temp[5] == (temp[4] - 1) | temp[5] == (temp[4] + 1), 1, 0)#
+      temp_c <- cbind(temp.id, V1V2, V1V3, V1V4, V1V5, V2V3, V2V4, V2V5, V3V5, V4V5,#
+                     adj.V1V2, adj.V2V3, adj.V3V4, adj.V4V5)#
+      temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  if (type=="federal"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V1V4 <- ifelse(temp[1]==temp[4], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      V2V4 <- ifelse(temp[2]==temp[4], 1, 0)#
+      V3V4 <- ifelse(temp[3]==temp[4], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      adj.V3V4 <- ifelse(temp[4] == (temp[3] - 1) | temp[4] == (temp[3] + 1), 1, 0)#
+      temp_c <- cbind(temp.id, V1V2, V1V3, V1V4, V2V3, V2V4,#
+                     adj.V1V2, adj.V2V3, adj.V3V4) #
+    temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  if(type=="senador"){#
+    for (i in  1:nrow(numbers)) {#
+      temp.id <- data$titulo[i]#
+      temp <- as.numeric(as.matrix(numbers[i, ]))#
+      V1V2 <- ifelse(temp[1]==temp[2], 1, 0) #
+      V1V3 <- ifelse(temp[1]==temp[3], 1, 0)#
+      V2V3 <- ifelse(temp[2]==temp[3], 1, 0)#
+      adj.V1V2 <- ifelse(temp[1] == (temp[2] - 1) | temp[1] == (temp[2] + 1), 1, 0) #
+      adj.V2V3 <- ifelse(temp[3] == (temp[2] - 1) | temp[3] == (temp[2] + 1), 1, 0)#
+      temp_c <- cbind(temp.id, V1V2, V1V3, V2V3,#
+                     adj.V1V2, adj.V2V3) #
+      temp1 <- rbind(temp1, temp_c)#
+    }#
+  }#
+  temp1 <- temp1[-1,]#
+  results <- as.data.frame(cbind(data, temp1))#
+}
+results_vereador <- repeticao_adjacent(data=vereador, type="vereador", nr_office=5)#
+#
+save(results_estadual, results_federal, results_senador, results_vereador,#
+     file="~/Dropbox/TSE_2014_atualizado/CEPESP/numeros_complete.RData")
+#############################################################################
+# Bueno & Tuñón, 2015#
+# Replication code #
+# Note to reader: We intend for this material to be published as an online Appendix or Supplemental Material. It will also be publicly available at github by the time of publication.#
+#############################################################################
+###Estimators functions#
+#Difference of means #
+#Polynomial Regressions#
+#Local Linear (with Kernel)#
+#
+#Optimal bandwidth function#
+#
+###Plotting function#
+#RD_plot#
+#
+###Main text (Using Caughey and Sekhon, 2011, replication data)#
+#(a)Main Estimates (with number of observations and no additional estimator)#
+#(b)Main Estimates (with number of observations and an additional estimator)#
+#(c)Balance (without number of observations and without additional estimator, #
+#			for 2 covariates)#
+#
+#Online Appendix#
+#(A.1)Main Estimates (with number of observations and an additional estimator, #
+#					 polynomial regression)#
+#(A.2)Main Estimates (with number of observations and no additional estimator, #
+#					 but standardized outcome variable.)#
+#(A.3)Balance (without number of observations and without additional estimator, #
+#			for 12 covariates)#
+#
+#Additional figures (types of plot not shown in text nor appendix)#
+#(d)Main Estimates (without number of observations and without additional estimator)#
+#(e)Main Estimates (with number of observations and with an additional estimator,#
+#					loca linear regression as the main estimator and #
+#					difference of means as an additional)#
+#############################################################################
+#
+rm(list = ls())#
+#
+#Preambule#
+options(scipen=999) # supressing scientific notation#
+#
+#Libraries#
+library(foreign)#
+library(sandwich)#
+#
+#Data directory#
+data.dir <- setwd("~/Dropbox/Nati - Lupe/RDD/Caughey_Sekhon_2011")#
+#
+#Estimator Functions#
+#
+#Difference of mean (using OLS with robust standard errors)#
+dom <- function(rescaled, treat, outcome){#
+  model <- lm(outcome~treat)#
+  est <- NA#
+  est[1] <- model$coefficients[2]#
+  est[2] <- sqrt(diag(vcovHC(model,type="HC3"))[2])#
+  return(est)#
+}#
+#
+#Regression with fourth-degree polynomials#
+polynomial <- function(rescaled, treat, outcome, deg=4){#
+  model <- lm(outcome ~ treat + poly(rescaled, degree=deg,raw=T) +#
+                poly(rescaled*treat, degree=deg,raw=T))#
+  est <- NA#
+  est[1] <- model$coefficients[2]#
+  est[2] <- sqrt(diag(vcovHC(model,type="HC3"))[2])#
+  return(est)#
+}#
+#
+### MODIFIED CODE FROM:#
+### Replication code for "Testing the Accuracy of Regression Discontinuity Analysis #
+### Using Experimental Benchmarks" by Donald P. Green, Terence Y. Leong, Holger L. Kern,#
+### Alan S. Gerber, and Christopher W. Larimer#
+#
+# Local linear regression with triangular (edge) kernel#
+#
+loc_lin <- function(outcome, rescaled, cutoff, running, h=windows, treat)   {#
+  require(sandwich)#
+  temp <- (running - cutoff) / h#
+  kern <- as.numeric(abs(temp) <= 1) * (1 - abs(temp))#
+  runningCen <- running - cutoff#
+  RunningCenTreat <- running#
+  sel <- kern > 0#
+  wls.pool <- lm(outcome ~ treat + runningCen + RunningCenTreat, weights = kern, subset = sel)#
+  summary(wls.pool)#
+  est <- NA#
+  est[1] <- summary(wls.pool)$coeff[2,1]#
+  est[2] <- sqrt(diag(vcovHC(wls.pool, type = "HC3")))[2]#
+  return(est)#
+}#
+#
+### CODE FROM:#
+### Replication code for "Testing the Accuracy of Regression Discontinuity Analysis #
+### Using Experimental Benchmarks" by Donald P. Green, Terence Y. Leong, Holger L. Kern,#
+### Alan S. Gerber, and Christopher W. Larimer#
+#
+#Optimal Bandwidth#
+optimal.bw <- function(Y,X,c,reg)   {#
+  # STEP 1#
+  above <- X >= c#
+  N <- length(X)#
+  S2x <- sum((X-mean(X))^2) / (N-1)#
+  h1 <- 1.84 * sqrt(S2x) * N^(-1/5)#
+  Nh1.neg <- length(X[X < c & X >= (c-h1)])#
+  Nh1.pos <- length(X[X >= c & X <= (h1+c)])#
+  Yh1.neg <- sum(Y[X < c & X >= (c-h1)]) / Nh1.neg#
+  Yh1.pos <- sum(Y[X >= c & X <= (h1+c)]) / Nh1.pos#
+  fhatx <- (Nh1.neg + Nh1.pos) / (N*h1*2)#
+  fhatx.temp1 <- sum((Y[X < c & X >= (c-h1)] - Yh1.neg)^2)#
+  fhatx.temp2 <- sum((Y[X >= c & X < (h1+c)] - Yh1.pos)^2)#
+  sigmahat2 <- (fhatx.temp1 + fhatx.temp2) / (Nh1.neg + Nh1.pos)#
+  # STEP 2#
+  medianX.pos <- median(X[X >= c])#
+  medianX.neg <- median(X[X < c])#
+  keep <- !(X < medianX.neg | X > medianX.pos)#
+  X.cen <- X - c#
+  X.cen2 <- X.cen^2#
+  X.cen3 <- X.cen^3#
+  lm.out <- lm(Y ~ above + X.cen + X.cen2 + X.cen3, subset = keep)#
+  summary(lm.out)#
+  mhat3 <- summary(lm.out)$coef[5,1] * 6#
+  N.pos <- sum(above)#
+  N.neg <- length(above) - sum(above)#
+  h2.pos <- (sigmahat2 / (fhatx * max(mhat3^2, .01)))^(1/7) * 3.56 * N.pos^(-1/7)#
+  h2.neg <- (sigmahat2 / (fhatx * max(mhat3^2, .01)))^(1/7) * 3.56 * N.neg^(-1/7)#
+  Yhat.pos <- Y[X >= c & X <= (h2.pos+c)]#
+  Xhat.pos <- X[X >= c & X <= (h2.pos+c)]#
+  Yhat.neg <- Y[X < c & X >= (c-h2.neg)]#
+  Xhat.neg <- X[X < c & X >= (c-h2.neg)]#
+  N2.pos <- length(Xhat.pos)#
+  N2.neg <- length(Xhat.neg)#
+  Xhat.pos.cen <- Xhat.pos - c#
+  Xhat.pos.cen2 <- Xhat.pos.cen^2#
+  Xhat.neg.cen <- Xhat.neg - c#
+  Xhat.neg.cen2 <- Xhat.neg.cen^2#
+  lm.out <- lm(Yhat.pos ~ Xhat.pos.cen + Xhat.pos.cen2)#
+  summary(lm.out)#
+  mhat2.pos <- summary(lm.out)$coef[3,1] * 2#
+  lm.out <- lm(Yhat.neg ~ Xhat.neg.cen + Xhat.neg.cen2)#
+  summary(lm.out)#
+  mhat2.neg <- summary(lm.out)$coef[3,1] * 2#
+  # STEP 3#
+  rhat.pos <- (720 * sigmahat2) / (N2.pos * h2.pos^4) # NOT identical to IK paper#
+  rhat.neg <- (720 * sigmahat2) / (N2.neg * h2.neg^4) # NOT identical to IK paper#
+  if(reg == F)    { rhat.pos <- 0; rhat.neg <- 0 }    # turn off regularization#
+  hhat.opt <- ((2 * sigmahat2) /#
+                 (fhatx * ((mhat2.pos - mhat2.neg)^2 + (rhat.pos + rhat.neg))))^(1/5) *#
+    3.4375 * N^(-1/5)#
+  return(hhat.opt)#
+}#
+#############################################################################
+# Plotting function#
+RD_plot <- function(#
+  # Data#
+  running=running,#
+  treat=treat,#
+  outcome=outcome,#
+  cutoff=0,#
+  min_running=F,#
+  max_running=F,#
+  # Intervals and Opt bw#
+  opt_bw=F, # opt bw#
+  nr_windows=50,#
+  # Estimator/s#
+  # Main Estimator#
+  main_est="dom",#
+  # estimator#
+  #confidence intervals#
+  ci="95%", #option: ci="90%", ci="F"#
+  add_est=F, # no additional estimator#
+  #Plot aesthetics#
+  nr_obs=T,#
+  nr_obs_lab,#
+  label_x="Absolute distance from the cutoff",#
+  label_y="Estimated effect",#
+  plot_label="RD plot",#
+  label_size=1.2,#
+  main_size=2,#
+  legend=F # Keep false if desired output is grid of plots#
+  ){#
+  # WARNINGS#
+  if (cutoff==0) print("Assuming that cutoff is at the value of 0 for the running variable. \n #
+                       To change this, input new value for the cutoff argument.")#
+  if (cutoff!=0) print("Rescaling the running variable to place cutoff at zero.")#
+  library("sandwich")#
+  print("This function requires the sandwich package")#
+  # DATA#
+  # 0. rescaling running var and organizing data #
+  rescaled <- running - cutoff#
+  abs_running <- abs(rescaled)#
+  data <- cbind(rescaled, treat, outcome, abs_running, running)#
+  # 1. get windows from intervals and add optimal bandwidth#
+  min_running <- ifelse(min_running==F, 0, min_running-cutoff)#
+  max_running <- ifelse(max_running==F, max(abs_running), max_running-cutoff)#
+  windows <- seq(min_running, max_running,by=(max_running/nr_windows))[-1]#
+  if (opt_bw!=F) windows <- sort(c(windows, opt_bw))#
+  if (opt_bw!=F) print("Assuming optimal bandwidth measured as distance from the cutoff.")#
+  # 2. calculate estimate(s) and CI#
+  # 2.a main estimate#
+  if (main_est=="dom") main <- dom#
+  if (main_est=="poly") main <- polynomial#
+  if (main_est=="loc_lin") main <- loc_lin#
+#
+  # 2.b additional#
+  if (add_est=="dom") second <- dom#
+  if (add_est=="poly") second <- polynomial#
+  if (add_est=="loc_lin") second <- loc_lin#
+#
+  #2.c loop#
+  ests <- matrix(NA,length(windows),3)#
+  for (i in 1:length(windows)){#
+    # select data#
+    temp <- as.data.frame(data[abs_running<=windows[i],])#
+    # get estimates#
+    if (main_est=="loc_lin"){ #
+        ests[i,1:2] <- with(temp, main(rescaled=rescaled, treat=treat,#
+                       outcome=outcome, running=running,#
+                       cutoff=0, h=windows[i]))}#
+    else{#
+        ests[i,1:2] <- with(temp, main(rescaled=rescaled, treat=treat, outcome=outcome))}#
+    if (add_est==F) next #
+    if (add_est=="loc_lin"){#
+        ests[i,3] <- with(temp, second(rescaled=rescaled, treat=treat,#
+                       outcome=outcome, running=running,#
+                       cutoff=0, h=windows[i]))[1]}#
+    else{    #
+    ests[i,3] <- with(temp, second(rescaled=rescaled, treat=treat, outcome=outcome))[1]}#
+  }#
+  #2.d confidence intervals for main estimate#
+  if (ci=="95%") CI <- cbind(ests[,1]+1.96*ests[,2],ests[,1]-1.96*ests[,2])#
+  if (ci=="90%") CI <- cbind(ests[,1]+1.64*ests[,2],ests[,1]-1.64*ests[,2])#
+  # 2.b Define max and min for y axis#
+  if (add_est!=F){#
+    lim_y <- NA#
+    lim_y[1] <- ifelse(max(CI)>=max(ests[,3]), max(CI), max(ests[,3]))#
+    lim_y[2] <- ifelse(min(CI)<=min(ests[,3]), min(CI), min(ests[,3]))}#
+  if (add_est==F){ lim_y <- c(max(CI), min(CI))}#
+  lim_y[3] <- lim_y[2] - (lim_y[1]-lim_y[2])/7#
+  lim_y[4] <- lim_y[1] - (lim_y[1]-lim_y[2])/11#
+  # 2.c Define max for x axis#
+  if (abs(opt_bw) > abs(max_running)) max_axis <- opt_bw#
+  if (abs(opt_bw) < abs(max_running)) max_axis <- max_running#
+  # 3. ordering to know nr of observations by value of running variable#
+  data <- as.data.frame(data[order(abs_running),])#
+  if (nr_obs==T) {#
+    if (missing(nr_obs_lab))#
+      stop("Missing specification for number of observations to be included in the plot. \n#
+           If no axis for the number of observations is needed, use nr_obs=F.")#
+    nr_obs_lab <- cbind(nr_obs_lab, data$abs_running[nr_obs_lab])}#
+  # PLOT#
+  # Main line (add types, mins and maxs)#
+  if(legend==F){#
+    par(mar=c(4.1,6.1,6.1,2.1))#
+    plot(windows, ests[,1], pch=16, axes=T, #
+         #limits#
+         ylim=c(lim_y[3],lim_y[1]),#
+         xlim=c(0, max_axis),#
+         #labels#
+         xlab=label_x, ylab=label_y, main=plot_label,#
+         bty='n', cex.main=main_size,#
+         cex.lab=label_size, #
+         cex=1.2)#
+    #Zero effect line#
+    abline(h=0, lty=4, lw=3)#
+    #opt bw vertical line#
+    if(opt_bw!=F){#
+      abline(v=opt_bw, lty=5, col="gray80", lw=3)}#
+    # Add estimates line#
+    lines(windows, ests[,3], lwd=3,col="gray30")#
+    # CIs #
+    if(ci!=F){#
+      lines(windows, CI[,1], lty=2,col="gray30")#
+      lines(windows, CI[,2], lty=2,col="gray30")}#
+    # Number of observations#
+    if (nr_obs==T) {#
+      axis(3, at=c(nr_obs_lab[,2]), labels=c(nr_obs_lab[,1]), cex=.6, col="grey50", #
+           lwd = 0.5, padj=1, line=1, cex.axis=.7, col.axis="grey50")#
+      mtext("Number of observations", side=3, col="grey50", cex=.7, adj=0)}#
+  }#
+  if(legend==T){#
+  layout(rbind(1,2), heights=c(7,1))#
+  par(mar=c(4.1,6.1,6.1,2.1))#
+  plot(windows, ests[,1], pch=16, axes=T, #
+       #limits#
+       ylim=c(lim_y[3],lim_y[1]),#
+       xlim=c(0, max_axis),#
+       #labels#
+       xlab=label_x, ylab=label_y, bty='n', #
+       cex.lab=label_size, #
+       cex=1.2)#
+  # title#
+  title(plot_label, cex.main=main_size, line=4)#
+  #Zero effect line#
+  abline(h=0, lty=4, lw=3)#
+  #opt bw vertical line#
+  if(opt_bw!=F){#
+  abline(v=opt_bw, lty=5, col="gray80", lw=3)}#
+  # Add estimates line#
+  lines(windows, ests[,3], lwd=3,col="gray30")#
+  # CIs #
+  if(ci!=F){#
+    lines(windows, CI[,1], lty=2,col="gray30")#
+    lines(windows, CI[,2], lty=2,col="gray30")}#
+  # Number of observations#
+  if (nr_obs==T) {#
+    axis(3, at=c(nr_obs_lab[,2]), labels=c(nr_obs_lab[,1]), cex=.6, col="grey50", #
+         lwd = 0.5, padj=1, line=1, cex.axis=.7, col.axis="grey50")#
+    mtext("Number of observations", side=3, col="grey50", cex=.7, adj=0)}#
+  # Legend#
+  par(mar=c(0.5,0,0,0))#
+  plot.new()#
+  if (main_est=="dom") main_leg <- "Difference of Means"#
+  if (main_est=="poly") main_leg <- "Polynomial Regression"#
+  if (main_est=="loc_lin") main_leg <- "Local Linear Regression"#
+  if (add_est!=F){#
+    if (add_est=="dom") second_leg <- "Difference of Means"#
+    if (add_est=="poly") second_leg <- "Polynomial Regression"#
+    if (add_est=="loc_lin") second_leg <- "Local Linear Regression"}#
+  if (ci=="95%") ci_leg <- paste("95% Confidence Intervals ", "(", main_leg, ")", sep="")#
+  if (ci=="90%") ci_leg <- paste("90% Confidence Intervals ", "(", main_leg, ")", sep="")#
+  if (add_est!=F){#
+    legend("center", "groups", c(main_leg, second_leg, ci_leg), pch=c(16, NA, NA), #
+           lty=c(NA, 1, 2), lwd=c(2, 2, 2),#
+           col=c("black", "gray", "gray"), bty="n", cex=0.8)}#
+  if (add_est==F){#
+    legend("center", "groups", c(main_leg, ci_leg), pch=c(16, NA), lty=c(NA, 2), lwd=c(2, 2),#
+           col=c("black", "gray"), bty="n", cex=0.8)}#
+  }#
+}#
+#
+############################################################# Analysis#
+#
+#Getting data#
+rd <- read.dta("~/Dropbox/Nati - Lupe/RDD/Caughey_Sekhon_2011/RDReplication.dta")#
+data <- rd[rd$Use == 1, ]#
+#
+#Getting optimal bandwidth following imbens and Kalynaranam (2009). Using function from Green et al 2009.#
+data <- data[!is.na(data$DPctNxt),]#
+#using only non-missing cases.  #
+opt_bw <- optimal.bw(Y=data$DPctNxt, X=data$DifDPct, c=0, reg=T) #-1590 observation from DPctNxt#
+#
+#Recoding pre-treatment covariates for balance plots#
+data$DWinPrv_r <- (data$DWinPrv - mean(data$DWinPrv, na.rm=T))/sd(data$DWinPrv, na.rm=T)#
+data$DPctPrv_r <- (data$DPctPrv - mean(data$DPctPrv, na.rm=T))/sd(data$DPctPrv, na.rm=T)#
+data$DemInc_r <- (data$DemInc - mean(data$DemInc, na.rm=T))/sd(data$DemInc, na.rm=T)#
+data$NonDInc_r <- (data$NonDInc - mean(data$NonDInc, na.rm=T))/sd(data$NonDInc, na.rm=T)#
+data$PrvTrmsD_r <- (data$PrvTrmsD - mean(data$PrvTrmsD, na.rm=T))/sd(data$PrvTrmsD, na.rm=T)#
+data$PrvTrmsO_r <- (data$PrvTrmsO - mean(data$PrvTrmsO, na.rm=T))/sd(data$PrvTrmsO, na.rm=T)#
+data$DExpAdv_r <- (data$DExpAdv - mean(data$DExpAdv, na.rm=T))/sd(data$DExpAdv, na.rm=T) #
+data$ElcSwing_r <- (data$ElcSwing - mean(data$ElcSwing, na.rm=T))/sd(data$ElcSwing, na.rm=T)#
+data$DSpndPct_r <- (data$DSpndPct - mean(data$DSpndPct, na.rm=T))/sd(data$DSpndPct, na.rm=T) #
+data$DDonaPct_r <- (data$DDonaPct - mean(data$DDonaPct, na.rm=T))/sd(data$DDonaPct, na.rm=T) #
+data$OpenSeat_r <- (data$OpenSeat - mean(data$OpenSeat, na.rm=T))/sd(data$OpenSeat, na.rm=T) #
+data$VtTotPct_r <- (data$VtTotPct - mean(data$VtTotPct, na.rm=T))/sd(data$VtTotPct, na.rm=T)#
+#
+#Recoding outcome variable#
+data$DPctNxt_r <- (data$DPctNxt - mean(data$DPctNxt, na.rm=T))/sd(data$DPctNxt, na.rm=T)#
+#
+#Main text - Figures#
+#
+#(a)Main Estimates (with number of observations and without additional estimator)#
+pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_plot.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=T, #
+        nr_obs_lab=c(30, 250, 500, 1000, 1250, 1500),#
+        label_x="Absolute Distance from the Cutoff (Vote Margin %)",#
+        label_y="Average Difference in Vote Share \n Between Bare Losers and Bare Winners",#
+        plot_label=" ",#
+        legend=T)#
+dev.off()#
+#
+#(b)Main Estimates (with number of observations and additional estimator - local linear)#
+pdf("~/Dropbox/Nati - Lupe/RDD/with_add_est_plot.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est="loc_lin", nr_obs=T, #
+        nr_obs_lab=c(30, 250, 500, 1000, 1250, 1500),#
+        label_x="Absolute Distance from the Cutoff",#
+        label_y="Estimated Effect",#
+        plot_label=" ",#
+        legend=T)#
+dev.off()#
+#(c)Balance (without number of observations and without additional estimator, 2 covariates)#
+#
+#(c.1)Balance - Dem Win t-1#
+pdf("~/Dropbox/Nati - Lupe/RDD/balance_plot_1.pdf", height=5, width=6.5)#
+par(mfrow=c(1,1))#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DWinPrv_r, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=F, #
+        nr_obs_lab=NA,#
+        label_x="Absolute Distance from the Cutoff (Vote margin %)",#
+        label_y="Difference between Treatment \n and Control",#
+        label_size=1.5,#
+        plot_label=" ",#
+        legend=F) #
+dev.off()#
+#
+#(c.2)Balance - Voter turnout %#
+pdf("~/Dropbox/Nati - Lupe/RDD/balance_plot_2.pdf", height=5, width=6.5)#
+par(mfrow=c(1,1))#
+# Voter turnout %#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$VtTotPct_r, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=F, #
+        nr_obs_lab=NA,#
+        label_x="Absolute Distance from the Cutoff (Vote margin %)",#
+        label_y="Difference between Treatment \n and Control",#
+        label_size=1.5,#
+        plot_label=" ",#
+        legend=F) #
+dev.off()#
+#Online Appendix - Figures#
+#
+#(A.1)Main Estimates (with number of observations and additional estimator - polynomial)#
+pdf("~/Dropbox/Nati - Lupe/RDD/with_add_est_plot_poly.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=max(data$DifDPct),#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est="poly", nr_obs=T, #
+        nr_obs_lab=c(30, 1000, 25000, 5000, 7000, 8500),#
+        label_x="Absolute Distance from the Cutoff (Vote Margin %)",#
+        label_y="Estimated Effect",#
+        plot_label=" ",#
+        legend=T)#
+dev.off()#
+#
+#(A.2)Main Estimates (with number of observations and without additional estimator): standardized outcome variable #
+#
+pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_plot_standardized.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt_r, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=T, #
+        nr_obs_lab=c(30, 250, 500, 1000, 1250, 1500),#
+        label_x="Absolute Distance from the Cutoff (Vote Margin %)",#
+        label_y="Average Difference in Vote Share \n Between Bare Losers and Bare Winners",#
+        plot_label=" ",#
+        legend=T)#
+dev.off()#
+#
+#(A.3)Balance (without number of observations and without additional estimator, 12 covariates)#
+#
+outcomes   <-  list(data$DWinPrv_r, data$DPctPrv_r,  #
+                   data$DemInc_r, data$NonDInc_r, data$PrvTrmsD_r, #
+                   data$PrvTrmsO_r, data$DExpAdv_r,#
+                   data$ElcSwing_r, data$DSpndPct_r, data$DDonaPct_r, #
+                   data$OpenSeat_r, data$VtTotPct_r)#
+names <- c('Dem Win t - 1', 'Dem % t - 1',#
+            'Dem % Margin t - 1',#
+            'Dem Inc in Race', 'Rep Inc in Race',#
+            'Dem\'s # Prev Terms', 'Rep\'s # Prev Terms',  'Dem Experience Adv',#
+            'Partisan Swing', 'Dem Donation %',#
+            'Open Seat', 'Voter Turnout %')#
+pdf("~/Dropbox/Nati - Lupe/RDD/balance_plots_12.pdf", height=12, width=22)#
+par(mfrow=c(4,3))#
+for (i in 1:length(outcomes)){#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+          outcome=outcomes[[i]], #
+          cutoff=0, min_running=0.25, max_running=10,#
+          opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+          add_est=F, nr_obs=F, #
+          nr_obs_lab=NA,#
+          label_x="Abs. Distance from the Cutoff",#
+          label_y="Difference between Treatment \n and Control",#
+          plot_label=names[i],#
+          label_size=1.8,#
+          main_size=2.3,#
+          legend=F) #
+}#
+dev.off()#
+#
+#Additional Figures#
+#
+#(d)Main Estimates (without number of observations and without additional estimator)#
+pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_no_obs_plot.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=F, #
+        nr_obs_lab=NA,#
+        label_x="Absolute Distance from the Cutoff (Vote margin %)",#
+        label_y="Average Difference in Vote Share \n Between Bare Losers and Bare Winners",#
+        plot_label="Effect of Incumbency on Vote Share",#
+        legend=T)#
+dev.off()#
+#
+#(e)Main Estimates (with number of observations and with an additional estimator,#
+#					loca linear regression as the main estimator and #
+#					difference of means as an additional)#
+#
+pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_no_obs_plot.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="loc_lin", ci="95%",#
+        add_est="dom", nr_obs=F, #
+        nr_obs_lab=NA,#
+        label_x="Absolute Distance from the Cutoff (Vote margin %)",#
+        label_y="Estimated Effect",#
+        plot_label="Effect of Incumbency on Vote Share",#
+        legend=T)#
+dev.off()
+#(a)Main Estimates (with number of observations and without additional estimator)#
+pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_plot.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=T, #
+        nr_obs_lab=c(30, 250, 500, 1000, 1250, 1500),#
+        label_x="Absolute Distance from the Cutoff (Vote Margin %)",#
+        label_y="Average Difference in Vote Share \n Between Bare Losers and Bare Winners",#
+        plot_label=" ",#
+        legend=T)#
+dev.off()#
+#
+#(b)Main Estimates (with number of observations and additional estimator - local linear)#
+pdf("~/Dropbox/Nati - Lupe/RDD/with_add_est_plot.pdf", width=8, height=8)#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DPctNxt, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est="loc_lin", nr_obs=T, #
+        nr_obs_lab=c(30, 250, 500, 1000, 1250, 1500),#
+        label_x="Absolute Distance from the Cutoff",#
+        label_y="Estimated Effect",#
+        plot_label=" ",#
+        legend=T)#
+dev.off()#
+#(c)Balance (without number of observations and without additional estimator, 2 covariates)#
+#
+#(c.1)Balance - Dem Win t-1#
+pdf("~/Dropbox/Nati - Lupe/RDD/balance_plot_1.pdf", height=5, width=6.5)#
+par(mfrow=c(1,1))#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$DWinPrv_r, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=F, #
+        nr_obs_lab=NA,#
+        label_x="Absolute Distance from the Cutoff (Vote margin %)",#
+        label_y="Difference between Treatment \n and Control",#
+        label_size=1.5,#
+        plot_label=" ",#
+        legend=F) #
+dev.off()#
+#
+#(c.2)Balance - Voter turnout %#
+pdf("~/Dropbox/Nati - Lupe/RDD/balance_plot_2.pdf", height=5, width=6.5)#
+par(mfrow=c(1,1))#
+# Voter turnout %#
+RD_plot(running=data$DifDPct, treat=data$DemWin, #
+        outcome=data$VtTotPct_r, #
+        cutoff=0, min_running=0.25, max_running=10,#
+        opt_bw=opt_bw, nr_windows=50, main_est="dom", ci="95%",#
+        add_est=F, nr_obs=F, #
+        nr_obs_lab=NA,#
+        label_x="Absolute Distance from the Cutoff (Vote margin %)",#
+        label_y="Difference between Treatment \n and Control",#
+        label_size=1.5,#
+        plot_label=" ",#
+        legend=F) #
+dev.off()

@@ -1,7 +1,8 @@
 ############################################################################
 # Bueno & Tuñón, 2015
 # Replication code 
-# Note to reader: We intend for this material to be published as an online Appendix or Supplemental Material. It will also be publicly available at github by the time of publication.
+# Note to reader: We intend for this material to be published as an online Appendix or Supplemental Material. 
+# It will also be publicly available at github by the time of publication.
 ############################################################################
 ###Estimators functions
 #Difference of means 
@@ -44,7 +45,8 @@ library(foreign)
 library(sandwich)
 
 #Data directory
-data.dir <- setwd("~/Dropbox/Nati - Lupe/RDD/Caughey_Sekhon_2011")
+#User should adjust these accordingly
+data.dir <- setwd("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/Caughey_Sekhon_2011")
 
 #Estimator Functions
 
@@ -398,7 +400,7 @@ RD_plot <- function(
 ############################################################# Analysis
 
 #Getting data
-rd <- read.dta("~/Dropbox/Nati - Lupe/RDD/Caughey_Sekhon_2011/RDReplication.dta")
+rd <- read.dta("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/Caughey_Sekhon_2011/RDReplication.dta")
 data <- rd[rd$Use == 1, ]
 
 #Getting optimal bandwidth following imbens and Kalynaranam (2009). Using function from Green et al 2009.
@@ -426,7 +428,7 @@ data$DPctNxt_r <- (data$DPctNxt - mean(data$DPctNxt, na.rm=T))/sd(data$DPctNxt, 
 #Main text - Figures
 
 #(a)Main Estimates (with number of observations and without additional estimator)
-pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_plot.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_plot.pdf", width=8, height=8)
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -440,7 +442,7 @@ RD_plot(running=data$DifDPct, treat=data$DemWin,
 dev.off()
 
 #(b)Main Estimates (with number of observations and additional estimator - local linear)
-pdf("~/Dropbox/Nati - Lupe/RDD/with_add_est_plot.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_plot.pdf", width=8, height=8)
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -457,7 +459,7 @@ dev.off()
 #(c)Balance (without number of observations and without additional estimator, 2 covariates)
 
 #(c.1)Balance - Dem Win t-1
-pdf("~/Dropbox/Nati - Lupe/RDD/balance_plot_1.pdf", height=5, width=6.5)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plot_1.pdf", height=5, width=6.5)
 par(mfrow=c(1,1))
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DWinPrv_r, 
@@ -473,7 +475,7 @@ RD_plot(running=data$DifDPct, treat=data$DemWin,
 dev.off()
 
 #(c.2)Balance - Voter turnout %
-pdf("~/Dropbox/Nati - Lupe/RDD/balance_plot_2.pdf", height=5, width=6.5)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plot_2.pdf", height=5, width=6.5)
 par(mfrow=c(1,1))
 # Voter turnout %
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
@@ -493,7 +495,7 @@ dev.off()
 #Online Appendix - Figures
 
 #(A.1)Main Estimates (with number of observations and additional estimator - polynomial)
-pdf("~/Dropbox/Nati - Lupe/RDD/with_add_est_plot_poly.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_plot_poly.pdf", width=8, height=8)
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=max(data$DifDPct),
@@ -508,7 +510,7 @@ dev.off()
 
 #(A.2)Main Estimates (with number of observations and without additional estimator): standardized outcome variable 
 
-pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_plot_standardized.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_plot_standardized.pdf", width=8, height=8)
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt_r, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -538,7 +540,7 @@ names <- c('Dem Win t - 1', 'Dem % t - 1',
             'Open Seat', 'Voter Turnout %')
 
 
-pdf("~/Dropbox/Nati - Lupe/RDD/balance_plots_12.pdf", height=12, width=22)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plots_12.pdf", height=12, width=22)
 par(mfrow=c(4,3))
 for (i in 1:length(outcomes)){
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
@@ -559,7 +561,7 @@ dev.off()
 #Additional Figures
 
 #(d)Main Estimates (without number of observations and without additional estimator)
-pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_no_obs_plot.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_no_obs_plot.pdf", width=8, height=8)
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -576,7 +578,7 @@ dev.off()
 #					loca linear regression as the main estimator and 
 #					difference of means as an additional)
 
-pdf("~/Dropbox/Nati - Lupe/RDD/no_add_est_no_obs_plot.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_no_obs_plot.pdf", width=8, height=8)
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,

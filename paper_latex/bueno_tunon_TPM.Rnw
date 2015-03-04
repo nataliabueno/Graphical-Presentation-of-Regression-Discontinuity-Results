@@ -1,0 +1,243 @@
+\documentclass[letterpaper,twoside,12pt]{article}
+%\documentclass[sts]{imsart}
+\usepackage[USenglish]{babel} 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 
+\usepackage[top=1.5in, bottom=1.5in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{arydshln}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage{setspace}
+\usepackage[round]{natbib}
+\usepackage{soul}
+\setlength{\belowcaptionskip}{12pt}
+\usepackage{framed}
+\usepackage{rotating}
+\usepackage{hyperref}
+\usepackage[hang,flushmargin]{footmisc} 
+\usepackage{framed}
+\usepackage{arydshln}
+\usepackage{endnotes}
+\usepackage{arydshln}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[capposition=top]{floatrow}
+\usepackage{subcaption}
+ \raggedbottom
+\providecommand{\keywords}[1]{\textbf{Keywords:} #1}
+
+\usepackage[latin1]{inputenc}
+\doublespace
+
+\newcommand*{\SuperScriptSameStyle}[1]{%
+  \ensuremath{%
+    \mathchoice
+      {{}^{\displaystyle #1}}%
+      {{}^{\textstyle #1}}%
+      {{}^{\scriptstyle #1}}%
+      {{}^{\scriptscriptstyle #1}}%
+  }%
+}
+
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\newcommand*{\oneS}{\SuperScriptSameStyle{*}}
+\newcommand*{\twoS}{\SuperScriptSameStyle{**}}
+\newcommand*{\threeS}{\SuperScriptSameStyle{*{*}*}}
+
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\vs}{\vspace{5mm}}
+\newcommand{\vsmore}{\vspace{15mm}}
+\newcommand{\letters}{\begin{enumerate}[a.]}
+\renewcommand{\i}{\item}
+\renewcommand{\u}{\underline}
+\renewcommand{\footnotelayout}{\doublespacing}
+\renewcommand{\baselinestretch}{2}
+\renewcommand{\footnotesize}{\normalsize
+\setlength{\footnotesep}{\baselineskip}} 
+\newenvironment{nscenter}
+ {\parskip=0pt\par\nopagebreak\centering}
+ {\par\noindent\ignorespacesafterend}
+% \let\footnote=\endnote
+
+%--------------------------------------------------------
+\begin{document}
+\title{Graphical Presentation of Regression Discontinuity Results\blfootnote{Authors' note: We are grateful for helpful advice received from Thad Dunning and Allan Dafoe.}}
+\date{}
+\author{Nat\'{a}lia S. Bueno \vspace{-6mm}\\ Yale University \\ Guadalupe Tu\~n\'on \vspace{-6mm} \\ University of California, Berkeley}
+
+
+\maketitle
+
+\vspace{50mm}
+
+\clearpage
+\begin{abstract}
+\noindent During the last decade, an increasing number of political scientists have turned to regression-discontinuity (RD) designs to estimate causal effects. One of the key issues in RD designs involves selection of the window or bandwidth as results are often sensitive to their size. We propose a simple graphical way of reporting RD results that shows the sensitivity of estimates to a wide range of possible windows. The advantages of these plots over conventional ways of presenting RD results are threefold. First, they reduce the opportunities for the intentional or unintentional selection of windows that yield significant findings while also communicating the robustness of results to variations in window size. Second, they provide a simple visual comparison of how different estimators (difference-of-means, local linear, and polynomial regression models) perform as a function of different windows. Third, these plots can be used for placebo tests to examine the sensitivity of balance to different windows, reporting the magnitude of the difference between treatment and control and its confidence interval. We illustrate how a researcher can use these plots to present RD results in a transparent and systematic way with a regression discontinuity design examining incumbency advantage in the U.S.\ House of Representatives.
+\end{abstract}
+
+\vspace*{10pt}
+\noindent \keywords{Regression-Discontinuity Design, Graphical Presentation, Natural Experiment, Placebo Tests, Incumbency Advantage.}
+
+\clearpage    
+
+During the last decade, an increasing number of political scientists have turned to regression-discontinuity (RD) designs to estimate causal effects.  Although the growth of RD designs has stimulated a wide discussion about RD assumptions and estimation strategies, there is no single shared approach to guide empirical applications. One of the major issues in RD designs involves selection of the ``window'' or ``bandwidth'' -- the values of the running variable that define the set of units included in the RD study group.\footnote{Formally, the window is an interval on the running variable, $W_0=[\underline{r},\overline{r}]$, containing the cutoff value $r_0$. The analysis then focuses on all observations with $R_i$ within this interval \citep{cattaneo2015randomization}.} Scholars have developed numerous tools to determine the right window for a given application and  estimator \citep{imbens2008regression,imbens2011optimal,calonico2015robust}). 
+
+This choice is key for RD designs, as results are often sensitive to bandwidth size. Indeed, even those who propose particular methods to choose a given window agree that ``irrespective of the manner in which the bandwidth is chosen, one should always investigate the sensitivity of the inferences to this choice. [...] [I]f the results are critically dependent on a particular bandwidth choice, they are clearly less credible than if they are robust to such variation in bandwidths.'' \citep[p.~633]{imbens2008regression} Moreover, the existence of multiple methods to justify a given choice opens the door to ``fishing'' -- the intentional or unintentional selection of models that yield positive findings \citep{Humphreys01012013}. 
+
+In this note, we propose a simple graphical way of reporting RD results that shows the sensitivity of estimates to a wide range of possible bandwidths.\footnote{This choice is posterior to defining the estimand and choosing an estimator for the causal effect of treatment. While the plots we propose focus on presenting the sensitivity of results to bandwidth choice, we also show how they can be used to explore the sensitivity of results to these other choices. For discussions of estimands in RD design see \citet{dunning2012natural} and \citet{calonico2015robust}. Most RD applications employ flexible regression functions -- such as local-linear and polynomial regressions, or differences  of means (e.g., \citet{imbens2008regression, lee2008randomized, dunning2012natural}).} By forcing researchers to present results for an extensive set of possible choices, the use of these plots reduces the opportunities for ``fishing,'' complementing existing good practices in the way in which RD results are presented. Some empirical applications of RD designs have presented their results using plots that are in some ways similar to the ones we propose. However, this note explores the virtues of the plots more systematically (e.g., in connection with balance tests and the discussion of the RD estimator) and provides code so that scholars can adapt them to their own applications. The following paragraphs describe how RD results are usually reported in two top political science journals and the ways in which the graphs we propose can improve on current practices. An R function to construct these plots for a wide set of applications is publicly available on the online Appendix.
+
+\section*{Reporting RD Analyses: Current Practice}
+    
+How do political scientists report the results of regression-discontinuity designs? We reviewed all papers using RDDs published in the \emph{American Political Science Review} and \emph{American Journal of Political Science}.  We surveyed these papers and coded (1) their choice of estimators, (2) whether they present any type of balance test and, (3) if they do, the window(s) chosen for this.
+
+Out of a total of twelve RD papers published in these journals, five report results using a single estimator.\footnote{Polynomial regression is the most popular model:  nine papers use a type of polynomial regression, five employ a local linear regression, and three use a difference of means (via OLS). Only one presents results using all three estimators.} Four articles present results for a single window -- usually the full sample. The remaining papers present results using multiple windows, but the number and selection of windows are neither systematic nor extensive.\footnote{\citet{gerber2011mayors}, \citet{ferwerda2014devolution} and \citet{eggers2015} are exceptions---they show the robustness of the main result using plots similar to the one we suggest here.} Seven papers present some type of balance test, but while researchers often report their main results using a handful of windows, they do not report balance tests for different windows to the same extent.\footnote{All of the papers that use local linear regressions also use a type of standard procedure to choose the ``optimal'' bandwidth -- either \citet{imbens2008regression} or \citet{imbens2011optimal}.}
+
+\section*{A Graphical Alternative: An Example}
+
+We use electoral data from the U.S.\ House of Representatives from 1942 to 2008 collected by \citet{caughey2011elections} and a regression discontinuity design examining incumbency advantage to illustrate how a researcher can use plots to present RD results in a transparent and systematic way.\footnote{We use data from \citet{caugheysekhondata}.} This application has two advantages for illustrating the use of these plots. First, close-race electoral regression-discontinuity designs are one of the main applications of this type of design in political science -- we are thus presenting the plot in one of the most used RDD setups, although researchers can use this type of graph in all sorts of RD designs. Second, the use of close-race RDDs to measure the effect of incumbency advantage has sparked a vigorous debate about the assumptions and validity of these designs in particular settings. Using this application allows us to show an additional advantage of the plots we propose: tests of balance and other types of placebo tests.
+
+Figure 1 plots the estimates of local average treatment effects as a function of the running variable, here vote margin. For example, the first solid back circle represents the average difference in vote share between an incumbent party that won by 0.45\% or less and an incumbent party that lost by 0.45\% or less is about 11 percentage points. It also reports the average difference in vote share between incumbent parties that won and lost by sequential increases of 0.2\% in vote margin between 0.45\% to 9.85\%. Figure 1 has an additional feature: the solid gray line represents the results using an additional estimator that enables us to compare the effects estimated from two different estimators, across different windows, in the same plot. In this case, we present the estimated effects of party incumbency on vote share using a local linear regression with a triangular kernel, across different bandwidths. Researchers could use different estimators, such as a polynomial regression model.\footnote{We present an example of this plot using an fourth-degree polynomial regression in Figure A.1 available at the online Appendix.} Note, however, that the black circles and the solid gray line represent different quantities. The black circles represent estimates of the average causal effect for the RD study group $N$. The difference of means estimator $Y^T - Y^C$ -- the difference between average vote share for an incumbent party minus the average vote share for a non-incumbent party -- is unbiased for the average causal effect ($\tau_{ACE}$), represented in equation (1).\footnote{See \citet{dunning2012natural} and \citet{buenodunningtunon2014} for a discussion and proofs.} The gray line presents estimates of the average causal effect precisely at the point of discontinuity ($c$). We fit a local linear regression with a triangular kernel, within the RDD bandwith, to estimate this limit parameter ($\tau_{lim}$), represented in equation (2).\footnote{We use the terms ``window'' and ``bandwidth'' interchangeably, since both denote the values of the running variable ($r$) that define the set of units included in the RD study group. However, in local linear regression with kernel smoothers, bandwidth refers to the width of the kernel.}
+
+\begin{equation}\label{limit_parameter}
+\tau_{lim} =  \lim_{r \Downarrow c}  [\overline{Y}_i(1)|R_i=r] - \lim_{r \Uparrow c} [\overline{Y}_i(0)|R_i=r]
+  \end{equation}
+
+\begin{equation}\label{local_parameter}
+\tau_{ACE} = \frac{1}{N}\sum_{i=1}^{N} [Y_{i}(1)-Y_{i}(0)].
+\end{equation}
+
+The key part of the plotting function is the section that produces the estimate for each window. For this, we first pre-specify functions for each estimator. For example, fot the difference of means we have:\footnote{Note that we compute the difference of means by regressing the outcome variable on a dummy for treatment assignment, with robust standard errors allowing for unequal variances, which is algebraically equivalent to the \textit{t-test} with unequal variances.}
+
+<<eval=FALSE>>=
+
+#Difference of mean (using OLS with robust standard errors)
+dom <- function(rescaled, treat, outcome){
+  model <- lm(outcome~treat)
+  est <- NA
+  est[1] <- model$coefficients[2]
+  est[2] <- sqrt(diag(vcovHC(model,type="HC3"))[2])
+  return(est)
+}
+
+@
+
+We then include a loop which takes a window value and subsets the data to keep only the observations within that window. 
+
+<<eval=FALSE>>=
+
+    ests <- matrix(NA,length(windows),3) #object to store loop output
+    for (i in 1:length(windows)){
+        # select data
+        temp <- as.data.frame(data[abs_running<=windows[i],])
+
+@
+
+We take this subset of the data to calculate the estimates of interest for that window, here the difference of means to continue the example above. The plot requires that we calculate both the point estimates and the confidence intervals. In these figures, confidence intervals are calculated using a normal approximation and unequal variances are assumed for standard errors in the treatment and control groups. 
+
+<<eval=FALSE>>=
+
+    ests[i,1:2] <- with(temp, dom(rescaled=rescaled, treat=treat, 
+                                  outcome=outcome))
+
+    if (ci=="95%") CI <- cbind(ests[,1]+1.96*ests[,2],ests[,1]-1.96*ests[,2])
+    if (ci=="90%") CI <- cbind(ests[,1]+1.64*ests[,2],ests[,1]-1.64*ests[,2])
+
+@
+
+If the researcher wanted to include an additional estimator, the calculation of the estimate for a particular window would also be included in the loop. Once the estimates for all the relevant windows have been calculated, plotting is straightforward. Our plot, and the accompanying documented R code, is flexible enough to incorporate different ways of estimating standard errors and constructing confidence intervals.\footnote{For a detailed discussion of standard errors and confidence intervals in RD designs, see \citet{calonico2015robust}.}
+
+We believe that the plot has a main advantage over the corresponding presentation of these results in a table; namely, it would be much more cumbersome for the reader to get an overview of the stability of the results to different windows if these results were in a long table (here it would have at least 48 entries for a single estimator).\footnote{However, tables do provide a more precise way to convey the main estimates. Thus, the plot is a complement to tables reporting the main results for a few chosen windows.} As expected, the confidence intervals become increasingly smaller for results associated with larger vote margins because the number of observations is larger. This increase in the number of observations associated with larger windows can also be reported in the plot, and we do so in the upper axis of figure 1 -- there are more electoral races lost or won by 9\% or less of the vote share (about 1,400 races) than races lost or won by 0.45\% or less of the vote share (about 75). 
+
+<<eval=FALSE>>=
+#The user defines whether or not she would like to include the axis with the number of observations per window.
+#Then she defines at which points
+
+data <- as.data.frame(data[order(abs_running),])
+  if (nr_obs==T) {
+    if (missing(nr_obs_lab))
+      stop("Missing specification for number of observations to be included in the plot. \n
+           If no axis for the number of observations is needed, use nr_obs=F.")
+    nr_obs_lab <- cbind(nr_obs_lab, data$abs_running[nr_obs_lab])} #matrix to store the number of observations
+                                                                   #at the points defined by the user.
+
+#Finally, it is easy to include this information in the plot as an additional axis. 
+axis(3, at=c(nr_obs_lab[,2]), labels=c(nr_obs_lab[,1]), cex=.6, col="grey50", 
+           lwd = 0.5, padj=1, line=1, cex.axis=.7, col.axis="grey50")
+      mtext("Number of observations", side=3, col="grey50", cex=.7, adj=0)} #axis caption
+
+@
+
+
+
+% \begin{figure}
+%   \caption{Mean vote share difference between winners and losers by Democratic margin of victory, from 1942 to 2008}\label{fig:main_est}
+% \vspace{-1mm}
+%   \centerline{\includegraphics[width=1\textwidth]{no_add_est_plot.pdf}}
+%   \floatfoot{Note: Dashed gray line at the optimal bandwidth estimated by the method of \citet{imbens2011optimal}.}
+%   \end{figure}
+% \clearpage
+
+\clearpage
+\begin{figure}
+  \caption{Mean vote share difference between winners and losers by Democratic margin of victory in previous election, from 1942 to 2008.}\label{fig:main_est_add}
+\vspace{-1mm}
+  \centerline{\includegraphics[width=1\textwidth]{with_add_est_plot.pdf}}
+  \floatfoot{Note: Dashed gray line at the optimal bandwidth estimated by the method of \citet{imbens2011optimal}.}
+  \end{figure}
+\clearpage
+
+Figure 2 follows the same logic described for Figure 1 but reports balance tests: each plot shows the effects of incumbency on a pre-treatment covariate as a function of the running variable. These plots allow for an extensive examination of the sensitivity of balance to different windows, reporting not only the p-values but also the magnitude of the difference between treatment and control and its confidence interval.\footnote{We suggest using standardized covariates to facilitate comparisons between plots. As in the case of plots for main effects, these plots work best when they are used along with balance tables for a few specific windows.} For a given identifying assumption (such as continuity of potential outcomes or as-if random assignment near the threshold), Figures 1, 2 and 3 help the reader to evaluate whether or not -- or in which window -- these assumptions are plausible.
+
+For instance, panel (a) in Figure 2, reports the difference in previous Democratic  victories between the incumbent and non-incumbent party and shows a large imbalance, strikingly larger for smaller windows -- a point made by \citet{caughey2011elections}.\footnote{In these plots, we chose to omit the axis with the number of observations because even though there are different rates of missing observations for covariates, the number of observations for the windows we were mostly interested in did not vary substantially from those in Figure 1.} Panel (b) in Figure 2 shows the difference in voter turnout between treatment and control districts. For the entire set of windows covered by the plot the difference is never statistically different from zero, suggesting that the groups are balanced in terms of this covariate. Note that the size of the difference between treatment and control is much smaller in panel (b) than in panel (a) -- also, relatively to the size of the effect of incumbency, the imbalance in panel (a) is substantial.\footnote{See Figure A.2 in the online Appendix for a the standardized effect of incumbency on vote share.}
+
+For ease of presentation, here we present plots for only two pre-treatment covariates.  However, analysts should be encouraged to present plots for all pre-treatment covariates at their disposal.\footnote{An extensive set of balance plots for pre-treatment covariates in \citet{caughey2011elections} can be found in Figure A.3 of the online Appendix.} Some plots may be more informative than others, for instance, because some pre-treatment covariates are expected to have a stronger prognostic relationship to the outcome. However, presentation of balance plots for the full set of available pre-treatment covariates may reduce opportunities for intentional or unintentional ``fishing." This point also highlights the way in which these plots could be used in connection with other techniques, such as pre-registration of analysis plans prior to estimation of treatment effects using outcome data.
+
+\clearpage
+\begin{figure}
+\vspace{5mm}
+\caption{Tests for balance: Standardized difference of means of pre-treatment covariates by Democratic margin of victory (95\% confidence intervals).}\label{fig:balancepartial}
+    \centering
+    \begin{subfigure}{.50\linewidth}
+        \includegraphics[scale=0.5]{balance_plot_1.pdf}
+        \caption{Democratic Win in t - 1}
+    \end{subfigure}
+    \hskip1em
+     \begin{subfigure}{.40\linewidth}
+        \includegraphics[scale=0.5]{balance_plot_2.pdf}
+        \caption{Voter Turnout \%}
+    \end{subfigure}
+    \floatfoot{Note: Dashed gray line at the optimal bandwidth estimated by the method of \citet{imbens2011optimal}. U.S.\ House of Representatives, from 1942 to 2008.}
+    \end{figure}
+\clearpage
+
+
+\section*{Concluding Remarks}
+
+We believe that these simple plots are a useful complement to the standard way in which scholars report results and balance tests from regression-discontinuity designs. They provide a simple visual comparison of how different estimators (from difference-of-means, local linear, and polynomial regression models) perform as a function of different windows, communicating the robustness of the results. Moreover, using these plots both for analysis of effects and placebo tests enables an informal visual inspection of how important confounders may be, relative to the size of the effect -- this is particularly informative when researchers use pre-treatment values of the outcome variable as a placebo test. However, researchers may also compare the size of treatment effects relative to other placebo tests by using standardized effect sizes across different windows, so that the scale of all plots is comparable.\footnote{Different approaches to calculating standardized effect sizes may be considered, such as those of \citet{glass1976} or \citet{ellis2010}.} In summary, these plots improve the communication of findings from regression-discontinuity designs by showing readers the results from an extensive set of bandwidths, thus reducing researchers' latitude in presentation of their main findings and increasing the transparency of RD design applications.
+
+
+% \theendnotes
+
+\clearpage
+\bibliographystyle{apsr}	
+\bibliography{RDnote}
+
+
+\end{document}

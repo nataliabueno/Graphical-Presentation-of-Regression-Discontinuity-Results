@@ -1,5 +1,4 @@
 ############################################################################
-# Bueno & Tuñón, 2015
 # Replication code 
 # Note to reader: We intend for this material to be published as an online Appendix or Supplemental Material. 
 # It will also be publicly available at github by the time of publication.
@@ -189,9 +188,6 @@ optimal.bw <- function(Y,X,c,reg)   {
   return(hhat.opt)
   
 }
-
-
-
 
 ############################################################################
 # Plotting function
@@ -429,6 +425,8 @@ data$DPctNxt_r <- (data$DPctNxt - mean(data$DPctNxt, na.rm=T))/sd(data$DPctNxt, 
 
 #(a)Main Estimates (with number of observations and without additional estimator)
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_plot.pdf", width=8, height=8)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_plot.eps")
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -443,6 +441,8 @@ dev.off()
 
 #(b)Main Estimates (with number of observations and additional estimator - local linear)
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_plot.pdf", width=8, height=8)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_plot.eps")
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -460,6 +460,8 @@ dev.off()
 
 #(c.1)Balance - Dem Win t-1
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plot_1.pdf", height=5, width=6.5)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plot_1.eps")
 par(mfrow=c(1,1))
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DWinPrv_r, 
@@ -476,6 +478,8 @@ dev.off()
 
 #(c.2)Balance - Voter turnout %
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plot_2.pdf", height=5, width=6.5)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plot_2.eps")
 par(mfrow=c(1,1))
 # Voter turnout %
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
@@ -496,6 +500,8 @@ dev.off()
 
 #(A.1)Main Estimates (with number of observations and additional estimator - polynomial)
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_plot_poly.pdf", width=8, height=8)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_plot_poly.eps")
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=max(data$DifDPct),
@@ -511,6 +517,8 @@ dev.off()
 #(A.2)Main Estimates (with number of observations and without additional estimator): standardized outcome variable 
 
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_plot_standardized.pdf", width=8, height=8)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_plot_standardized.eps")
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt_r, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -541,6 +549,8 @@ names <- c('Dem Win t - 1', 'Dem % t - 1',
 
 
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plots_12.pdf", height=12, width=22)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/balance_plots_12.eps", height=12, width=22)
 par(mfrow=c(4,3))
 for (i in 1:length(outcomes)){
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
@@ -562,6 +572,8 @@ dev.off()
 
 #(d)Main Estimates (without number of observations and without additional estimator)
 pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_no_obs_plot.pdf", width=8, height=8)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_no_obs_plot.eps")
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,
@@ -575,10 +587,12 @@ RD_plot(running=data$DifDPct, treat=data$DemWin,
 dev.off()
 
 #(e)Main Estimates (with number of observations and with an additional estimator,
-#					loca linear regression as the main estimator and 
+#					local linear regression as the main estimator and 
 #					difference of means as an additional)
 
-pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/no_add_est_no_obs_plot.pdf", width=8, height=8)
+pdf("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_no_obs_plot.pdf", width=8, height=8)
+#setEPS()
+#postscript("~/Dropbox/Graphical-Presentation-of-Regression-Discontinuity-Results/paper_latex/with_add_est_no_obs_plot.eps")
 RD_plot(running=data$DifDPct, treat=data$DemWin, 
         outcome=data$DPctNxt, 
         cutoff=0, min_running=0.25, max_running=10,

@@ -1,0 +1,93 @@
+\begin{thebibliography}{xx}
+
+\harvarditem[Bueno, Dunning \harvardand\ Tu\~n\'on]{Bueno, Dunning \harvardand\
+  Tu\~n\'on}{2014}{buenodunningtunon2014}
+Bueno, Nat{\'a}lia~S, Thad Dunning \harvardand\ Guadalupe Tu\~n\'on. 2014.
+\newblock ``{Design-Based Analysis of Regression Discontinuities: Evidence From
+  Experimental Benchmarks}.'' {\em Paper Presented at the 2014 APSA Annual
+  Meeting} .
+
+\harvarditem[Calonico, Cattaneo \harvardand\ Titiunik]{Calonico, Cattaneo
+  \harvardand\ Titiunik}{2015}{calonico2015robust}
+Calonico, Sebastian, Matias~D Cattaneo \harvardand\ Rocio Titiunik. 2015.
+\newblock ``Robust nonparametric confidence intervals for
+  regression-discontinuity designs.'' {\em Econometrica} 86(2):2295--2326.
+
+\harvarditem[Cattaneo, Frandsen \harvardand\ Titiunik]{Cattaneo, Frandsen
+  \harvardand\ Titiunik}{2015}{cattaneo2015randomization}
+Cattaneo, Matias~D, Bringham~R. Frandsen \harvardand\ Rocio Titiunik. 2015.
+\newblock ``Randomization Inference in the Regression-Discontinuity Designs: An
+  Application to Party Advantages in the US Senate.'' {\em Journal of Causal
+  Inference} 3(1):1--24.
+
+\harvarditem{Caughey \harvardand\ Sekhon}{2011}{caughey2011elections}
+Caughey, Devin \harvardand\ Jasjeet~S Sekhon. 2011.
+\newblock ``Elections and the Regression Discontinuity Design: Lessons from
+  Close US House Races, 1942--2008.'' {\em Political Analysis} 19(4):385--408.
+
+\harvarditem{Caughey \harvardand\ Sekhon}{June, 2013}{caugheysekhondata}
+Caughey, Devin \harvardand\ Jasjeet~S. Sekhon. June, 2013.
+\newblock ``Replication data for: Elections and the Regression Discontinuity
+  Design: Lessons from Close US House Races, 1942--2008.''.
+\newline\harvardurl{\url{http://goo.gl/OVN2aF}}
+
+\harvarditem{Dunning}{2012}{dunning2012natural}
+Dunning, Thad. 2012.
+\newblock {\em Natural Experiments in the Social Sciences: a Design-Based
+  Approach}.
+\newblock Cambridge University Press.
+
+\harvarditem[Eggers et~al.]{Eggers, Folke, Fowler, Hainmueller, Hall
+  \harvardand\ Snyder}{2015}{eggers2015}
+Eggers, Andrew~C., Olle Folke, Anthony Fowler, Jens Hainmueller, Andrew~B. Hall
+  \harvardand\ James~M. Snyder. 2015.
+\newblock ``{On The Validity Of The Regression Discontinuity Design For
+  Estimating Electoral Effects: New Evidence From Over 40,000 Close Races}.''
+  {\em American Journal of Political Science} 59(1):259--274.
+
+\harvarditem{Ellis}{2010}{ellis2010}
+Ellis, Paul~D. 2010.
+\newblock {\em The Essential Guide to Effect Sizes: An Introduction to
+  Statistical Power, Meta-Analysis and the Interpretation of Research Results}.
+\newblock Cambridge University Press.
+
+\harvarditem{Ferwerda \harvardand\ Miller}{2014}{ferwerda2014devolution}
+Ferwerda, Jeremy \harvardand\ Nicholas~L. Miller. 2014.
+\newblock ``Political Devolution and Resistance to Foreign Rule: A Natural
+  Experiment.'' {\em American Political Science Review} 108(3):642--660.
+
+\harvarditem{Gerber \harvardand\ Hopkins}{2011}{gerber2011mayors}
+Gerber, Elisabeth~R \harvardand\ Daniel~J Hopkins. 2011.
+\newblock ``When Mayors Matter: Estimating the Impact of Mayoral Partisanship
+  on City Policy.'' {\em American Journal of Political Science} 55(2):326--339.
+
+\harvarditem{Glass}{1976}{glass1976}
+Glass, Gene~V. 1976.
+\newblock ``Integrating Findings: The Meta-Analysis of Research.'' {\em Review
+  of Research in Education} 5:351--379.
+
+\harvarditem[Humphreys, Sanchez de~la Sierra \harvardand\ van~der
+  Windt]{Humphreys, Sanchez de~la Sierra \harvardand\ van~der
+  Windt}{2013}{Humphreys01012013}
+Humphreys, Macartan, Raul Sanchez de~la Sierra \harvardand\ Peter van~der
+  Windt. 2013.
+\newblock ``Fishing, Commitment, and Communication: A Proposal for
+  Comprehensive Nonbinding Research Registration.'' {\em Political Analysis}
+  21(1):1--20.
+
+\harvarditem{Imbens \harvardand\ Kalyanaraman}{2011}{imbens2011optimal}
+Imbens, Guido \harvardand\ Karthik Kalyanaraman. 2011.
+\newblock ``Optimal Bandwidth Choice for the Regression Riscontinuity
+  Estimator.'' {\em The Review of Economic Studies} 79(3):933--959.
+
+\harvarditem{Imbens \harvardand\ Lemieux}{2008}{imbens2008regression}
+Imbens, Guido~W \harvardand\ Thomas Lemieux. 2008.
+\newblock ``Regression Discontinuity Designs: A guide to Practice.'' {\em
+  Journal of econometrics} 142(2):615--635.
+
+\harvarditem{Lee}{2008}{lee2008randomized}
+Lee, David~S. 2008.
+\newblock ``Randomized Experiments from Non-Random Selection in US House
+  Elections.'' {\em Journal of Econometrics} 142(2):675--697.
+
+\end{thebibliography}

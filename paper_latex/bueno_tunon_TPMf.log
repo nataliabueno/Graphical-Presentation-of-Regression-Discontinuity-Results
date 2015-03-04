@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  4 MAR 2015 10:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  4 MAR 2015 10:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**bueno_tunon_TPM.tex
-(./bueno_tunon_TPM.tex
+**bueno_tunon_TPMf.tex
+(./bueno_tunon_TPMf.tex
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 78 languages loaded.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
@@ -729,8 +729,8 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 ))
-(./bueno_tunon_TPM.aux)
-\openout1 = `bueno_tunon_TPM.aux'.
+(./bueno_tunon_TPMf.aux)
+\openout1 = `bueno_tunon_TPMf.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
 LaTeX Font Info:    ... okay on input line 130.
@@ -845,9 +845,9 @@ LaTeX Info: Redefining \ref on input line 130.
 LaTeX Info: Redefining \pageref on input line 130.
 LaTeX Info: Redefining \nameref on input line 130.
 
-(./bueno_tunon_TPM.out) (./bueno_tunon_TPM.out)
+(./bueno_tunon_TPMf.out) (./bueno_tunon_TPMf.out)
 \@outlinefile=\write5
-\openout5 = `bueno_tunon_TPM.out'.
+\openout5 = `bueno_tunon_TPMf.out'.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/floatrow/fr-longtable.sty
@@ -1007,56 +1007,33 @@ LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
 (Font)              scaled to size 7.68005pt on input line 137.
 Missing character: There is no * in font mdbchr8c!
 
-[1
-
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
-(Font)              scaled to size 10.51207pt on input line 141.
-LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 10.51207pt on input line 141.
-
-Overfull \hbox (4.62411pt too wide) in paragraph at lines 142--143
-[]\T1/mdbch/m/n/10.95 During the last decade, an in-creas-ing num-ber of po-lit
--i-cal sci-en-tists have turned to regression-
- []
-
-LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 11.52008pt on input line 146.
-
-Overfull \hbox (16.98145pt too wide) in paragraph at lines 146--147
-\T1/mdbch/b/n/12 Keywords: \T1/mdbch/m/n/12 Regression-Discontinuity De-sign, G
-raph-i-cal Pre-sen-ta-tion, Nat-u-ral Ex-per-i-ment, Placebo
- []
-
-[2
-
-]
-Overfull \hbox (3.35463pt too wide) in paragraph at lines 150--151
+Overfull \hbox (3.35463pt too wide) in paragraph at lines 138--139
 []\T1/mdbch/m/n/12 During the last decade, an in-creas-ing num-ber of po-lit-i-
 cal sci-en-tists have turned to regression-
  []
 
-[3
+[1
 
-]
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2]
 LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
-(Font)              scaled to size 16.58891pt on input line 157.
+(Font)              scaled to size 16.58891pt on input line 144.
 LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 16.58891pt on input line 157.
+(Font)              scaled to size 16.58891pt on input line 144.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
-(Font)              scaled to size 11.52008pt on input line 159.
- [4] [5] [6] [7]
-Package color Info: Redefining color shadecolor on input line 180.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 181.
+(Font)              scaled to size 11.52008pt on input line 146.
+ [3] [4] [5]
+Package color Info: Redefining color shadecolor on input line 168.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 169.
 
  (/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package color Info: Redefining color shadecolor on input line 197.
-[8]
-Package color Info: Redefining color shadecolor on input line 210.
+[6]
+Package color Info: Redefining color shadecolor on input line 188.
+Package color Info: Redefining color shadecolor on input line 203.
 
-Overfull \hbox (6.56009pt too wide) in paragraph at lines 215--215
+Overfull \hbox (6.56009pt too wide) in paragraph at lines 208--208
 []    []\T1/lmtt/b/n/12 if[] []\T1/lmtt/m/n/12 (ci[][]==[][]"95%"[][]) CI[] []<
 -[] []\T1/lmtt/b/n/12 cbind[][]\T1/lmtt/m/n/12 (ests[,[][]1[][]][][]+[][]1.96[]
 []*[][]ests[,[][]2[][]],ests[,[][]1[][]][][]-[][]1.96[][]*[][]ests[,[][]2[][]])
@@ -1064,84 +1041,91 @@ Overfull \hbox (6.56009pt too wide) in paragraph at lines 215--215
  []
 
 
-Overfull \hbox (6.5741pt too wide) in paragraph at lines 216--216
+Overfull \hbox (6.5741pt too wide) in paragraph at lines 209--209
 []    []\T1/lmtt/b/n/12 if[] []\T1/lmtt/m/n/12 (ci[][]==[][]"90%"[][]) CI[] []<
 -[] []\T1/lmtt/b/n/12 cbind[][]\T1/lmtt/m/n/12 (ests[,[][]1[][]][][]+[][]1.64[]
 []*[][]ests[,[][]2[][]],ests[,[][]1[][]][][]-[][]1.64[][]*[][]ests[,[][]2[][]])
 [][] 
  []
 
-[9]
-Package color Info: Redefining color shadecolor on input line 226.
- [10] <with_add_est_plot.pdf, id=142, 578.16pt x 578.16pt>
+[7]
+Package color Info: Redefining color shadecolor on input line 219.
+
+Overfull \hbox (23.22742pt too wide) in paragraph at lines 229--229
+[]    []\T1/lmtt/m/it/12 # binding the labels with the corresponding value for 
+the running variable[][] 
+ []
+
+
+Overfull \hbox (24.98813pt too wide) in paragraph at lines 235--235
+[]   []\T1/lmtt/b/n/12 axis[][]\T1/lmtt/m/n/12 ([][]3[][],[] []at[][]=[][]\T1/l
+mtt/b/n/12 c[][]\T1/lmtt/m/n/12 (nr_obs_lab[,[][]2[][]]),[] []labels[][]=[][]\T
+1/lmtt/b/n/12 c[][]\T1/lmtt/m/n/12 (nr_obs_lab[,[][]1[][]]),[] []cex[][]=[][].6
+[][],[] []col[][]=[][]"grey50"[][],[][] 
+ []
+
+[8] <with_add_est_plot.pdf, id=119, 578.16pt x 578.16pt>
 File: with_add_est_plot.pdf Graphic file (type pdf)
 
 <use with_add_est_plot.pdf>
-Package pdftex.def Info: with_add_est_plot.pdf used on input line 247.
+Package pdftex.def Info: with_add_est_plot.pdf used on input line 255.
 (pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
- [11 <./with_add_est_plot.pdf>] [12
+ [9 <./with_add_est_plot.pdf>] [10
 
 
-] [13]
-<balance_plot_1.pdf, id=182, 469.755pt x 361.35pt>
+] [11]
+<balance_plot_1.pdf, id=156, 469.755pt x 361.35pt>
 File: balance_plot_1.pdf Graphic file (type pdf)
  <use balance_plot_1.pdf>
-Package pdftex.def Info: balance_plot_1.pdf used on input line 264.
+Package pdftex.def Info: balance_plot_1.pdf used on input line 272.
 (pdftex.def)             Requested size: 234.87692pt x 180.67456pt.
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 273.
 
-<balance_plot_2.pdf, id=183, 469.755pt x 361.35pt>
+<balance_plot_2.pdf, id=157, 469.755pt x 361.35pt>
 File: balance_plot_2.pdf Graphic file (type pdf)
  <use balance_plot_2.pdf>
-Package pdftex.def Info: balance_plot_2.pdf used on input line 269.
+Package pdftex.def Info: balance_plot_2.pdf used on input line 277.
 (pdftex.def)             Requested size: 234.87692pt x 180.67456pt.
 
-Overfull \hbox (46.97778pt too wide) in paragraph at lines 269--270
+Overfull \hbox (46.97778pt too wide) in paragraph at lines 277--278
 [][] 
  []
 
-[14 <./balance_plot_1.pdf> <./balance_plot_2.pdf>] [15
+[12 <./balance_plot_1.pdf> <./balance_plot_2.pdf>] [13
 
 
-] (./bueno_tunon_TPM.bbl
-[16
+] (./bueno_tunon_TPMf.bbl [14
 
-] [17])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
- [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
- (./bueno_tunon_TPM.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 289.
-Package rerunfilecheck Info: File `bueno_tunon_TPM.out' has not changed.
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 299.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 299.
+ (./bueno_tunon_TPMf.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 299.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 299.
+Package rerunfilecheck Info: File `bueno_tunon_TPMf.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 299.
  )
-(\end occurred inside a group at level 1)
+(\end occurred inside a group at level 5)
 
+### semi simple group (level 5) entered at line 241 (\begingroup)
+### semi simple group (level 4) entered at line 213 (\begingroup)
+### semi simple group (level 3) entered at line 197 (\begingroup)
+### semi simple group (level 2) entered at line 182 (\begingroup)
 ### semi simple group (level 1) entered at line 89 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 11866 strings out of 493117
- 176846 string characters out of 6135433
- 364670 words of memory out of 5000000
- 14992 multiletter control sequences out of 15000+600000
- 56447 words of font info for 106 fonts, out of 8000000 for 9000
+ 11833 strings out of 493117
+ 176274 string characters out of 6135433
+ 363554 words of memory out of 5000000
+ 14975 multiletter control sequences out of 15000+600000
+ 50575 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,9n,77p,2304b,2217s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.17} has been referenced b
+ 42i,9n,77p,2307b,2375s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.13} has been referenced b
 ut does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.16} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.15} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.14} has been referenced but does not exis
-t, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not exis
-t, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
 t, replaced by a fixed one
@@ -1192,10 +1176,10 @@ mathdesign/mdbch/md-chr7v.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/p
 ublic/mathdesign/mdbch/md-chr7y.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/public/mathdesign/mdbch/md-chr8t.pfb></usr/local/texlive/2014/texmf-dist/f
 onts/type1/public/mathdesign/mdbch/md-chri7m.pfb>
-Output written on bueno_tunon_TPM.pdf (18 pages, 172008 bytes).
+Output written on bueno_tunon_TPMf.pdf (15 pages, 167077 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 244 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 248 PDF objects out of 1000 (max. 8388607)
+ 207 compressed objects within 3 object streams
+ 47 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -83,7 +83,7 @@ loc_lin <- function(outcome, rescaled, cutoff, running, h=windows, treat)   {
   kern <- as.numeric(abs(temp) <= 1) * (1 - abs(temp))
   
   runningCen <- running - cutoff
-  RunningCenTreat <- I(running*treat)
+  RunningCenTreat <- I(runningCen*treat)
   sel <- kern > 0
   
   wls.pool <- lm(outcome ~ treat + runningCen + RunningCenTreat, weights = kern, subset = sel)

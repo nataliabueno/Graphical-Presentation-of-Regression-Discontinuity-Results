@@ -7,4 +7,4 @@ Abstract: During the last decade, an increasing number of political scientists h
 
 Published in [*The Political Methodologist*] (http://thepoliticalmethodologist.com/) (blog and print edition)
 
-\[Note on 06/10/2015\]: We corrected a bug on line 86 of the code. We fixed the RunningCenTreat object in the local_linear function. Thanks to Daniel Masterson for pointing it out to us. 
+\[Note on 06/10/2015\]: We corrected a bug on line 86 of the code. We fixed the RunningCenTreat object in the local_linear function. Thanks to Daniel Masterson for pointing it out to us. Twice.
